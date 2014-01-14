@@ -53,6 +53,12 @@ export EDITOR="subl"
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+# Add the Homebrew executables to the front of the PATH
+export PATH=/usr/local/bin:$PATH
+
+# Add my scripts to the front of the PATH
+export PATH=/Users/alistair/dev/scripts:$PATH
+
 # Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -79,8 +85,8 @@ autoload -U compinit && compinit
 
 export PACKMANAGER_DEV=/Users/alistair/src/packmanager/dev
 
-# Local binstubs from bundler
-export PATH=./bin:$PATH
-
 # Handy way to get the the packmanager dev directory
 alias dev='cd $PACKMANAGER_DEV'
+
+# Local binstubs from bundler
+export PATH=./bin:$PATH
