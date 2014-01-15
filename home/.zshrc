@@ -42,7 +42,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew bundler gem git history-substring-search mvn osx powder terminalapp zeus)
+plugins=(brew bundler gem git history-substring-search osx powder zeus)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
