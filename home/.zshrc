@@ -48,13 +48,13 @@ source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 
 # Configuration
-export EDITOR="subl"
+export EDITOR="subl -w"
 
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-# Add the Homebrew executables to the front of the PATH
-export PATH=/usr/local/bin:$PATH
+# Add the Homebrew executables to the front of the standard OS X PATH
+export PATH=/usr/local/bin:/usr/sbin:/sbin:$PATH
 
 # Add my scripts to the front of the PATH
 export PATH=/Users/alistair/dev/scripts:$PATH
