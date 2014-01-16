@@ -1,2 +1,5 @@
 [core]
   commentchar = $
+[user]
+	name = Alistair McKinnell
+	email = alistair.mckinnell@gmail.com
