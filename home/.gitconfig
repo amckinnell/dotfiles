@@ -7,3 +7,5 @@
 [user]
 	name = Alistair McKinnell
 	email = alistair.mckinnell@gmail.com
+[push]
+	default = simple
