@@ -2,10 +2,10 @@
   ignore = update-index --assume-unchanged
   unignore = update-index --no-assume-unchanged
   ignored = !git ls-files -v | grep "^[[:lower:]]"
-[core]
-  commentchar = $
 [user]
 	name = Alistair McKinnell
 	email = alistair.mckinnell@gmail.com
 [push]
 	default = simple
+[core]
+	excludesfile = /Users/alistair/.gitignore_global
