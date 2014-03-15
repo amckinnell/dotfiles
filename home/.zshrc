@@ -82,11 +82,14 @@ autoload -U compinit && compinit
 # -----------------------------------------------------------------------------
 # Pack Manager Development
 # -----------------------------------------------------------------------------
+PACKMANAGER_DIR=/Users/alistair/src/packmanager
 
-export PACKMANAGER_DEV=/Users/alistair/src/packmanager/dev
+PACKMANAGER_DEV=$PACKMANAGER_DIR/dev
+PACKMANAGER_RELEASE=$PACKMANAGER_DIR/release
 
-# Handy way to get the the packmanager dev directory
+# Handy way to get to the packmanager dev and release directories
 alias dev='cd $PACKMANAGER_DEV'
+alias rel='cd $PACKMANAGER_RELEASE'
 
 # Local binstubs from bundler
 export PATH=./bin:$PATH
