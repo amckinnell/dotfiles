@@ -98,9 +98,10 @@ export RUBY_FREE_MIN=200000
 export RUBY_GC_HEAP_INIT_SLOTS=500000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
 
+# Note: using the ob-my-zsh autojump plugin instead
 # Initialize autojump with tab completion (github.com/joelthelion/autojump)
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-autoload -U compinit && compinit
+# [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+# autoload -U compinit && compinit
 
 
 # -----------------------------------------------------------------------------
