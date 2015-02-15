@@ -118,3 +118,12 @@ alias rel='cd $PACKMANAGER_RELEASE'
 
 # Local binstubs from bundler
 export PATH=./bin:$PATH
+
+# Configure the Pack Manager node environment
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+nvm use 0.10
+
+function n() { node_modules/.bin/$@ ;}
+
