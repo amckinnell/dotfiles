@@ -69,10 +69,11 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # Data for each postgres database
 export PGDATA=/usr/local/var/postgres postgres
 
-# Create a timer from the command line
-function timer() {
-  timebar --duration $(($1 * 60))
-}
+# Create a timer from the command line. Get the command line tool from
+# the extras download (see http://whimsicalifornia.com/timebar/)
+# function timer() {
+#   timebar --duration $(($1 * 60))
+# }
 
 # Ruby performance improvements (at a cost of increased memory)
 export RUBY_GC_MALLOC_LIMIT=60000000
