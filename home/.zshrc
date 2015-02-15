@@ -75,6 +75,18 @@ export PGDATA=/usr/local/var/postgres postgres
 #   timebar --duration $(($1 * 60))
 # }
 
+# Fetch the latest dev and release code. Run the command: checkmerge 'release'
+checkmerge() {
+  git merge --no-ff --no-commit $1
+  if [ "$?" = 0 ]
+  then echo "Clean Merge!"
+  else echo "Merge Errors!"
+  fi
+  git merge --abort
+}
+
+alias merged='git branch -a --merged | grep -v remotes'
+
 # Ruby performance improvements (at a cost of increased memory)
 export RUBY_GC_MALLOC_LIMIT=60000000
 export RUBY_FREE_MIN=200000
