@@ -107,10 +107,14 @@ export RUBY_GC_HEAP_FREE_SLOTS=200000
 # -----------------------------------------------------------------------------
 # Pack Manager Development
 # -----------------------------------------------------------------------------
+CPI_DIR=/Users/alistair/src/cpi
 PACKMANAGER_DIR=/Users/alistair/src/packmanager
 
 PACKMANAGER_DEV=$PACKMANAGER_DIR/dev
 PACKMANAGER_RELEASE=$PACKMANAGER_DIR/release
+
+# Handy way to get to the CPI directory
+alias cpi='cd $CPI_DIR'
 
 # Handy way to get to the packmanager dev and release directories
 alias dev='cd $PACKMANAGER_DEV'

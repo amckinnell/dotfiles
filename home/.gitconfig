@@ -10,3 +10,4 @@
 [core]
 	excludesfile = /Users/alistair/.gitignore_global
 	autocrlf = input
+  commentchar = $
