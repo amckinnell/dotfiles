@@ -127,7 +127,7 @@ export PATH=./bin:$PATH
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-nvm use 0.10
+nvm use 0.10 > /dev/null
 
 function n() { node_modules/.bin/$@ ;}
 
