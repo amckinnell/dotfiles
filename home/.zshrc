@@ -85,7 +85,7 @@ checkmerge() {
   git merge --abort
 }
 
-alias merged='git branch -a --merged | grep -v remotes | grep -v release | grep -v dev'
+alias merged='git branch -a --merged | grep -Ev "(remote|release|dev)"'
 
 # Ruby 1.9.x performance improvements (at a cost of increased memory)
 export RUBY_HEAP_MIN_SLOTS=500000
