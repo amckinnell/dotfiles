@@ -46,7 +46,7 @@ export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump brew bundler gem git history-substring-search nulogy rake-fast sublime terminalapp)
+plugins=(autojump brew bundler gem git history-substring-search nulogy rake-fast richard sublime terminalapp)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
@@ -74,18 +74,6 @@ export PGDATA=/usr/local/var/postgres postgres
 # function timer() {
 #   timebar --duration $(($1 * 60))
 # }
-
-# Fetch the latest dev and release code. Run the command: checkmerge 'release'
-checkmerge() {
-  git merge --no-ff --no-commit $1
-  if [ "$?" = 0 ]
-  then echo "Clean Merge!"
-  else echo "Merge Errors!"
-  fi
-  git merge --abort
-}
-
-alias merged='git branch -a --merged | grep -Ev "(remote|release|dev)"'
 
 # Ruby 1.9.x performance improvements (at a cost of increased memory)
 export RUBY_HEAP_MIN_SLOTS=500000
