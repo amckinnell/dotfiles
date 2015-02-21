@@ -91,6 +91,10 @@ export RUBY_GC_HEAP_FREE_SLOTS=200000
 # [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 # autoload -U compinit && compinit
 
+# to install grealpath: brew install coreutils
+function rubymine() {
+  open -a rubymine `grealpath "$1"`
+}
 
 # -----------------------------------------------------------------------------
 # Pack Manager Development
