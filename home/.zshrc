@@ -36,6 +36,7 @@ DISABLE_AUTO_UPDATE="true"
 # Alistair's Tweaks
 # -----------------------------------------------------------------------------
 
+# Set hist_ignore_space so that commands that start with a space are not added to history.
 setopt hist_find_no_dups hist_ignore_space
 
 # export JAVA_HOME=$(/usr/libexec/java_home)
@@ -91,10 +92,6 @@ export RUBY_GC_HEAP_FREE_SLOTS=200000
 # [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 # autoload -U compinit && compinit
 
-# to install grealpath: brew install coreutils
-function rubymine() {
-  open -a rubymine `grealpath "$1"`
-}
 
 # -----------------------------------------------------------------------------
 # Pack Manager Development
@@ -122,4 +119,3 @@ source $(brew --prefix nvm)/nvm.sh
 nvm use 0.10 > /dev/null
 
 function n() { node_modules/.bin/$@ ;}
-
