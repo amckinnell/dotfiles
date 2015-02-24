@@ -119,3 +119,6 @@ source $(brew --prefix nvm)/nvm.sh
 nvm use 0.10 > /dev/null
 
 function n() { node_modules/.bin/$@ ;}
+
+# Start foreman with background environment configured.
+alias fsb="foreman start --procfile=../alistair/Procfile.alistair --root=."
