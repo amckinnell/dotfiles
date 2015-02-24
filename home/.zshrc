@@ -3,15 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="alistair"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -36,17 +28,16 @@ DISABLE_AUTO_UPDATE="true"
 # Alistair's Tweaks
 # -----------------------------------------------------------------------------
 
-# Set hist_ignore_space so that commands that start with a space are not added to history.
-setopt hist_find_no_dups hist_ignore_space
+# Do not display duplicates of a line previously found.
+setopt hist_find_no_dups
 
+# Commands that start with a space are not added to history.
+setopt hist_ignore_space
+
+# We want to be sure to run RubyMine on the 1.6 JDK.
 # export JAVA_HOME=$(/usr/libexec/java_home)
-
-# We want to run RubyMine on the 1.6 JDK
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(autojump brew bundler gem git history-substring-search nulogy rake-fast richard sublime terminalapp zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
@@ -85,6 +76,7 @@ export RUBY_GC_HEAP_FREE_SLOTS=200000
 # -----------------------------------------------------------------------------
 # Pack Manager Development
 # -----------------------------------------------------------------------------
+
 CPI_DIR=/Users/alistair/src/cpi
 PACKMANAGER_DIR=/Users/alistair/src/packmanager
 
