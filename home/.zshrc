@@ -99,6 +99,7 @@ export RUBY_GC_HEAP_FREE_SLOTS=200000
 CPI_DIR=/Users/alistair/src/cpi
 PACKMANAGER_DIR=/Users/alistair/src/packmanager
 
+PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 PACKMANAGER_DEV=$PACKMANAGER_DIR/dev
 PACKMANAGER_RELEASE=$PACKMANAGER_DIR/release
 
@@ -120,5 +121,8 @@ nvm use 0.10 > /dev/null
 
 function n() { node_modules/.bin/$@ ;}
 
-# Start foreman with background environment configured.
-alias fsb="foreman start --procfile=../alistair/Procfile.alistair --root=."
+# Start foreman with all processes running.
+alias fsa='foreman start --procfile="$PACKMANAGER_ALISTAIR/Procfile.all" --root=.'
+
+# Start foreman with only the resque processes running (the scheduler and one worker).
+alias fsr='foreman start --procfile="$PACKMANAGER_ALISTAIR/Procfile.resque" --root=.'
