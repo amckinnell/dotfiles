@@ -28,12 +28,6 @@ DISABLE_AUTO_UPDATE="true"
 # Alistair's Tweaks
 # -----------------------------------------------------------------------------
 
-# Do not display duplicates of a line previously found.
-setopt hist_find_no_dups
-
-# Commands that start with a space are not added to history.
-setopt hist_ignore_space
-
 # We want to be sure to run RubyMine on the 1.6 JDK.
 # export JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
@@ -41,9 +35,16 @@ export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 plugins=(autojump brew bundler gem git history-substring-search nulogy rake-fast richard sublime terminalapp zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
-unsetopt correct_all
 
-# Configuration
+# Disable ZSH auto correction.
+unsetopt correct
+
+# Do not display duplicates of a line previously found.
+setopt hist_find_no_dups
+
+# Commands that start with a space are not added to history.
+setopt hist_ignore_space
+
 export EDITOR="subl -w"
 
 export CLICOLOR=1
