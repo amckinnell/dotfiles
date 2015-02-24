@@ -70,12 +70,6 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # Data for each postgres database
 export PGDATA=/usr/local/var/postgres postgres
 
-# Create a timer from the command line. Get the command line tool from
-# the extras download (see http://whimsicalifornia.com/timebar/)
-# function timer() {
-#   timebar --duration $(($1 * 60))
-# }
-
 # Ruby 1.9.x performance improvements (at a cost of increased memory)
 export RUBY_HEAP_MIN_SLOTS=500000
 export RUBY_HEAP_SLOTS_INCREMENT=250000
@@ -86,11 +80,6 @@ export RUBY_FREE_MIN=200000
 # Ruby 2.1.x performance improvements (at a cost of increased memory)
 export RUBY_GC_HEAP_INIT_SLOTS=500000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
-
-# Note: using the ob-my-zsh autojump plugin instead
-# Initialize autojump with tab completion (github.com/joelthelion/autojump)
-# [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-# autoload -U compinit && compinit
 
 
 # -----------------------------------------------------------------------------
@@ -124,5 +113,5 @@ function n() { node_modules/.bin/$@ ;}
 # Start foreman with all processes running.
 alias fsa='foreman start --procfile="$PACKMANAGER_ALISTAIR/Procfile.all" --root=.'
 
-# Start foreman with only the resque processes running (the scheduler and one worker).
+# Start foreman with only the resque processes running (scheduler and one worker).
 alias fsr='foreman start --procfile="$PACKMANAGER_ALISTAIR/Procfile.resque" --root=.'
