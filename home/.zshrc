@@ -59,9 +59,6 @@ export PATH=/Users/alistair/dev/scripts:$PATH
 # Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Data for each postgres database
-export PGDATA=/usr/local/var/postgres postgres
-
 # Ruby 1.9.x performance improvements (at a cost of increased memory)
 export RUBY_HEAP_MIN_SLOTS=500000
 export RUBY_HEAP_SLOTS_INCREMENT=250000
