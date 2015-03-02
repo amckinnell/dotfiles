@@ -105,6 +105,3 @@ function n() { node_modules/.bin/$@ ;}
 
 # Start foreman with all processes running.
 alias fsa='foreman start --procfile="$PACKMANAGER_ALISTAIR/Procfile.all" --root=.'
-
-# Start foreman with only the resque processes running (scheduler and one worker).
-alias fsr='foreman start --procfile="$PACKMANAGER_ALISTAIR/Procfile.resque" --root=.'
