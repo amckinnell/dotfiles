@@ -101,4 +101,7 @@ nvm use 0.10 > /dev/null
 function n() { node_modules/.bin/$@ ;}
 
 # Start foreman with all processes running.
-alias fsa='foreman start --procfile="$PACKMANAGER_ALISTAIR/Procfile.all" --root=.'
+alias fsa='fs --procfile="$PACKMANAGER_ALISTAIR/Procfile.all" --root=.'
+
+# Start foreman where the web server is running in debug in RubyMine.
+alias fsd='fs --procfile="$PACKMANAGER_ALISTAIR/Procfile.debug" --root=.'
