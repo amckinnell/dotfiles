@@ -71,6 +71,9 @@ export RUBY_GC_HEAP_INIT_SLOTS=500000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
 
 
+alias wifi='wifi-password -q'
+
+
 # -----------------------------------------------------------------------------
 # Pack Manager Development
 # -----------------------------------------------------------------------------
