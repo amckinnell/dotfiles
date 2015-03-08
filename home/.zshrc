@@ -78,8 +78,8 @@ alias wifi='wifi-password -q'
 # Pack Manager Development
 # -----------------------------------------------------------------------------
 
-CPI_DIR=/Users/alistair/src/cpi
-PACKMANAGER_DIR=/Users/alistair/src/packmanager
+export CPI_DIR=/Users/alistair/src/cpi
+export PACKMANAGER_DIR=/Users/alistair/src/packmanager
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 PACKMANAGER_DEV=$PACKMANAGER_DIR/dev
