@@ -28,11 +28,13 @@ DISABLE_AUTO_UPDATE="true"
 # Alistair's Tweaks
 # -----------------------------------------------------------------------------
 
-# We want to be sure to run RubyMine on the 1.6 JDK.
-# export JAVA_HOME=$(/usr/libexec/java_home)
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
+# We want to be sure to run RubyMine on the 1.6 JDK. No longer
+# export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 
-plugins=(autojump brew bundler gem git history-substring-search nulogy rake-fast richard sublime terminalapp zsh_reload)
+# We want to run the latest Oracle distribution.
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+plugins=(autojump brew bundler gem git history-substring-search nulogy rake-fast richard sublime terminalapp vagrant zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -70,9 +72,11 @@ export RUBY_FREE_MIN=200000
 export RUBY_GC_HEAP_INIT_SLOTS=500000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
 
+# JRuby performance improvements (optimised for development over production)
+export JRUBY_OPTS='--1.9 --dev -G'
 
+# Shows the current wi-fi password (you have to authenticate)
 alias wifi='wifi-password -q'
-
 
 # -----------------------------------------------------------------------------
 # Pack Manager Development
@@ -80,6 +84,7 @@ alias wifi='wifi-password -q'
 
 export CPI_DIR=/Users/alistair/src/cpi
 export PACKMANAGER_DIR=/Users/alistair/src/packmanager
+export SPOC_DIR=/Users/alistair/src/spoc
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 PACKMANAGER_DEV=$PACKMANAGER_DIR/dev
@@ -91,6 +96,9 @@ alias cpi='cd $CPI_DIR'
 # Handy way to get to the packmanager dev and release directories
 alias dev='cd $PACKMANAGER_DEV'
 alias rel='cd $PACKMANAGER_RELEASE'
+
+# Handy way to get to the spoc directory
+alias spoc='cd $SPOC_DIR'
 
 # Local binstubs from bundler
 export PATH=./bin:$PATH

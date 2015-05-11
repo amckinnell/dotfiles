@@ -4,7 +4,7 @@
   ignored = !git ls-files -v | grep "^[[:lower:]]"
 [user]
   name = Alistair McKinnell
-  email = a.mckinnell@nulogy.com
+	email = alistairm@nulogy.com
 [push]
   default = simple
 [core]
