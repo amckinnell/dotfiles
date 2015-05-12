@@ -84,7 +84,6 @@ alias wifi='wifi-password -q'
 
 export CPI_DIR=/Users/alistair/src/cpi
 export PACKMANAGER_DIR=/Users/alistair/src/packmanager
-export SPOC_DIR=/Users/alistair/src/spoc
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 PACKMANAGER_DEV=$PACKMANAGER_DIR/dev
@@ -96,9 +95,6 @@ alias cpi='cd $CPI_DIR'
 # Handy way to get to the packmanager dev and release directories
 alias dev='cd $PACKMANAGER_DEV'
 alias rel='cd $PACKMANAGER_RELEASE'
-
-# Handy way to get to the spoc directory
-alias spoc='cd $SPOC_DIR'
 
 # Local binstubs from bundler
 export PATH=./bin:$PATH
@@ -116,3 +112,15 @@ alias fsa='fs --procfile="$PACKMANAGER_ALISTAIR/Procfile.all" --root=.'
 
 # Start foreman where the web server is running in debug in RubyMine.
 alias fsd='fs --procfile="$PACKMANAGER_ALISTAIR/Procfile.debug" --root=.'
+
+# -----------------------------------------------------------------------------
+# SPOC Development
+# -----------------------------------------------------------------------------
+
+export SPOC_DIR=/Users/alistair/src/spoc
+
+# Handy way to get to the spoc directory
+alias spoc='cd $SPOC_DIR'
+
+# Run RSpec tests except for the features
+alias specs="rspec --exclude-pattern 'spec/features/**'"
