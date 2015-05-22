@@ -34,7 +34,7 @@ DISABLE_AUTO_UPDATE="true"
 # We want to run the latest Oracle distribution.
 export JAVA_HOME=$(/usr/libexec/java_home)
 
-plugins=(autojump brew bundler gem git history-substring-search nulogy rake-fast richard sublime terminalapp vagrant zsh_reload)
+plugins=(autojump brew gem git history-substring-search nulogy rake-fast richard sublime terminalapp vagrant zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
