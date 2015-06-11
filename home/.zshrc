@@ -72,8 +72,8 @@ export RUBY_FREE_MIN=200000
 export RUBY_GC_HEAP_INIT_SLOTS=500000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
 
-# JRuby performance improvements (optimised for development over production)
-export JRUBY_OPTS='--1.9 --dev -G'
+# JRuby compatibility for Ruby 1.9 (not quite ready for Ruby 2.x)
+export JRUBY_OPTS='--1.9'
 
 # Shows the current wi-fi password (you have to authenticate)
 alias wifi='wifi-password -q'
@@ -124,3 +124,6 @@ alias spoc='cd $SPOC_DIR'
 
 # Run RSpec tests except for the features
 alias specs="rspec --exclude-pattern 'spec/features/**'"
+
+# Enable RubyMine specific features
+export RUBYMINE=enabled
