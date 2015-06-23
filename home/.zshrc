@@ -78,6 +78,7 @@ export JRUBY_OPTS='--1.9'
 # Shows the current wi-fi password (you have to authenticate)
 alias wifi='wifi-password -q'
 
+
 # -----------------------------------------------------------------------------
 # Pack Manager Development
 # -----------------------------------------------------------------------------
@@ -112,6 +113,10 @@ alias fsa='fs --procfile="$PACKMANAGER_ALISTAIR/Procfile.all" --root=.'
 
 # Start foreman where the web server is running in debug in RubyMine.
 alias fsd='fs --procfile="$PACKMANAGER_ALISTAIR/Procfile.debug" --root=.'
+
+# Enable RubyMine links in Rails Footnotes.
+export RAILS_FOOTNOTES_EDITOR=rubymine
+
 
 # -----------------------------------------------------------------------------
 # SPOC Development
