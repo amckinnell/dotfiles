@@ -114,9 +114,6 @@ alias fsa='fs --procfile="$PACKMANAGER_ALISTAIR/Procfile.all" --root=.'
 # Start foreman where the web server is running in debug in RubyMine.
 alias fsd='fs --procfile="$PACKMANAGER_ALISTAIR/Procfile.debug" --root=.'
 
-# Enable RubyMine links in Rails Footnotes.
-export RAILS_FOOTNOTES_EDITOR=rubymine
-
 
 # -----------------------------------------------------------------------------
 # SPOC Development
