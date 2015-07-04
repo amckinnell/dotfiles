@@ -85,7 +85,7 @@ alias wifi='wifi-password -q'
 
 export CPI_DIR=/Users/alistair/src/cpi
 export PACKMANAGER_DIR=/Users/alistair/src/packmanager
-export SLOC_DIR=PACKMANAGER_DIR/sloc
+export SLOC_DIR=$PACKMANAGER_DIR/sloc
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 PACKMANAGER_DEV=$PACKMANAGER_DIR/dev
