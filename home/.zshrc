@@ -28,11 +28,13 @@ DISABLE_AUTO_UPDATE="true"
 # Alistair's Tweaks
 # -----------------------------------------------------------------------------
 
-# We want to be sure to run RubyMine on the 1.6 JDK. No longer
-# export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
-
 # We want to run the latest Oracle distribution.
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Add any java command line tools.
+JAVA_TOOLS_HOME=/Users/alistair/dev/java
+export PATH=$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin:$PATH
+export PATH=$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin:$PATH
 
 plugins=(autojump brew gem git history-substring-search nulogy rake-fast richard sublime terminalapp vagrant zsh_reload)
 
