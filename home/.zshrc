@@ -133,3 +133,13 @@ alias specs="rspec --exclude-pattern 'spec/features/**'"
 
 # Enable RubyMine specific features
 export RUBYMINE=enabled
+
+
+# -----------------------------------------------------------------------------
+# Pack Portal Prototype Development
+# -----------------------------------------------------------------------------
+
+export PACKPORTAL_PROTOTYPE_DIR=/Users/alistair/src/packportal-prototype
+
+# Handy way to get to the packportal-prototyp directory
+alias ppp='cd $PACKPORTAL_PROTOTYPE_DIR'
