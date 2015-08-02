@@ -132,9 +132,6 @@ alias spoc='cd $SPOC_DIR'
 # Run RSpec tests except for the features
 alias specs="rspec --exclude-pattern 'spec/features/**'"
 
-# Enable RubyMine specific features
-export RUBYMINE=enabled
-
 
 # -----------------------------------------------------------------------------
 # Pack Portal Prototype Development
@@ -142,5 +139,15 @@ export RUBYMINE=enabled
 
 export PACKPORTAL_PROTOTYPE_DIR=/Users/alistair/src/ppp
 
-# Handy way to get to the packportal-prototyp directory
+# Handy way to get to the packportal-prototype directory
 alias ppp='cd $PACKPORTAL_PROTOTYPE_DIR'
+
+
+# -----------------------------------------------------------------------------
+# Rails Reference Development
+# -----------------------------------------------------------------------------
+
+export RAILS_REFERENCE_DIR=/Users/alistair/src/rails-reference
+
+# Handy way to get to the rails-reference directory
+alias rr='cd $RAILS_REFERENCE_DIR'
