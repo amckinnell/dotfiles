@@ -36,7 +36,8 @@ JAVA_TOOLS_HOME=/Users/alistair/dev/java
 export PATH=$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin:$PATH
 export PATH=$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin:$PATH
 
-plugins=(autojump brew gem git history-substring-search nulogy rake-fast richard sublime terminalapp vagrant zsh_reload)
+plugins=(autojump brew gem git history-substring-search nulogy rake-fast \
+  richard sublime terminalapp vagrant zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -139,7 +140,7 @@ export RUBYMINE=enabled
 # Pack Portal Prototype Development
 # -----------------------------------------------------------------------------
 
-export PACKPORTAL_PROTOTYPE_DIR=/Users/alistair/src/packportal-prototype
+export PACKPORTAL_PROTOTYPE_DIR=/Users/alistair/src/ppp
 
 # Handy way to get to the packportal-prototyp directory
 alias ppp='cd $PACKPORTAL_PROTOTYPE_DIR'
