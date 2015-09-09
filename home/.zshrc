@@ -92,14 +92,16 @@ export PACKMANAGER_DIR=/Users/alistair/src/packmanager
 export SLOC_DIR=$PACKMANAGER_DIR/sloc
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
-PACKMANAGER_DEV=$PACKMANAGER_DIR/dev
+PACKMANAGER_MASTER=$PACKMANAGER_DIR/master
 PACKMANAGER_RELEASE=$PACKMANAGER_DIR/release
 
 # Handy way to get to the CPI directory
 alias cpi='cd $CPI_DIR'
 
-# Handy way to get to the packmanager dev and release directories
-alias dev='cd $PACKMANAGER_DEV'
+# Handy way to get to the packmanager master and release directories
+# Note: we used to use dev instead of master as the development branch
+alias dev='cd $PACKMANAGER_MASTER'
+alias master='cd $PACKMANAGER_MASTER'
 alias rel='cd $PACKMANAGER_RELEASE'
 
 # Local binstubs from bundler
