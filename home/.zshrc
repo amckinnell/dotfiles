@@ -136,6 +136,16 @@ alias specs="rspec --exclude-pattern 'spec/features/**'"
 
 
 # -----------------------------------------------------------------------------
+# Pack Portal Development
+# -----------------------------------------------------------------------------
+
+export PACKPORTAL_DIR=/Users/alistair/src/packportal
+
+# Handy way to get to the packportal directory
+alias pp='cd $PACKPORTAL_DIR'
+
+
+# -----------------------------------------------------------------------------
 # Pack Portal Prototype Development
 # -----------------------------------------------------------------------------
 
