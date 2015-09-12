@@ -82,6 +82,9 @@ export JRUBY_OPTS='--1.9'
 # Shows the current wi-fi password (you have to authenticate)
 alias wifi='wifi-password -q'
 
+# Source from a file that will not go into my dotfiles repo
+[ -f .zshrc_private ] && source .zshrc_private
+
 
 # -----------------------------------------------------------------------------
 # Pack Manager Development
