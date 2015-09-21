@@ -4,10 +4,12 @@
   ignored = !git ls-files -v | grep "^[[:lower:]]"
 [user]
   name = Alistair McKinnell
-	email = alistairm@nulogy.com
+  email = alistairm@nulogy.com
 [push]
   default = simple
 [core]
   excludesfile = /Users/alistair/.gitignore_global
   autocrlf = input
   commentchar = $
+[remote "origin"]
+  push = HEAD
