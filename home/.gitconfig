@@ -8,7 +8,7 @@
 [push]
   default = simple
 [core]
-  excludesfile = /Users/alistair/.gitignore_global
+  excludesfile = ~/.gitignore_global
   autocrlf = input
   commentchar = $
 [remote "origin"]
