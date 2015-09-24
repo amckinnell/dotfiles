@@ -36,8 +36,8 @@ JAVA_TOOLS_HOME=/Users/alistair/dev/java
 export PATH=$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin:$PATH
 export PATH=$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin:$PATH
 
-plugins=(autojump brew gem git history-substring-search nulogy rake-fast \
-  richard sublime terminalapp vagrant zsh_reload)
+plugins=(autojump brew bundler gem git history-substring-search nulogy \
+  rake-fast richard sublime terminalapp vagrant zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,9 +106,6 @@ alias cpi='cd $CPI_DIR'
 alias dev='cd $PACKMANAGER_MASTER'
 alias master='cd $PACKMANAGER_MASTER'
 alias rel='cd $PACKMANAGER_RELEASE'
-
-# Local binstubs from bundler
-export PATH=./bin:$PATH
 
 # Configure the Pack Manager node environment
 export NVM_DIR=~/.nvm
