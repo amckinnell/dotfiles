@@ -13,3 +13,5 @@
   commentchar = $
 [remote "origin"]
   push = HEAD
+[branch]
+  autosetupmerge = true
