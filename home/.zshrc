@@ -28,6 +28,8 @@ DISABLE_AUTO_UPDATE="true"
 # Alistair's Tweaks
 # -----------------------------------------------------------------------------
 
+export ALISTAIR_PATH=$PATH
+
 # We want to run the latest Oracle distribution.
 export JAVA_HOME=$(/usr/libexec/java_home)
 
@@ -54,9 +56,6 @@ export EDITOR="subl -w"
 
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
-
-# Add the Homebrew executables to the front of the standard OS X PATH
-export PATH=/usr/local/bin:/usr/sbin:/sbin:$PATH
 
 # Add my scripts to the front of the PATH
 export PATH=/Users/alistair/dev/scripts:$PATH
