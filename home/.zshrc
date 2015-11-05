@@ -28,8 +28,6 @@ DISABLE_AUTO_UPDATE="true"
 # Alistair's Tweaks
 # -----------------------------------------------------------------------------
 
-export ALISTAIR_PATH=$PATH
-
 # We want to run the latest Oracle distribution.
 export JAVA_HOME=$(/usr/libexec/java_home)
 
