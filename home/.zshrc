@@ -33,8 +33,8 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Add any java command line tools.
 JAVA_TOOLS_HOME=/Users/alistair/dev/java
-export PATH=$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin:$PATH
-export PATH=$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin:$PATH
+export PATH=$PATH:$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin
+export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 
 plugins=(autojump brew bundler gem git history-substring-search nulogy \
   rake-fast richard sublime terminalapp vagrant zsh_reload)
