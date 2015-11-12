@@ -36,7 +36,7 @@ JAVA_TOOLS_HOME=/Users/alistair/dev/java
 export PATH=$PATH:$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin
 export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 
-plugins=(autojump brew bundler gem git history-substring-search nulogy \
+plugins=(autojump brew gem git history-substring-search nulogy \
   rake-fast richard sublime terminalapp vagrant zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
@@ -163,3 +163,10 @@ export RAILS_REFERENCE_DIR=/Users/alistair/src/rails-reference
 
 # Handy way to get to the rails-reference directory
 alias rr='cd $RAILS_REFERENCE_DIR'
+
+
+# -----------------------------------------------------------------------------
+# Supports custom environments
+# -----------------------------------------------------------------------------
+
+eval "$(direnv hook zsh)"
