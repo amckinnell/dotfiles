@@ -35,6 +35,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 JAVA_TOOLS_HOME=/Users/alistair/dev/java
 export PATH=$PATH:$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin
 export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
+export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 plugins=(autojump brew gem git history-substring-search nulogy \
   rake-fast richard sublime terminalapp vagrant zsh_reload)
@@ -79,7 +80,11 @@ export JRUBY_OPTS='--1.9'
 # Shows the current wi-fi password (you have to authenticate)
 alias wifi='wifi-password -q'
 
-# Shows the brnaches that have been merged.
+# Opens gmail from the command line
+alias amg='open -a "Safari" https://mail.google.com/mail/u/0/#inbox'
+alias gmail='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
+
+# Shows the branches that have been merged.
 alias lm=locally_merged
 
 # Source from a file that will not go into my dotfiles repo
@@ -111,7 +116,8 @@ alias rel='cd $PACKMANAGER_RELEASE'
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-nvm use 0.10 > /dev/null
+# Removed since we want to use another version for PackPortal
+# nvm use 0.10 > /dev/null
 
 function n() { node_modules/.bin/$@ ;}
 
