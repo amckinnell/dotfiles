@@ -119,8 +119,6 @@ source $(brew --prefix nvm)/nvm.sh
 # Removed since we want to use another version for PackPortal
 # nvm use 0.10 > /dev/null
 
-function n() { node_modules/.bin/$@ ;}
-
 # Start foreman with all processes running.
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
