@@ -10,7 +10,7 @@ def source_for(object, method_sym)
     method = object.instance_method(method_sym)
   end
   location = method.source_location
-  `subl #{location[0]}:#{location[1]}` if location
+  `mine --line #{location[1]} #{location[0]}` if location
   location
 rescue
   nil
