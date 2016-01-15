@@ -82,7 +82,7 @@ alias wifi='wifi-password -q'
 
 # Opens gmail from the command line
 alias amg='open -a "Safari" https://mail.google.com/mail/u/0/#inbox'
-alias gmail='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
+alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 
 # Shows the branches that have been merged.
 alias lm=locally_merged
