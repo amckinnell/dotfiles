@@ -80,6 +80,9 @@ export JRUBY_OPTS='--1.9'
 # Shows the current wi-fi password (you have to authenticate)
 alias wifi='wifi-password -q'
 
+# The BFG repo cleaner (see https://rtyley.github.io/bfg-repo-cleaner/)
+alias bfg='java -jar /Users/alistair/dev/java/bfg/bfg-1.12.8.jar'
+
 # Opens gmail from the command line
 alias amg='open -a "Safari" https://mail.google.com/mail/u/0/#inbox'
 alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
