@@ -90,6 +90,8 @@ alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 # Opens trello from the command line
 alias amt='open -a "Google Chrome" https://trello.com'
 
+alias jenkins='open -a "Google Chrome" https://squid.hq.nulogy.com/view/Acceptance%20Torch/'
+
 # Shows the branches that have been merged.
 alias lm=locally_merged
 
