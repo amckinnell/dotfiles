@@ -62,13 +62,6 @@ export PATH=/Users/alistair/dev/scripts:$PATH
 # Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Ruby 1.9.x performance improvements (at a cost of increased memory)
-export RUBY_HEAP_MIN_SLOTS=500000
-export RUBY_HEAP_SLOTS_INCREMENT=250000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_GC_MALLOC_LIMIT=60000000
-export RUBY_FREE_MIN=200000
-
 # Ruby 2.1.x performance improvements (at a cost of increased memory)
 export RUBY_GC_HEAP_INIT_SLOTS=500000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
