@@ -37,7 +37,7 @@ export PATH=$PATH:$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin
 export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-plugins=(autojump brew gem git history-substring-search nulogy \
+plugins=(autojump brew bundler gem git history-substring-search nulogy \
   rake-fast richard sublime terminalapp vagrant zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
@@ -120,10 +120,10 @@ source $(brew --prefix nvm)/nvm.sh
 # Removed since we want to use another version for PackPortal
 # nvm use 0.10 > /dev/null
 
-# Start foreman with all processes running.
+# Start forego  with all processes running.
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
-# Start foreman where the web server is running in debug in RubyMine.
+# Start forego where the web server is running in debug in RubyMine.
 alias fsd='fs -f "$PACKMANAGER_ALISTAIR/Procfile.resque" -d .'
 
 
