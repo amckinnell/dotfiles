@@ -80,11 +80,6 @@ alias bfg='java -jar $JAVA_TOOLS_HOME/bfg/bfg-1.12.8.jar'
 alias amg='open -a "Safari" https://mail.google.com/mail/u/0/#inbox'
 alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 
-# Opens trello from the command line
-alias amt='open -a "Google Chrome" https://trello.com'
-
-alias jenkins='open -a "Google Chrome" https://squid.hq.nulogy.com/view/Acceptance%20Torch/'
-
 # Shows the branches that have been merged.
 alias lm=locally_merged
 
