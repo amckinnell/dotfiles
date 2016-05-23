@@ -88,6 +88,13 @@ alias lm=locally_merged
 
 
 # -----------------------------------------------------------------------------
+# General Development
+# -----------------------------------------------------------------------------
+
+alias dev='cd ~/dev'
+
+
+# -----------------------------------------------------------------------------
 # Pack Manager Development
 # -----------------------------------------------------------------------------
 
@@ -103,8 +110,6 @@ PACKMANAGER_RELEASE=$PACKMANAGER_DIR/release
 alias cpi='cd $CPI_DIR'
 
 # Handy way to get to the packmanager master and release directories
-# Note: we used to use dev instead of master as the development branch
-alias dev='cd $PACKMANAGER_MASTER'
 alias master='cd $PACKMANAGER_MASTER'
 alias rel='cd $PACKMANAGER_RELEASE'
 
@@ -115,10 +120,10 @@ source $(brew --prefix nvm)/nvm.sh
 # Removed since we want to use another version for PackPortal
 # nvm use 0.10 > /dev/null
 
-# Start forego  with all processes running.
+# Start packmanager with all processes running.
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
-# Start forego where the web server is running in debug in RubyMine.
+# Start packmanager where the web server is running in debug in RubyMine.
 alias fsd='fs -f "$PACKMANAGER_ALISTAIR/Procfile.resque" -d .'
 
 
