@@ -65,6 +65,11 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # JRuby compatibility for Ruby 1.9 (not quite ready for Ruby 2.x)
 export JRUBY_OPTS='--1.9'
 
+# Ruby 2.1.x performance improvements (at a cost of increased memory)
+export RUBY_GC_HEAP_INIT_SLOTS=500000
+export RUBY_GC_HEAP_FREE_SLOTS=200000
+export RUBY_THREAD_VM_STACK_SIZE=2000000
+
 # Shows the current wi-fi password (you have to authenticate)
 alias wifi='wifi-password -q'
 
@@ -74,6 +79,12 @@ alias bfg='java -jar $JAVA_TOOLS_HOME/bfg/bfg-1.12.8.jar'
 # Opens gmail from the command line
 alias amg='open -a "Safari" https://mail.google.com/mail/u/0/#inbox'
 alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
+
+# Script to improve readability of whiteboard captures.
+whiteboard () {
+  convert "$1" -morphology Convolve DoG:15,100,0 -negate -normalize \
+    -blur 0x1 -channel RBG -level 60%,91%,0.1 "$2"
+}
 
 # Shows the branches that have been merged.
 alias lm=locally_merged
