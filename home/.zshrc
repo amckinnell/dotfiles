@@ -28,6 +28,9 @@ DISABLE_AUTO_UPDATE="true"
 # Alistair's Tweaks
 # -----------------------------------------------------------------------------
 
+# Postgres App command line tools.
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+
 # We want to run the latest Oracle distribution.
 export JAVA_HOME=$(/usr/libexec/java_home)
 
