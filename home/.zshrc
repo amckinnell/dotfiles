@@ -126,9 +126,6 @@ alias rel='cd $PACKMANAGER_RELEASE'
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-# Removed since we want to use another version for PackPortal
-# nvm use 0.10 > /dev/null
-
 # Start packmanager with all processes running.
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
@@ -150,13 +147,13 @@ alias specs="rspec --exclude-pattern 'spec/features/**'"
 
 
 # -----------------------------------------------------------------------------
-# Pack Portal Development
+# Nulogy Go Development
 # -----------------------------------------------------------------------------
 
-export PACKPORTAL_DIR=/Users/alistair/src/packportal
+export GO_DIR=/Users/alistair/src/go
 
-# Handy way to get to the packportal directory
-alias pp='cd $PACKPORTAL_DIR'
+# Handy way to get to the go directory
+alias go='cd $GO_DIR'
 
 
 # -----------------------------------------------------------------------------
