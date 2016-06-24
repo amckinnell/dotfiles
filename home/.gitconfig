@@ -16,3 +16,5 @@
   push = HEAD
 [branch]
   autosetupmerge = true
+[diff]
+  compactionheuristic = true
