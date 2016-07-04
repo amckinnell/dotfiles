@@ -41,7 +41,7 @@ export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 plugins=(autojump brew bundler gem git history-substring-search nulogy \
-  rake-fast richard sublime terminalapp vagrant zsh_reload)
+  rake-fast richard sublime terminalapp vagrant zsh-autosuggestions zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -179,5 +179,4 @@ alias rr='cd $RAILS_REFERENCE_DIR'
 # -----------------------------------------------------------------------------
 # Supports custom environments
 # -----------------------------------------------------------------------------
-
 eval "$(direnv hook zsh)"
