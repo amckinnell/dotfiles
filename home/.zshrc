@@ -58,6 +58,9 @@ setopt HIST_FIND_NO_DUPS
 # Commands that start with a space are not added to history.
 setopt HIST_IGNORE_SPACE
 
+# When writing out the history, omit older commands that duplicate newer ones.
+setopt HIST_SAVE_NO_DUPS
+
 export EDITOR="subl -w"
 
 export CLICOLOR=1
