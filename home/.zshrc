@@ -46,13 +46,17 @@ plugins=(autojump brew bundler gem git history-substring-search nulogy \
 source $ZSH/oh-my-zsh.sh
 
 # Disable ZSH auto correction.
-unsetopt correct
+unsetopt CORRECT
+
+# When a new command line being added to the history list duplicates an older
+# one, the older command is removed from the list.
+setopt HIST_IGNORE_ALL_DUPS
 
 # Do not display duplicates of a line previously found.
-setopt hist_find_no_dups
+setopt HIST_FIND_NO_DUPS
 
 # Commands that start with a space are not added to history.
-setopt hist_ignore_space
+setopt HIST_IGNORE_SPACE
 
 export EDITOR="subl -w"
 

@@ -5,6 +5,7 @@
 [user]
 	name = Alistair McKinnell
   useconfigonly = true
+	email = alistair.mckinnell@gmail.com
 [push]
 	default = simple
 [core]
