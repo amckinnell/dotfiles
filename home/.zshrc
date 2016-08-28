@@ -29,7 +29,7 @@ DISABLE_AUTO_UPDATE="true"
 # -----------------------------------------------------------------------------
 
 # Postgres App command line tools.
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 # We want to run the latest Oracle distribution.
 export JAVA_HOME=$(/usr/libexec/java_home)
@@ -138,6 +138,16 @@ alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
 # Start packmanager where the web server is running in debug in RubyMine.
 alias fsd='fs -f "$PACKMANAGER_ALISTAIR/Procfile.resque" -d .'
+
+
+# -----------------------------------------------------------------------------
+# QCloud Development
+# -----------------------------------------------------------------------------
+
+export QCLOUD_DIR=/Users/alistair/src/qcloud
+
+# Handy way to get to the various QCloud directories
+alias qcloud='cd $QCLOUD_DIR'
 
 
 # -----------------------------------------------------------------------------
