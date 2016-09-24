@@ -109,6 +109,8 @@ alias lm=locally_merged
 
 alias dev='cd ~/dev'
 
+export MINGLE_BROWSER='Safari'
+
 
 # -----------------------------------------------------------------------------
 # Pack Manager Development
