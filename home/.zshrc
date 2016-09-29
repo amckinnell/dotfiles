@@ -109,7 +109,7 @@ alias lm=locally_merged
 
 alias dev='cd ~/dev'
 
-export MINGLE_BROWSER='Safari'
+export MINGLE_BROWSER='Google Chrome'
 
 
 # -----------------------------------------------------------------------------

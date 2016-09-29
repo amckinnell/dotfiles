@@ -1,7 +1,3 @@
-require 'awesome_print'
-
-AwesomePrint.pry!
-
 # Souce: http://pragmaticstudio.com/blog/2013/2/13/view-source-ruby-methods
 def source_for(object, method_sym)
   if object.respond_to?(method_sym, true)
