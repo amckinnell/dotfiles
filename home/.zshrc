@@ -111,6 +111,9 @@ alias dev='cd ~/dev'
 
 export MINGLE_BROWSER='Google Chrome'
 
+# Makes my Nulogy SSH key available.
+ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
+
 
 # -----------------------------------------------------------------------------
 # Pack Manager Development
@@ -150,6 +153,8 @@ export QCLOUD_DIR=/Users/alistair/src/qcloud
 
 # Handy way to get to the various QCloud directories
 alias qcloud='cd $QCLOUD_DIR'
+
+export USES_FIREFOX_BROWSER=1
 
 
 # -----------------------------------------------------------------------------
