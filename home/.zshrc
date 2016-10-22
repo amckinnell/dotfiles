@@ -126,6 +126,7 @@ export SLOC_DIR=$PACKMANAGER_DIR/sloc
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 PACKMANAGER_MASTER=$PACKMANAGER_DIR/master
 PACKMANAGER_RELEASE=$PACKMANAGER_DIR/release
+PACKMANAGER_PRODUCTION=$PACKMANAGER_DIR/production
 
 # Handy way to get to the CPI directory
 alias cpi='cd $CPI_DIR'
@@ -133,6 +134,7 @@ alias cpi='cd $CPI_DIR'
 # Handy way to get to the packmanager master and release directories
 alias master='cd $PACKMANAGER_MASTER'
 alias rel='cd $PACKMANAGER_RELEASE'
+alias prod='cd $PACKMANAGER_PRODUCTION'
 
 # Configure the Pack Manager node environment
 export NVM_DIR=~/.nvm
