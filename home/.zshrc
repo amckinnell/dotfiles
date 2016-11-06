@@ -140,10 +140,10 @@ alias prod='cd $PACKMANAGER_PRODUCTION'
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-# Start packmanager with all processes running.
+# Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
-# Start packmanager where the web server is running in debug in RubyMine.
+# Start packmanager where the web server is running in debug in RubyMine
 alias fsd='fs -f "$PACKMANAGER_ALISTAIR/Procfile.resque" -d .'
 
 
@@ -156,6 +156,7 @@ export QCLOUD_DIR=/Users/alistair/src/qcloud
 # Handy way to get to the various QCloud directories
 alias qcloud='cd $QCLOUD_DIR'
 
+# Comment this out to have the feature specs run with Google Chrome
 export USES_FIREFOX_BROWSER=1
 
 
