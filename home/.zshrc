@@ -156,9 +156,6 @@ export QCLOUD_DIR=/Users/alistair/src/qcloud
 # Handy way to get to the various QCloud directories
 alias qcloud='cd $QCLOUD_DIR'
 
-# Comment this out to have the feature specs run with Google Chrome
-export USES_FIREFOX_BROWSER=1
-
 
 # -----------------------------------------------------------------------------
 # SPOC Development
