@@ -90,12 +90,6 @@ alias bfg='java -jar $JAVA_TOOLS_HOME/bfg/bfg-1.12.8.jar'
 alias amg='open -a "Safari" https://mail.google.com/mail/u/0/#inbox'
 alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 
-# Script to improve readability of whiteboard captures.
-whiteboard () {
-  convert "$1" -morphology Convolve DoG:15,100,0 -negate -normalize \
-    -blur 0x1 -channel RBG -level 60%,91%,0.1 "$2"
-}
-
 # Shows the branches that have been merged.
 alias lm=locally_merged
 
@@ -113,6 +107,10 @@ export MINGLE_BROWSER='Google Chrome'
 
 # Makes my Nulogy SSH key available.
 ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
+
+# Makes it easier to switch between different versions of Xcode.
+alias xc7='sudo xcode-select -s /Applications/Xcode.7.app'
+alias xc8='sudo xcode-select -s /Applications/Xcode.8.app'
 
 
 # -----------------------------------------------------------------------------
