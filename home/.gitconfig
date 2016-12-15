@@ -4,13 +4,13 @@
   ignored = !git ls-files -v | grep "^[[:lower:]]"
 	integrate = !sh -c 'git push $1 $2:ready-to-merge/into-master/${2}' -
 [user]
-  name = Alistair McKinnell
+	name =
   useconfigonly = true
-	email = alistair.mckinnell@gmail.com
+	email =
 [push]
 	default = simple
 [core]
-  excludesfile = ~/.gitignore_global
+  excludesfile = /Users/alistair/.gitignore_global
   autocrlf = input
 	commentchar = $
 [remote "origin"]
@@ -24,6 +24,6 @@
 	diff = auto
 	ui = true
 [fetch]
-	prune = true
+  prune = true
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
