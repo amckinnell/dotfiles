@@ -72,14 +72,6 @@ export PATH=/Users/alistair/dev/scripts:$PATH
 # Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# JRuby compatibility for Ruby 1.9 (not quite ready for Ruby 2.x)
-export JRUBY_OPTS='--1.9'
-
-# Ruby 2.1.x performance improvements (at a cost of increased memory)
-export RUBY_GC_HEAP_INIT_SLOTS=500000
-export RUBY_GC_HEAP_FREE_SLOTS=200000
-export RUBY_THREAD_VM_STACK_SIZE=2000000
-
 # Shows the current wi-fi password (you have to authenticate)
 alias wifi='wifi-password -q'
 
