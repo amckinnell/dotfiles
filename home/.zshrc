@@ -136,6 +136,12 @@ alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 # Start packmanager where the web server is running in debug in RubyMine
 alias fsd='fs -f "$PACKMANAGER_ALISTAIR/Procfile.resque" -d .'
 
+# Enable profiling tools in the browser
+export PM_ENABLE_PROFILING=1
+
+# Disable the spring pre-loader
+# export DISABLE_SPRING=1
+
 
 # -----------------------------------------------------------------------------
 # QCloud Development
