@@ -167,16 +167,6 @@ alias go='cd $GO_DIR'
 
 
 # -----------------------------------------------------------------------------
-# Pack Portal Prototype Development
-# -----------------------------------------------------------------------------
-
-export PACKPORTAL_PROTOTYPE_DIR=/Users/alistair/src/ppp
-
-# Handy way to get to the packportal-prototype directory
-alias ppp='cd $PACKPORTAL_PROTOTYPE_DIR'
-
-
-# -----------------------------------------------------------------------------
 # Rails Reference Development
 # -----------------------------------------------------------------------------
 
