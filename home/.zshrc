@@ -104,6 +104,9 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 alias xc7='sudo xcode-select -s /Applications/Xcode.7.app'
 alias xc8='sudo xcode-select -s /Applications/Xcode.8.app'
 
+# Choose openssl over native OS X libraries.
+export PATH=/usr/local/opt/openssl/bin:$PATH
+
 
 # -----------------------------------------------------------------------------
 # Pack Manager Development
@@ -151,19 +154,6 @@ export QCLOUD_DIR=/Users/alistair/src/qcloud
 
 # Handy way to get to the various QCloud directories
 alias qcloud='cd $QCLOUD_DIR'
-
-
-# -----------------------------------------------------------------------------
-# SPOC Development
-# -----------------------------------------------------------------------------
-
-export SPOC_DIR=/Users/alistair/src/spoc
-
-# Handy way to get to the spoc directory
-alias spoc='cd $SPOC_DIR'
-
-# Run RSpec tests except for the features
-alias specs="rspec --exclude-pattern 'spec/features/**'"
 
 
 # -----------------------------------------------------------------------------
