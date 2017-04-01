@@ -167,6 +167,34 @@ alias rr='cd $RAILS_REFERENCE_DIR'
 
 
 # -----------------------------------------------------------------------------
+# Candidates for oh-my-zsh-plugins
+# -----------------------------------------------------------------------------
+
+rspecdiff () {
+  if [ "$1" =~ ^--help ]
+  then
+    echo Usage: rspecdiff [commit-spec] [rspec-options]
+    return
+  fi
+  if [ ! $1 ]
+  then
+    COMMIT_SPEC=master
+    RSPEC_ARGS=
+  elif [ $1 =~ ^- ]
+  then
+    COMMIT_SPEC=master
+    RSPEC_ARGS=$1
+  else
+    COMMIT_SPEC=$1
+    RSPEC_ARGS=$2
+  fi
+
+  git diff $COMMIT_SPEC --diff-filter=d --name-only | \
+    grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn} "_spec\.rb$" | \
+    xargs --no-run-if-empty bundle exec rspec $RSPEC_ARGS
+}
+
+# -----------------------------------------------------------------------------
 # Supports custom environments
 # -----------------------------------------------------------------------------
 eval "$(direnv hook zsh)"
