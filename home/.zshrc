@@ -73,6 +73,7 @@ export PATH=/Users/alistair/dev/scripts:$PATH
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Shows the current wi-fi password (you have to authenticate)
+# Install command line tool using 'brew install wifi-password'
 alias wifi='wifi-password -q'
 
 # The BFG repo cleaner (see https://rtyley.github.io/bfg-repo-cleaner/)
@@ -197,4 +198,5 @@ rspecdiff () {
 # -----------------------------------------------------------------------------
 # Supports custom environments
 # -----------------------------------------------------------------------------
+
 eval "$(direnv hook zsh)"
