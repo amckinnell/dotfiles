@@ -61,6 +61,9 @@ setopt HIST_IGNORE_SPACE
 # When writing out the history, omit older commands that duplicate newer ones.
 setopt HIST_SAVE_NO_DUPS
 
+# Remove superfluous blanks before recording entry.
+setopt HIST_REDUCE_BLANKS
+
 export EDITOR="subl -w"
 
 export CLICOLOR=1
