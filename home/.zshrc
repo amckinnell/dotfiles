@@ -149,6 +149,16 @@ export PM_ENABLE_PROFILING=1
 # Disable the spring pre-loader
 # export DISABLE_SPRING=1
 
+# Helpers for the migration from Rails 4.1 to 4.2
+alias rails41='unset RAILS_4_2; export RAILS_4_1=true'
+alias rails42='unset RAILS_4_1; export RAILS_4_2=true'
+
+# Apply a single specified cop across the Packmanager codebase
+function rubofix() {
+  rubocop --require rubocop-rspec --force-exclusion \
+    --config .rubocop.backlog.yml --auto-correct --only '$1'
+}
+
 
 # -----------------------------------------------------------------------------
 # QCloud Development
