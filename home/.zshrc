@@ -149,9 +149,25 @@ export PM_ENABLE_PROFILING=1
 # Disable the spring pre-loader
 # export DISABLE_SPRING=1
 
+# Rails 4.2 directories
+PACKMANAGER_RAILS_42=$PACKMANAGER_DIR/rails_42
+alias rails_42='cd $PACKMANAGER_RAILS_42'
+
+# Opens instructions for working with the Rails 4.2 version of PackManager
+alias workflow='open -a "Marked 2" ./docs/rails_42_upgrade_workflow.md'
+
 # Helpers for the migration from Rails 4.1 to 4.2
-alias rails41='unset RAILS_4_2; export RAILS_4_1=true'
-alias rails42='unset RAILS_4_1; export RAILS_4_2=true'
+function env_rails_41() {
+  unset RAILS_4_2
+  export RAILS_4_1=true
+  echo -e '\033]50;SetProfile=Default\a'
+}
+
+function env_rails_42() {
+  unset RAILS_4_1
+  export RAILS_4_2=true
+  echo -e '\033]50;SetProfile=Rails42\a'
+}
 
 
 # -----------------------------------------------------------------------------
