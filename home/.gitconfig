@@ -4,15 +4,16 @@
   ignored = !git ls-files -v | grep "^[[:lower:]]"
 	integrate = !sh -c 'git push $1 $2:ready-to-merge/into-master/${2}' -
 [user]
-	name =
+	name = Alistair McKinnell
   useconfigonly = true
-	email =
+	email = alistairm@nulogy.com
 [push]
 	default = simple
 [core]
   excludesfile = /Users/alistair/.gitignore_global
   autocrlf = input
 	commentchar = $
+	pager = less -R --tabs=2 -RFX
 [remote "origin"]
 	push = HEAD
 [branch]
@@ -29,7 +30,7 @@
   helper = osxkeychain
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Apps/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

@@ -154,7 +154,7 @@ PACKMANAGER_RAILS_42=$PACKMANAGER_DIR/rails_42
 alias rails_42='cd $PACKMANAGER_RAILS_42'
 
 # Opens instructions for working with the Rails 4.2 version of PackManager
-alias workflow='open -a "Marked 2" ./docs/rails_42_upgrade_workflow.md'
+alias workflow='open -a "Marked 2" ./development/docs/rails_42_upgrade_workflow.md'
 
 # Helpers for the migration from Rails 4.1 to 4.2
 function env_rails_41() {
