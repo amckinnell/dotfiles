@@ -113,6 +113,16 @@ export PATH=/usr/local/opt/openssl/bin:$PATH
 
 
 # -----------------------------------------------------------------------------
+# Highlight Source from Clipboard for Keynote or Pages
+# -----------------------------------------------------------------------------
+
+export HIGHLIGHT_DIR='~/dev/highlight'
+
+alias highlight_for_keynote='pbpaste | highlight --out-format rtf --font-size 24 --font Menlo --plug-in $HIGHLIGHT_DIR/rspec.lua --config-file $HIGHLIGHT_DIR/twilight.theme --style twilight --src-lang ruby | pbcopy'
+alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 --font Menlo --src-lang ruby --line-numbers | pbcopy'
+
+
+# -----------------------------------------------------------------------------
 # Pack Manager Development
 # -----------------------------------------------------------------------------
 
