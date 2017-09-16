@@ -89,6 +89,9 @@ alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 # Shows the branches that have been merged.
 alias lm=locally_merged
 
+# Open my list of useful commands.
+alias uc='subl ~/useful_commands.txt'
+
 # Source from a file that will not go into my dotfiles repo
 [ -f .zshrc_private ] && source .zshrc_private
 

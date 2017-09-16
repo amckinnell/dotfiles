@@ -9,8 +9,14 @@ CAPYBARA_RETRY_COUNT=1 rspec spec
 
 open http://localhost:3000
 
+
 ### PackManager
 
- ~/dev/scripts/spec_validator_packmanager.rb
+~/dev/scripts/spec_validator_packmanager.rb
 migrate
 pmu
+
+
+### General
+
+open -n -a Google\ Chrome
