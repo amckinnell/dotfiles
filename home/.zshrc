@@ -110,6 +110,7 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 # Makes it easier to switch between different versions of Xcode.
 alias xc7='sudo xcode-select -s /Applications/Xcode.7.app'
 alias xc8='sudo xcode-select -s /Applications/Xcode.8.app'
+alias xc9='sudo xcode-select -s /Applications/Xcode.9.app'
 
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
@@ -153,8 +154,8 @@ source $(brew --prefix nvm)/nvm.sh
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
-# Start packmanager where the web server is running in debug in RubyMine
-alias fsd='fs -f "$PACKMANAGER_ALISTAIR/Procfile.resque" -d .'
+# Start packmanager with all processes running
+alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
 # Enable profiling tools in the browser
 export PM_ENABLE_PROFILING=1
