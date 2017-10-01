@@ -108,7 +108,6 @@ export MINGLE_BROWSER='Google Chrome'
 ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 
 # Makes it easier to switch between different versions of Xcode.
-alias xc7='sudo xcode-select -s /Applications/Xcode.7.app'
 alias xc8='sudo xcode-select -s /Applications/Xcode.8.app'
 alias xc9='sudo xcode-select -s /Applications/Xcode.9.app'
 
@@ -195,22 +194,12 @@ alias qcloud='cd $QCLOUD_DIR'
 
 
 # -----------------------------------------------------------------------------
-# Rails Reference Development
-# -----------------------------------------------------------------------------
-
-export RAILS_REFERENCE_DIR=/Users/alistair/src/rails-reference
-
-# Handy way to get to the rails-reference directory
-alias rr='cd $RAILS_REFERENCE_DIR'
-
-
-# -----------------------------------------------------------------------------
 # Candidates for oh-my-zsh-plugins
 # -----------------------------------------------------------------------------
 
 
 # -----------------------------------------------------------------------------
-# Supports custom environments
+# Supports custom environments using direnv
 # -----------------------------------------------------------------------------
 
 eval "$(direnv hook zsh)"
