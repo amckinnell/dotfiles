@@ -147,6 +147,12 @@ alias master='cd $PACKMANAGER_MASTER'
 alias rel='cd $PACKMANAGER_RELEASE'
 alias prod='cd $PACKMANAGER_PRODUCTION'
 
+# Create a Packmanager user
+alias nu='rake nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
+
+# Reset the customer test data catalog
+alias reset_catalog='SKIP_TEST_DEFAULTS_WHEN_CUSTOMER_TESTING=true rake db:reset nulogy:customer_test_data:catalog'
+
 # Configure the Pack Manager node environment
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
@@ -197,6 +203,17 @@ alias qcloud='cd $QCLOUD_DIR'
 # -----------------------------------------------------------------------------
 # Candidates for oh-my-zsh-plugins
 # -----------------------------------------------------------------------------
+
+# Opens up the Jira issue based on the current branch or the specified Jira issue.
+function jira() {
+  if [[ -n "$1" ]]; then
+    ISSUE_ID=$1
+  else
+    ISSUE_ID=$(git rev-parse --abbrev-ref HEAD | sed "s/\([a-zA-Z]*[_-][0-9]*\).*/\1/")
+  fi
+
+  open "https://nulogy-go.atlassian.net/browse/$ISSUE_ID"
+}
 
 
 # -----------------------------------------------------------------------------
