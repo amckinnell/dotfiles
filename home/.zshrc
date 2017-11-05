@@ -28,6 +28,9 @@ DISABLE_AUTO_UPDATE="true"
 # Alistair's Tweaks
 # -----------------------------------------------------------------------------
 
+# Restore legacy forking behaviour. That is, pre High Sierra behaviour.
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
 # Postgres App command line tools.
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
@@ -153,10 +156,6 @@ alias nu='rake nulogy:user_management:create_admin[alistairm@nulogy.com,Password
 # Reset the customer test data catalog
 alias reset_catalog='SKIP_TEST_DEFAULTS_WHEN_CUSTOMER_TESTING=true rake db:reset nulogy:customer_test_data:catalog'
 
-# Configure the Pack Manager node environment
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
@@ -204,20 +203,13 @@ alias qcloud='cd $QCLOUD_DIR'
 # Candidates for oh-my-zsh-plugins
 # -----------------------------------------------------------------------------
 
-# Opens up the Jira issue based on the current branch or the specified Jira issue.
-function jira() {
-  if [[ -n "$1" ]]; then
-    ISSUE_ID=$1
-  else
-    ISSUE_ID=$(git rev-parse --abbrev-ref HEAD | sed "s/\([a-zA-Z]*[_-][0-9]*\).*/\1/")
-  fi
-
-  open "https://nulogy-go.atlassian.net/browse/$ISSUE_ID"
-}
-
 
 # -----------------------------------------------------------------------------
 # Supports custom environments using direnv
 # -----------------------------------------------------------------------------
 
 eval "$(direnv hook zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
