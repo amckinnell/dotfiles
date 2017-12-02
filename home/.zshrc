@@ -123,9 +123,9 @@ export PATH=/usr/local/opt/openssl/bin:$PATH
 # Highlight Source from Clipboard for Keynote or Pages
 # -----------------------------------------------------------------------------
 
-export HIGHLIGHT_DIR='~/dev/highlight'
+export HIGHLIGHT_DIR='/Users/alistair/dev/highlight'
 
-alias highlight_for_keynote='pbpaste | highlight --out-format rtf --font-size 24 --font Menlo --plug-in $HIGHLIGHT_DIR/rspec.lua --config-file $HIGHLIGHT_DIR/twilight.theme --style twilight --src-lang ruby | pbcopy'
+alias highlight_for_keynote='pbpaste | highlight --out-format rtf --font-size 24 --font Menlo --plug-in "$HIGHLIGHT_DIR/rspec.lua" --config-file "$HIGHLIGHT_DIR/twilight.theme" --style twilight --src-lang ruby | pbcopy'
 alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 --font Menlo --src-lang ruby --line-numbers | pbcopy'
 
 
@@ -159,11 +159,8 @@ alias reset_catalog='SKIP_TEST_DEFAULTS_WHEN_CUSTOMER_TESTING=true rake db:reset
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
-# Start packmanager with all processes running
-alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
-
 # Enable profiling tools in the browser
-export PM_ENABLE_PROFILING=1
+# export PM_ENABLE_PROFILING=1
 
 # Disable the spring pre-loader
 # export DISABLE_SPRING=1
@@ -203,13 +200,23 @@ alias qcloud='cd $QCLOUD_DIR'
 # Candidates for oh-my-zsh-plugins
 # -----------------------------------------------------------------------------
 
+# Counts the occurences of the specified string (recursively from current dir).
+function count() {
+  ag --count $1 | cut -f 2 -d: | awk '{ s += $1 } END { print s }'
+}
+
+
+# -----------------------------------------------------------------------------
+# Node Version Manager
+# -----------------------------------------------------------------------------
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 # -----------------------------------------------------------------------------
 # Supports custom environments using direnv
 # -----------------------------------------------------------------------------
 
 eval "$(direnv hook zsh)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
