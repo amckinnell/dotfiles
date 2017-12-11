@@ -133,6 +133,9 @@ alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 -
 # Pack Manager Development
 # -----------------------------------------------------------------------------
 
+# Add to path for rabbitmq-server.
+export PATH=$PATH:/usr/local/sbin
+
 export CPI_DIR=/Users/alistair/src/cpi
 export PACKMANAGER_DIR=/Users/alistair/src/packmanager
 export SLOC_DIR=$PACKMANAGER_DIR/sloc

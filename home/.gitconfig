@@ -6,7 +6,6 @@
 [user]
 	name = Alistair McKinnell
   useconfigonly = true
-	email = alistairm@nulogy.com
 [push]
 	default = simple
 [core]
@@ -30,7 +29,7 @@
   helper = osxkeychain
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Apps/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
