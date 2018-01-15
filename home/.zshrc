@@ -162,6 +162,9 @@ alias reset_catalog='SKIP_TEST_DEFAULTS_WHEN_CUSTOMER_TESTING=true rake db:reset
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
+# Use chrome for running acceptance specs and features
+# export CAPYBARA_DRIVER=chrome
+
 # Enable profiling tools in the browser
 # export PM_ENABLE_PROFILING=1
 
