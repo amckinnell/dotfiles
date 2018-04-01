@@ -68,6 +68,11 @@ setopt HIST_SAVE_NO_DUPS
 # Remove superfluous blanks before recording entry.
 setopt HIST_REDUCE_BLANKS
 
+# Configuration for the HSTR utility.
+export HISTFILE=~/.zsh_history  # ensure history file visibility
+export HH_CONFIG=hicolor        # get more colors
+
+# Use Sublime as my text editor.
 export EDITOR="subl -w"
 
 export CLICOLOR=1
