@@ -34,14 +34,14 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # Postgres App command line tools.
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
-# We want to run the latest Oracle distribution.
-export JAVA_HOME=$(/usr/libexec/java_home)
+# # We want to run the latest Oracle distribution.
+# export JAVA_HOME=$(/usr/libexec/java_home)
 
-# Add any java command line tools.
-JAVA_TOOLS_HOME=/Users/alistair/dev/java
-export PATH=$PATH:$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin
-export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
-export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
+# # Add any java command line tools.
+# JAVA_TOOLS_HOME=/Users/alistair/dev/java
+# export PATH=$PATH:$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin
+# export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
+# export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 plugins=(autojump brew bundler gem git history-substring-search nulogy \
   rake-fast richard sublime take terminalapp vagrant zsh-autosuggestions \
@@ -168,13 +168,20 @@ alias reset_catalog='SKIP_TEST_DEFAULTS_WHEN_CUSTOMER_TESTING=true rake db:reset
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
 # Use chrome for running acceptance specs and features
-# export CAPYBARA_DRIVER=chrome
+export CAPYBARA_DRIVER=chrome
 
 # Enable profiling tools in the browser
 # export PM_ENABLE_PROFILING=1
 
 # Disable the spring pre-loader
 # export DISABLE_SPRING=1
+
+# Run specs and fetaures with Google Chrome
+# export CAPYBARA_DRIVER=chrome
+
+alias use_chrome='export CAPYBARA_DRIVER=chrome'
+alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
+alias use_firefox='export CAPYBARA_DRIVER=firefox'
 
 # Rails 4.2 directories
 PACKMANAGER_RAILS_42=$PACKMANAGER_DIR/rails_42
@@ -224,6 +231,10 @@ function count() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+npm config delete prefix
+
+nvm use `cat $PACKMANAGER_MASTER/.nvmrc`
 
 
 # -----------------------------------------------------------------------------
