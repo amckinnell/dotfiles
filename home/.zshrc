@@ -117,8 +117,8 @@ export MINGLE_BROWSER='Google Chrome'
 ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 
 # Makes it easier to switch between different versions of Xcode.
-alias xc8='sudo xcode-select -s /Applications/Xcode.8.app'
-alias xc9='sudo xcode-select -s /Applications/Xcode.9.app'
+# alias xc8='sudo xcode-select -s /Applications/Xcode.8.app'
+# alias xc9='sudo xcode-select -s /Applications/Xcode.9.app'
 
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
@@ -212,6 +212,9 @@ export QCLOUD_DIR=/Users/alistair/src/qcloud
 
 # Handy way to get to the various QCloud directories
 alias qcloud='cd $QCLOUD_DIR'
+
+# See Language & Region System Preference on OS X
+export TWENTY_FOUR_HOUR_CLOCK=true
 
 
 # -----------------------------------------------------------------------------
