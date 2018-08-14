@@ -111,8 +111,6 @@ alias uc='subl ~/useful_commands.txt'
 
 alias dev='cd ~/dev'
 
-export MINGLE_BROWSER='Google Chrome'
-
 # Makes my Nulogy SSH key available.
 ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 
@@ -177,31 +175,30 @@ export CAPYBARA_DRIVER=chrome
 # export DISABLE_SPRING=1
 
 # Run specs and fetaures with Google Chrome
-# export CAPYBARA_DRIVER=chrome
+export CAPYBARA_DRIVER=chrome
 
 alias use_chrome='export CAPYBARA_DRIVER=chrome'
 alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
-alias use_firefox='export CAPYBARA_DRIVER=firefox'
 
 # Rails 4.2 directories
-PACKMANAGER_RAILS_42=$PACKMANAGER_DIR/rails_42
-alias rails_42='cd $PACKMANAGER_RAILS_42'
+# PACKMANAGER_RAILS_42=$PACKMANAGER_DIR/rails_42
+# alias rails_42='cd $PACKMANAGER_RAILS_42'
 
 # Opens instructions for working with the Rails 4.2 version of PackManager
-alias workflow='open -a "Marked 2" ./development/docs/rails_42_upgrade_workflow.md'
+# alias workflow='open -a "Marked 2" ./development/docs/rails_42_upgrade_workflow.md'
 
 # Helpers for the migration from Rails 4.1 to 4.2
-function env_rails_41() {
-  unset RAILS_4_2
-  export RAILS_4_1=true
-  echo -e '\033]50;SetProfile=Default\a'
-}
+# function env_rails_41() {
+#   unset RAILS_4_2
+#   export RAILS_4_1=true
+#   echo -e '\033]50;SetProfile=Default\a'
+# }
 
-function env_rails_42() {
-  unset RAILS_4_1
-  export RAILS_4_2=true
-  echo -e '\033]50;SetProfile=Rails42\a'
-}
+# function env_rails_42() {
+#   unset RAILS_4_1
+#   export RAILS_4_2=true
+#   echo -e '\033]50;SetProfile=Rails42\a'
+# }
 
 
 # -----------------------------------------------------------------------------
@@ -212,6 +209,45 @@ export QCLOUD_DIR=/Users/alistair/src/qcloud
 
 # Handy way to get to the various QCloud directories
 alias qcloud='cd $QCLOUD_DIR'
+
+# Run Rubocop on a diff between the specified commit and the current working directory.
+#
+# If no commit is specified the default is to diff against master. You can also pass
+# any additional command line arguments along to rubocop.
+#
+# Examples:
+#
+#   rubodiff
+#   rubodiff --auto-correct
+#   rubodiff master --auto-correct
+#   rubodiff release
+#   rubodiff HEAD~6
+#   rubodiff 0f477ae
+#
+function rubodiff() {
+  if [ "$1" =~ ^--help ]; then
+    echo Usage: rubodiff [commit-spec] [rubocop-options]
+    return
+  fi
+
+  if [ ! $1 ]; then
+    COMMIT_SPEC=master
+    RUBOCOP_ARGS=
+  elif [ $1 =~ ^- ]; then
+    COMMIT_SPEC=master
+    RUBOCOP_ARGS=$1
+  else
+    COMMIT_SPEC=$1
+    RUBOCOP_ARGS=$2
+  fi
+
+  git diff $COMMIT_SPEC --diff-filter=d --name-only | \
+    grep "\.rb$" | \
+    xargs --no-run-if-empty rubocop --config .rubocop.backlog.yml $RUBOCOP_ARGS
+}
+
+# Run all tests prior to pushing code
+alias qc_integrate='use_chrome_headless && rake parallel:spec[2] && cucumber --format=progress && use_chrome'
 
 # See Language & Region System Preference on OS X
 export TWENTY_FOUR_HOUR_CLOCK=true
