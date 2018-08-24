@@ -246,9 +246,6 @@ function rubodiff() {
     xargs --no-run-if-empty rubocop --config .rubocop.backlog.yml $RUBOCOP_ARGS
 }
 
-# Run all tests prior to pushing code
-alias qc_integrate='use_chrome_headless && rake parallel:spec[2] && cucumber --format=progress && use_chrome'
-
 # See Language & Region System Preference on OS X
 export TWENTY_FOUR_HOUR_CLOCK=true
 

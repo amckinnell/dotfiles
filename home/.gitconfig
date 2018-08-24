@@ -6,6 +6,7 @@
 [user]
 	name = Alistair McKinnell
   useconfigonly = true
+	email = alistairm@nulogy.com
 [push]
 	default = simple
 [core]

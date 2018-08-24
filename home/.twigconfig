@@ -7,7 +7,7 @@
 
 # Limit how many branches you list when running `twig`:
 # (Temporarily override with `twig --all`)
-max-days-old: 30
+max-days-old: 60
 
 
 ### Displaying branches ###
@@ -24,13 +24,12 @@ branch-width: 48
 # reverse: true
 
 # Hide branches that have a property value matching a regex:
-except-branch: master
+# except-branch: production_release_*
 # except-status: closed|resolved
 
 # Hide columns where the property name matches a regex:
 # (e.g., Hide long todos; hide issue tracker metadata)
 except-property: mergeoptions
-
 
 ### GitHub integration ###
 
