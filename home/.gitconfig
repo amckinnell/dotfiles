@@ -3,6 +3,7 @@
   unignore = update-index --no-assume-unchanged
   ignored = !git ls-files -v | grep "^[[:lower:]]"
 	integrate = !sh -c 'git push $1 $2:ready-to-merge/into-master/${2}' -
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative
 [user]
 	name = Alistair McKinnell
   useconfigonly = true
@@ -10,10 +11,11 @@
 [push]
 	default = simple
 [core]
-  excludesfile = /Users/alistair/.gitignore_global
+	excludesfile = /Users/alistair/.gitignore_global
   autocrlf = input
 	commentchar = $
 	pager = less -R --tabs=2 -RFX
+	hooksPath = /Users/alistair/.git-templates/hooks
 [remote "origin"]
 	push = HEAD
 [branch]
@@ -34,3 +36,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Apps/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[commit]
+	template = /Users/alistair/.stCommitMsg

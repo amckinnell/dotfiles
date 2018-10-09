@@ -43,6 +43,7 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
+BUNDLED_COMMANDS=(rails rubocop)
 plugins=(autojump brew bundler gem git history-substring-search nulogy \
   rake-fast richard sublime take terminalapp vagrant zsh-autosuggestions \
   zsh_reload)
@@ -121,6 +122,11 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+  . $LUNCHY_DIR/lunchy-completion.zsh
+fi
+
 
 # -----------------------------------------------------------------------------
 # Highlight Source from Clipboard for Keynote or Pages
@@ -180,25 +186,41 @@ export CAPYBARA_DRIVER=chrome
 alias use_chrome='export CAPYBARA_DRIVER=chrome'
 alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
 
-# Rails 4.2 directories
-# PACKMANAGER_RAILS_42=$PACKMANAGER_DIR/rails_42
-# alias rails_42='cd $PACKMANAGER_RAILS_42'
+# My preferred way to integrate to master
+alias integrate='thor nugit:integrate --rubocop --into master --delete-branches'
 
-# Opens instructions for working with the Rails 4.2 version of PackManager
-# alias workflow='open -a "Marked 2" ./development/docs/rails_42_upgrade_workflow.md'
+# Rails Next directories
+PACKMANAGER_RAILS_NEXT=$PACKMANAGER_DIR/rails_next
 
-# Helpers for the migration from Rails 4.1 to 4.2
-# function env_rails_41() {
-#   unset RAILS_4_2
-#   export RAILS_4_1=true
-#   echo -e '\033]50;SetProfile=Default\a'
-# }
+alias rails_next='cd $PACKMANAGER_RAILS_NEXT'
 
-# function env_rails_42() {
-#   unset RAILS_4_1
-#   export RAILS_4_2=true
-#   echo -e '\033]50;SetProfile=Rails42\a'
-# }
+# Helpers for the migration to Rails Next
+function env_rails_current() {
+  unset RAILS_NEXT
+  echo -e '\033]50;SetProfile=Default\a'
+}
+
+function env_rails_next() {
+  export RAILS_NEXT=true
+  echo -e '\033]50;SetProfile=RailsNext\a'
+}
+
+function rails_prompt() {
+  if [[ "$RAILS_NEXT" =~ "true" ]]; then
+    echo `rails --version | sed -e "s/^Rails //"`-
+  fi
+}
+
+function rails_next_prompt() {
+  if [[ "$RAILS_NEXT" =~ "true" ]]; then
+    printf "-"
+  fi
+}
+
+alias rc='master && env_rails_current'
+alias rn='rails_next && env_rails_next'
+
+alias fitness='DISABLE_SPRING=1 rspec ./modules/fitness_functions/spec/unit/lib/component_dependencies_spec.rb'
 
 
 # -----------------------------------------------------------------------------
@@ -277,4 +299,4 @@ nvm use `cat $PACKMANAGER_MASTER/.nvmrc`
 # Supports custom environments using direnv
 # -----------------------------------------------------------------------------
 
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
