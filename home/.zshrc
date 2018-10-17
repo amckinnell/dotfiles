@@ -221,6 +221,7 @@ alias rc='master && env_rails_current'
 alias rn='rails_next && env_rails_next'
 
 alias fitness='DISABLE_SPRING=1 rspec ./modules/fitness_functions/spec/unit/lib/component_dependencies_spec.rb'
+alias rn_status='$PACKMANAGER_MASTER/development/rails_next/spec_status_summary_report_bash.sh'
 
 
 # -----------------------------------------------------------------------------
