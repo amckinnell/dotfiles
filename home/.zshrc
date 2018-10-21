@@ -178,7 +178,7 @@ export CAPYBARA_DRIVER=chrome
 # export PM_ENABLE_PROFILING=1
 
 # Disable the spring pre-loader
-# export DISABLE_SPRING=1
+export DISABLE_SPRING=1
 
 # Run specs and fetaures with Google Chrome
 export CAPYBARA_DRIVER=chrome
@@ -187,7 +187,7 @@ alias use_chrome='export CAPYBARA_DRIVER=chrome'
 alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
 
 # My preferred way to integrate to master
-alias integrate='thor nugit:integrate --rubocop --into master --delete-branches'
+alias integrate='thor nugit:integrate --rubocop --into master --delete-branches --buildkite-ci'
 
 # Rails Next directories
 PACKMANAGER_RAILS_NEXT=$PACKMANAGER_DIR/rails_next
@@ -221,7 +221,7 @@ alias rc='master && env_rails_current'
 alias rn='rails_next && env_rails_next'
 
 alias fitness='DISABLE_SPRING=1 rspec ./modules/fitness_functions/spec/unit/lib/component_dependencies_spec.rb'
-alias rn_status='$PACKMANAGER_MASTER/development/rails_next/spec_status_summary_report_bash.sh'
+alias rn_status='./development/rails_next/spec_status_summary_report_bash.sh'
 
 
 # -----------------------------------------------------------------------------
