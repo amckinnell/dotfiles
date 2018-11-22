@@ -43,10 +43,9 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-BUNDLED_COMMANDS=(rails rubocop)
+BUNDLED_COMMANDS=(rails rake rspec rubocop)
 plugins=(autojump brew bundler gem git history-substring-search nulogy \
-  rake-fast richard sublime take terminalapp vagrant zsh-autosuggestions \
-  zsh_reload)
+  rake-fast sublime take terminalapp vagrant zsh-autosuggestions zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -163,7 +162,7 @@ alias rel='cd $PACKMANAGER_RELEASE'
 alias prod='cd $PACKMANAGER_PRODUCTION'
 
 # Create a Packmanager user
-alias nu='rake nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
+alias pm_user='rake nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
 
 # Reset the customer test data catalog
 alias reset_catalog='SKIP_TEST_DEFAULTS_WHEN_CUSTOMER_TESTING=true rake db:reset nulogy:customer_test_data:catalog'
@@ -221,7 +220,6 @@ alias rc='master && env_rails_current'
 alias rn='rails_next && env_rails_next'
 
 alias fitness='DISABLE_SPRING=1 rspec ./modules/fitness_functions/spec/unit/lib/component_dependencies_spec.rb'
-alias rn_status='./development/rails_next/spec_status_summary_report_bash.sh'
 
 
 # -----------------------------------------------------------------------------
