@@ -44,10 +44,13 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(rails rake rspec rubocop)
-plugins=(autojump brew bundler gem git history-substring-search nulogy \
-  rake-fast sublime take terminalapp vagrant zsh-autosuggestions zsh_reload)
+plugins=(autojump brew bundler git history-substring-search nulogy \
+  rake-fast sublime terminalapp vagrant zsh-autosuggestions zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
+
+# This should be coming from the nulogy plugin but somehow it is not
+alias rn_deprecations="~/src/packmanager/master/development/rails_next/collect_rails_deprecation_warnings.rb"
 
 # Disable ZSH auto correction.
 unsetopt CORRECT
@@ -156,7 +159,7 @@ PACKMANAGER_PRODUCTION=$PACKMANAGER_DIR/production
 # Handy way to get to the CPI directory
 alias cpi='cd $CPI_DIR'
 
-# Handy way to get to the packmanager master and release directories
+# Handy ways to get to the packmanager master and release directories
 alias master='cd $PACKMANAGER_MASTER'
 alias rel='cd $PACKMANAGER_RELEASE'
 alias prod='cd $PACKMANAGER_PRODUCTION'
@@ -218,8 +221,6 @@ function rails_next_prompt() {
 
 alias rc='master && env_rails_current'
 alias rn='rails_next && env_rails_next'
-
-alias fitness='DISABLE_SPRING=1 rspec ./modules/fitness_functions/spec/unit/lib/component_dependencies_spec.rb'
 
 
 # -----------------------------------------------------------------------------
@@ -295,7 +296,16 @@ nvm use `cat $PACKMANAGER_MASTER/.nvmrc`
 
 
 # -----------------------------------------------------------------------------
+# Yarn Package Manager
+# -----------------------------------------------------------------------------
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+
+# -----------------------------------------------------------------------------
 # Supports custom environments using direnv
 # -----------------------------------------------------------------------------
 
+# Disabled for the moement...
 # eval "$(direnv hook zsh)"
+
