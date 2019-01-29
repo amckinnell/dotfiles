@@ -124,10 +124,22 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
+# Install Lunchy completion.
 LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
 if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
   . $LUNCHY_DIR/lunchy-completion.zsh
 fi
+
+# Open all files in a branch into RubyMine.
+function mine_branch() {
+  if [[ "$1" == "" ]]; then
+    branch=master
+  else
+    branch=$1
+  fi
+
+  git diff --name-only --diff-filter=d $branch | xargs -r mine .
+}
 
 
 # -----------------------------------------------------------------------------
@@ -177,7 +189,7 @@ alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 export CAPYBARA_DRIVER=chrome
 
 # Enable profiling tools in the browser
-# export PM_ENABLE_PROFILING=1
+export PM_ENABLE_PROFILING=1
 
 # Disable the spring pre-loader
 export DISABLE_SPRING=1
@@ -221,6 +233,9 @@ function rails_next_prompt() {
 
 alias rc='master && env_rails_current'
 alias rn='rails_next && env_rails_next'
+
+# Open better_errors links directly in open RubyMine.
+export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
 
 # -----------------------------------------------------------------------------
