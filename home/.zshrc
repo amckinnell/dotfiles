@@ -191,6 +191,9 @@ export CAPYBARA_DRIVER=chrome
 # Enable profiling tools in the browser
 export PM_ENABLE_PROFILING=1
 
+# Enable Rails Footnotes in the browser
+export RAILS_FOOTNOTES_EDITOR=rubymine
+
 # Disable the spring pre-loader
 export DISABLE_SPRING=1
 
@@ -302,12 +305,9 @@ function count() {
 # -----------------------------------------------------------------------------
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
-npm config delete prefix
-
-nvm use `cat $PACKMANAGER_MASTER/.nvmrc`
+nvm use --delete-prefix
 
 
 # -----------------------------------------------------------------------------
