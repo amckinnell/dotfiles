@@ -11,11 +11,11 @@
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/alistair/.gitignore_global
+	excludesfile = /Users/alistairm/.gitignore
   autocrlf = input
 	commentchar = $
 	pager = less -R --tabs=2 -RFX
-	hooksPath = /Users/alistair/.git-templates/hooks
+	hooksPath = /Users/alistairm/.git-templates/hooks
 [remote "origin"]
 	push = HEAD
 [branch]

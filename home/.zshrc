@@ -38,14 +38,14 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 # export JAVA_HOME=$(/usr/libexec/java_home)
 
 # # Add any java command line tools.
-# JAVA_TOOLS_HOME=/Users/alistair/dev/java
+# JAVA_TOOLS_HOME=~/dev/java
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(rails rake rspec rubocop)
-plugins=(autojump brew bundler git history-substring-search nulogy \
-  rake-fast sublime terminalapp vagrant zsh-autosuggestions zsh_reload)
+plugins=(brew bundler git history-substring-search nulogy \
+  rake-fast sublime terminalapp vagrant z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -82,7 +82,7 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # Add my scripts to the front of the PATH
-export PATH=/Users/alistair/dev/scripts:$PATH
+export PATH=~/dev/scripts:$PATH
 
 # Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -102,7 +102,7 @@ alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 alias lm=locally_merged
 
 # Open my list of useful commands.
-alias uc='subl ~/useful_commands.txt'
+alias uc='subl ~/useful_commands.md'
 
 # Source from a file that will not go into my dotfiles repo
 [ -f .zshrc_private ] && source .zshrc_private
@@ -146,7 +146,7 @@ function mine_branch() {
 # Highlight Source from Clipboard for Keynote or Pages
 # -----------------------------------------------------------------------------
 
-export HIGHLIGHT_DIR='/Users/alistair/dev/highlight'
+export HIGHLIGHT_DIR='~/dev/highlight'
 
 alias highlight_for_keynote='pbpaste | highlight --out-format rtf --font-size 24 --font Menlo --plug-in "$HIGHLIGHT_DIR/rspec.lua" --config-file "$HIGHLIGHT_DIR/twilight.theme" --style twilight --src-lang ruby | pbcopy'
 alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 --font Menlo --src-lang ruby --line-numbers | pbcopy'
@@ -159,17 +159,12 @@ alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 -
 # Add to path for rabbitmq-server.
 export PATH=$PATH:/usr/local/sbin
 
-export CPI_DIR=/Users/alistair/src/cpi
-export PACKMANAGER_DIR=/Users/alistair/src/packmanager
-export SLOC_DIR=$PACKMANAGER_DIR/sloc
+export PACKMANAGER_DIR=~/src/packmanager
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 PACKMANAGER_MASTER=$PACKMANAGER_DIR/master
 PACKMANAGER_RELEASE=$PACKMANAGER_DIR/release
 PACKMANAGER_PRODUCTION=$PACKMANAGER_DIR/production
-
-# Handy way to get to the CPI directory
-alias cpi='cd $CPI_DIR'
 
 # Handy ways to get to the packmanager master and release directories
 alias master='cd $PACKMANAGER_MASTER'
@@ -177,10 +172,7 @@ alias rel='cd $PACKMANAGER_RELEASE'
 alias prod='cd $PACKMANAGER_PRODUCTION'
 
 # Create a Packmanager user
-alias pm_user='rake nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
-
-# Reset the customer test data catalog
-alias reset_catalog='SKIP_TEST_DEFAULTS_WHEN_CUSTOMER_TESTING=true rake db:reset nulogy:customer_test_data:catalog'
+alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
 
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
@@ -245,7 +237,7 @@ export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 # QCloud Development
 # -----------------------------------------------------------------------------
 
-export QCLOUD_DIR=/Users/alistair/src/qcloud
+export QCLOUD_DIR=~/src/qcloud
 
 # Handy way to get to the various QCloud directories
 alias qcloud='cd $QCLOUD_DIR'
@@ -315,6 +307,13 @@ nvm use --delete-prefix
 # -----------------------------------------------------------------------------
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+
+# -----------------------------------------------------------------------------
+# ZSH Autosuggestions (instead of using the oh-my-zsh plugin)
+# -----------------------------------------------------------------------------
+
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 # -----------------------------------------------------------------------------
