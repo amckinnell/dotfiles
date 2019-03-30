@@ -44,7 +44,7 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(rails rake rspec rubocop)
-plugins=(brew bundler git history-substring-search nulogy \
+plugins=(brew bundler git history-substring-search lunchy nulogy \
   rake-fast sublime terminalapp vagrant z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
@@ -124,12 +124,6 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
-# Install Lunchy completion.
-LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-  . $LUNCHY_DIR/lunchy-completion.zsh
-fi
-
 # Open all files in a branch into RubyMine.
 function mine_branch() {
   if [[ "$1" == "" ]]; then
@@ -179,6 +173,9 @@ alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
 # Use chrome for running acceptance specs and features
 export CAPYBARA_DRIVER=chrome
+
+# Caputure screenshots when running acceptance specs and features
+export CAPYBARA_SCREENSHOT=1
 
 # Enable profiling tools in the browser
 export PM_ENABLE_PROFILING=1
