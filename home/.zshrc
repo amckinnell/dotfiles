@@ -306,11 +306,22 @@ nvm use --delete-prefix
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # ZSH Autosuggestions (instead of using the oh-my-zsh plugin)
 # -----------------------------------------------------------------------------
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+# -----------------------------------------------------------------------------
+# Add the GNU command line tools to the front of the PATH
+# -----------------------------------------------------------------------------
+
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 
 
 # -----------------------------------------------------------------------------
