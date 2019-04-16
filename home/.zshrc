@@ -34,8 +34,8 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # Postgres App command line tools.
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
-# # We want to run the latest Oracle distribution.
-# export JAVA_HOME=$(/usr/libexec/java_home)
+# We want to run the latest Oracle distribution.
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 # # Add any java command line tools.
 # JAVA_TOOLS_HOME=~/dev/java
