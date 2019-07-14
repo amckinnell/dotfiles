@@ -22,6 +22,7 @@
 	autosetupmerge = true
 [diff]
   compactionheuristic = true
+	renameLimit = 10000
 [color]
 	branch = auto
 	diff = auto
@@ -29,7 +30,7 @@
 [fetch]
   prune = true
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -38,3 +39,8 @@
 	trustExitCode = true
 [commit]
 	template = /Users/alistair/.stCommitMsg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

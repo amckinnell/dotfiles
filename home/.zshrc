@@ -44,7 +44,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(rails rake rspec rubocop)
-plugins=(brew bundler git history-substring-search lunchy nulogy \
+plugins=(brew bundler git history-substring-search nulogy \
   rake-fast sublime terminalapp vagrant z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
@@ -124,17 +124,6 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
-# Open all files in a branch into RubyMine.
-function mine_branch() {
-  if [[ "$1" == "" ]]; then
-    branch=master
-  else
-    branch=$1
-  fi
-
-  git diff --name-only --diff-filter=d $branch | xargs -r mine .
-}
-
 
 # -----------------------------------------------------------------------------
 # Highlight Source from Clipboard for Keynote or Pages
@@ -157,12 +146,10 @@ export PACKMANAGER_DIR=~/src/packmanager
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 PACKMANAGER_MASTER=$PACKMANAGER_DIR/master
-PACKMANAGER_RELEASE=$PACKMANAGER_DIR/release
 PACKMANAGER_PRODUCTION=$PACKMANAGER_DIR/production
 
-# Handy ways to get to the packmanager master and release directories
+# Handy ways to get to the packmanager master and production directories
 alias master='cd $PACKMANAGER_MASTER'
-alias rel='cd $PACKMANAGER_RELEASE'
 alias prod='cd $PACKMANAGER_PRODUCTION'
 
 # Create a Packmanager user
@@ -249,7 +236,7 @@ alias qcloud='cd $QCLOUD_DIR'
 #   rubodiff
 #   rubodiff --auto-correct
 #   rubodiff master --auto-correct
-#   rubodiff release
+#   rubodiff production
 #   rubodiff HEAD~6
 #   rubodiff 0f477ae
 #
@@ -286,6 +273,24 @@ export TWENTY_FOUR_HOUR_CLOCK=true
 # Counts the occurences of the specified string (recursively from current dir).
 function count() {
   ag --count $1 | cut -f 2 -d: | awk '{ s += $1 } END { print s }'
+}
+
+# Runs rubycritic on production code changed in the current feature branch.
+critic_branch() {
+  if [[ "$1" == "" ]]
+  then
+    branch=master
+  else
+    branch=$1
+  fi
+
+  git diff --name-only --diff-filter=d $branch | \
+    grep -v '_spec.rb$' | xargs -r rubycritic
+}
+
+# Lists all of the outdated gem (skips Rails 5.2)
+function outdated() {
+  bundle outdated | grep -v "5.2.3" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 
