@@ -201,7 +201,7 @@ function rails_prompt() {
 
 function rails_next_prompt() {
   if [[ "$RAILS_NEXT" =~ "true" ]]; then
-    printf "-"
+    echo "-"
   fi
 }
 
@@ -210,6 +210,16 @@ alias rn='rails_next && env_rails_next'
 
 # Open better_errors links directly in open RubyMine.
 export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
+
+# Upgrade a set of gems in each of the component directories
+function bump_component_gems() {
+  for file in ./components/*; do
+    cd $file
+    bundle update --conservative "$1"
+    cp Gemfile.lock gemfile_next.lock
+    master
+  done
+}
 
 
 # -----------------------------------------------------------------------------
