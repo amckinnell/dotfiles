@@ -43,7 +43,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-BUNDLED_COMMANDS=(rails rake rspec rubocop)
+BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem)
 plugins=(brew bundler git history-substring-search nulogy \
   rake-fast sublime terminalapp vagrant z zsh_reload)
 
@@ -145,24 +145,15 @@ export PATH=$PATH:/usr/local/sbin
 export PACKMANAGER_DIR=~/src/packmanager
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
-PACKMANAGER_MASTER=$PACKMANAGER_DIR/master
-PACKMANAGER_PRODUCTION=$PACKMANAGER_DIR/production
 
 # Handy ways to get to the packmanager master and production directories
-alias master='cd $PACKMANAGER_MASTER'
-alias prod='cd $PACKMANAGER_PRODUCTION'
+PACKMANAGER_HOME=~/src/packmanager
 
 # Create a Packmanager user
 alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
 
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
-
-# Use chrome for running acceptance specs and features
-export CAPYBARA_DRIVER=chrome
-
-# Caputure screenshots when running acceptance specs and features
-export CAPYBARA_SCREENSHOT=1
 
 # Enable profiling tools in the browser
 export PM_ENABLE_PROFILING=1
@@ -173,11 +164,15 @@ export RAILS_FOOTNOTES_EDITOR=rubymine
 # Disable the spring pre-loader
 export DISABLE_SPRING=1
 
-# Run specs and fetaures with Google Chrome
-export CAPYBARA_DRIVER=chrome
+# Use browser for running acceptance specs and features
+export CAPYBARA_DRIVER=selenium
+
+# Caputure screenshots when running acceptance specs and features
+export CAPYBARA_SCREENSHOT=1
 
 alias use_chrome='export CAPYBARA_DRIVER=chrome'
 alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
+alias use_firefox='export CAPYBARA_DRIVER=selenium'
 
 # My preferred way to integrate to master
 alias integrate='thor nugit:integrate --rubocop --into master --delete-branches --buildkite-ci'
@@ -288,9 +283,9 @@ critic_branch() {
     grep -v '_spec.rb$' | xargs -r rubycritic
 }
 
-# Lists all of the outdated gem (skips Rails 5.2)
+# Lists all of the outdated gem (skips Rails 6.0.0)
 function outdated() {
-  bundle outdated | grep -v "5.2.3" | grep -v "arel" | grep -v "coffee-rails"
+  bundle outdated | grep -v "6.0.0" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 
@@ -301,7 +296,25 @@ function outdated() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
-nvm use --delete-prefix
+# Calling nvm use automatically in a directory with a .nvmrc file
+autoload -U add-zsh-hook
+load-nvmrc() {
+ local node_version="$(nvm version)"
+ local nvmrc_path="$(nvm_find_nvmrc)"
+ if [ -n "$nvmrc_path" ]; then
+   local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+   if [ "$nvmrc_node_version" = "N/A" ]; then
+     nvm install
+   elif [ "$nvmrc_node_version" != "$node_version" ]; then
+     nvm use
+   fi
+ elif [ "$node_version" != "$(nvm version default)" ]; then
+   echo "Reverting to nvm default version"
+   nvm use default
+ fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 
 # -----------------------------------------------------------------------------
