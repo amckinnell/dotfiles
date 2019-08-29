@@ -29,7 +29,7 @@ DISABLE_AUTO_UPDATE="true"
 # -----------------------------------------------------------------------------
 
 # Restore legacy forking behaviour. That is, pre High Sierra behaviour.
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Postgres App command line tools.
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
