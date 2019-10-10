@@ -44,7 +44,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem)
-plugins=(brew bundler git history-substring-search nulogy \
+plugins=(brew bundler git gitfast history-substring-search nulogy \
   rake-fast sublime terminalapp vagrant z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
@@ -159,13 +159,14 @@ alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 export PM_ENABLE_PROFILING=1
 
 # Enable Rails Footnotes in the browser
-export RAILS_FOOTNOTES_EDITOR=rubymine
+# export RAILS_FOOTNOTES_EDITOR=rubymine
 
 # Disable the spring pre-loader
 export DISABLE_SPRING=1
 
 # Use browser for running acceptance specs and features
-export CAPYBARA_DRIVER=selenium
+export CAPYBARA_DRIVER=chrome
+# export CAPYBARA_DRIVER=selenium
 
 # Caputure screenshots when running acceptance specs and features
 export CAPYBARA_SCREENSHOT=1
@@ -173,9 +174,6 @@ export CAPYBARA_SCREENSHOT=1
 alias use_chrome='export CAPYBARA_DRIVER=chrome'
 alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
 alias use_firefox='export CAPYBARA_DRIVER=selenium'
-
-# My preferred way to integrate to master
-alias integrate='thor nugit:integrate --rubocop --into master --delete-branches --buildkite-ci'
 
 # Rails Next directories
 PACKMANAGER_RAILS_NEXT=$PACKMANAGER_DIR/rails_next
@@ -193,15 +191,13 @@ function env_rails_next() {
   echo -e '\033]50;SetProfile=RailsNext\a'
 }
 
-function rails_prompt() {
-  if [[ "$RAILS_NEXT" =~ "true" ]]; then
-    echo `rails --version | sed -e "s/^Rails //"`-
-  fi
+function ruby_prompt() {
+  rbenv version | cut -d' ' -f 1
 }
 
 function rails_next_prompt() {
-  if [[ "$RAILS_NEXT" =~ "true" ]]; then
-    echo "-"
+  if [[ "$RAILS_NEXT" == "true" ]]; then
+    echo "~"
   fi
 }
 
@@ -297,6 +293,9 @@ critic_branch() {
 function outdated() {
   bundle outdated | grep -v "6.0.0" | grep -v "arel" | grep -v "coffee-rails"
 }
+
+# An improved version of pmkill that handles the case where no processes are listening.
+alias pmkill='rm -f tmp/pids/unicorn3000.pid; kill_processes_listening_on 3000,5555 &>/dev/null'
 
 
 # -----------------------------------------------------------------------------
