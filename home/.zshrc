@@ -293,9 +293,9 @@ critic_branch() {
     grep -v '_spec.rb$' | xargs -r rubycritic
 }
 
-# Lists all of the outdated gem (skips Rails 6.0.0)
+# Lists all of the outdated gem (skips Rails 6.0.x)
 function outdated() {
-  bundle outdated | grep -v "6.0.0" | grep -v "arel" | grep -v "coffee-rails"
+  bundle outdated | grep -v "6.0.1" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.
