@@ -298,6 +298,9 @@ function outdated() {
   bundle outdated | grep -v "6.0.0" | grep -v "arel" | grep -v "coffee-rails"
 }
 
+# An improved version of pmkill that handles the case where no processes are listening.
+alias pmkill='rm -f tmp/pids/unicorn3000.pid; kill_processes_listening_on 3000,5555 &>/dev/null'
+
 
 # -----------------------------------------------------------------------------
 # Node Version Manager
