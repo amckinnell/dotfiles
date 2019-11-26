@@ -49,9 +49,6 @@ plugins=(brew bundler git gitfast history-substring-search nulogy \
 
 source $ZSH/oh-my-zsh.sh
 
-# This should be coming from the nulogy plugin but somehow it is not
-alias rn_deprecations="~/src/packmanager/master/development/rails_next/collect_rails_deprecation_warnings.rb"
-
 # Disable ZSH auto correction.
 unsetopt CORRECT
 
@@ -174,9 +171,6 @@ alias use_chrome='export CAPYBARA_DRIVER=chrome'
 alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
 alias use_firefox='export CAPYBARA_DRIVER=selenium'
 
-# My preferred way to integrate to master
-alias integrate='thor nugit:integrate --rubocop --into master --delete-branches --buildkite-ci'
-
 # Rails Next directories
 PACKMANAGER_RAILS_NEXT=$PACKMANAGER_DIR/rails_next
 
@@ -185,28 +179,33 @@ alias rails_next='cd $PACKMANAGER_RAILS_NEXT'
 # Helpers for the migration to Rails Next
 function env_rails_current() {
   unset RAILS_NEXT
+  unset BUNDLE_GEMFILE
   echo -e '\033]50;SetProfile=Default\a'
 }
 
 function env_rails_next() {
   export RAILS_NEXT=true
+  export BUNDLE_GEMFILE=Gemfile.next
   echo -e '\033]50;SetProfile=RailsNext\a'
 }
 
-function rails_prompt() {
-  if [[ "$RAILS_NEXT" =~ "true" ]]; then
-    echo `rails --version | sed -e "s/^Rails //"`-
-  fi
+function ruby_prompt() {
+  rbenv version | cut -d' ' -f 1
 }
 
 function rails_next_prompt() {
-  if [[ "$RAILS_NEXT" =~ "true" ]]; then
-    echo "-"
+  if [[ "$RAILS_NEXT" == "true" ]]; then
+    echo "~"
   fi
 }
 
+function rails_next_deprecations() {
+  $PACKMANAGER_HOME/master/development/rails_next/collect_rails_deprecation_warnings.rb "aa761ad6eed0e8c05519bbddb1036d6c711a5947" "$1"
+}
+
 alias rc='master && env_rails_current'
-alias rn='rails_next && env_rails_next'
+alias rn='master && env_rails_next'
+alias rn_deprecations='rails_next_deprecations'
 
 # Open better_errors links directly in open RubyMine.
 export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
