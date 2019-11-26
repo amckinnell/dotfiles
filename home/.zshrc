@@ -275,7 +275,7 @@ export TWENTY_FOUR_HOUR_CLOCK=true
 # Candidates for oh-my-zsh-plugins
 # -----------------------------------------------------------------------------
 
-# Counts the occurences of the specified string (recursively from current dir).
+# Counts the occurrences of the specified string (recursively from current dir).
 function count() {
   ag --count $1 | cut -f 2 -d: | awk '{ s += $1 } END { print s }'
 }
