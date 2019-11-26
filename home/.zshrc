@@ -44,8 +44,8 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem)
-plugins=(brew bundler git history-substring-search nulogy \
-  rake-fast sublime terminalapp vagrant z zsh_reload)
+plugins=(brew bundler git gitfast history-substring-search nulogy \
+  rake-fast sublime vagrant z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
