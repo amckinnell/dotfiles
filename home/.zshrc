@@ -162,6 +162,7 @@ export PM_ENABLE_PROFILING=1
 export DISABLE_SPRING=1
 
 # Use browser for running acceptance specs and features
+# export CAPYBARA_DRIVER=chrome
 export CAPYBARA_DRIVER=selenium
 
 # Caputure screenshots when running acceptance specs and features
