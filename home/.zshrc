@@ -159,7 +159,7 @@ alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 export PM_ENABLE_PROFILING=1
 
 # Enable Rails Footnotes in the browser
-export RAILS_FOOTNOTES_EDITOR=rubymine
+# export RAILS_FOOTNOTES_EDITOR=rubymine
 
 # Disable the spring pre-loader
 export DISABLE_SPRING=1
