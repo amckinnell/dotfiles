@@ -45,12 +45,9 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 
 BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem)
 plugins=(brew bundler git gitfast history-substring-search nulogy \
-  rake-fast sublime terminalapp vagrant z zsh_reload)
+  rake-fast sublime vagrant z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
-
-# This should be coming from the nulogy plugin but somehow it is not
-alias rn_deprecations="~/src/packmanager/master/development/rails_next/collect_rails_deprecation_warnings.rb"
 
 # Disable ZSH auto correction.
 unsetopt CORRECT
@@ -165,8 +162,8 @@ export PM_ENABLE_PROFILING=1
 export DISABLE_SPRING=1
 
 # Use browser for running acceptance specs and features
-export CAPYBARA_DRIVER=chrome
-# export CAPYBARA_DRIVER=selenium
+# export CAPYBARA_DRIVER=chrome
+export CAPYBARA_DRIVER=selenium
 
 # Caputure screenshots when running acceptance specs and features
 export CAPYBARA_SCREENSHOT=1
@@ -183,11 +180,13 @@ alias rails_next='cd $PACKMANAGER_RAILS_NEXT'
 # Helpers for the migration to Rails Next
 function env_rails_current() {
   unset RAILS_NEXT
+  unset BUNDLE_GEMFILE
   echo -e '\033]50;SetProfile=Default\a'
 }
 
 function env_rails_next() {
   export RAILS_NEXT=true
+  export BUNDLE_GEMFILE=Gemfile.next
   echo -e '\033]50;SetProfile=RailsNext\a'
 }
 
@@ -201,8 +200,13 @@ function rails_next_prompt() {
   fi
 }
 
+function rails_next_deprecations() {
+  $PACKMANAGER_HOME/master/development/rails_next/collect_rails_deprecation_warnings.rb "aa761ad6eed0e8c05519bbddb1036d6c711a5947" "$1"
+}
+
 alias rc='master && env_rails_current'
-alias rn='rails_next && env_rails_next'
+alias rn='master && env_rails_next'
+alias rn_deprecations='rails_next_deprecations'
 
 # Open better_errors links directly in open RubyMine.
 export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
@@ -271,7 +275,7 @@ export TWENTY_FOUR_HOUR_CLOCK=true
 # Candidates for oh-my-zsh-plugins
 # -----------------------------------------------------------------------------
 
-# Counts the occurences of the specified string (recursively from current dir).
+# Counts the occurrences of the specified string (recursively from current dir).
 function count() {
   ag --count $1 | cut -f 2 -d: | awk '{ s += $1 } END { print s }'
 }
@@ -291,7 +295,7 @@ critic_branch() {
 
 # Lists all of the outdated gem (skips Rails 6.0.0)
 function outdated() {
-  bundle outdated | grep -v "6.0.0" | grep -v "arel" | grep -v "coffee-rails"
+  bundle outdated | grep -v "6.0.1" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.
