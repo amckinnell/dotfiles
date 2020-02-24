@@ -29,7 +29,7 @@ DISABLE_AUTO_UPDATE="true"
 # -----------------------------------------------------------------------------
 
 # Restore legacy forking behaviour. That is, pre High Sierra behaviour.
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Postgres App command line tools.
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
@@ -171,6 +171,10 @@ export CAPYBARA_DRIVER=chrome
 # Caputure screenshots when running acceptance specs and features
 export CAPYBARA_SCREENSHOT=1
 
+alias use_chrome='export CAPYBARA_DRIVER=chrome'
+alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
+alias use_firefox='export CAPYBARA_DRIVER=selenium'
+
 # Rails Next directories
 PACKMANAGER_RAILS_NEXT=$PACKMANAGER_DIR/rails_next
 
@@ -307,6 +311,9 @@ alias pmkill='rm -f tmp/pids/unicorn3000.pid; kill_processes_listening_on 3000,5
 function build_tag() {
   curl https://packmanager.nulogy.net/test/build_tag
 }
+
+# An improved version of pmkill that handles the case where no processes are listening.
+alias pmkill='rm -f tmp/pids/unicorn3000.pid; kill_processes_listening_on 3000,5555 &>/dev/null'
 
 
 # -----------------------------------------------------------------------------
