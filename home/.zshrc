@@ -121,6 +121,9 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
+# Open GitKraken from the command line
+alias kraken="open -na 'GitKraken' --args -p $(pwd)"
+
 
 # -----------------------------------------------------------------------------
 # Highlight Source from Clipboard for Keynote or Pages
@@ -162,15 +165,11 @@ export PM_ENABLE_PROFILING=1
 export DISABLE_SPRING=1
 
 # Use browser for running acceptance specs and features
-# export CAPYBARA_DRIVER=chrome
-export CAPYBARA_DRIVER=selenium
+export CAPYBARA_DRIVER=chrome
+# export CAPYBARA_DRIVER=selenium
 
 # Caputure screenshots when running acceptance specs and features
 export CAPYBARA_SCREENSHOT=1
-
-alias use_chrome='export CAPYBARA_DRIVER=chrome'
-alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
-alias use_firefox='export CAPYBARA_DRIVER=selenium'
 
 # Rails Next directories
 PACKMANAGER_RAILS_NEXT=$PACKMANAGER_DIR/rails_next
@@ -220,6 +219,9 @@ function bump_component_gems() {
     master
   done
 }
+
+# Use compact inspectors when running integrations specs.
+export PM_COMPACT_INSPECTORS=true
 
 
 # -----------------------------------------------------------------------------
@@ -295,11 +297,16 @@ critic_branch() {
 
 # Lists all of the outdated gem (skips Rails 6.0.x)
 function outdated() {
-  bundle outdated | grep -v "6.0.1" | grep -v "arel" | grep -v "coffee-rails"
+  bundle outdated | grep -v "6.0.2" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.
 alias pmkill='rm -f tmp/pids/unicorn3000.pid; kill_processes_listening_on 3000,5555 &>/dev/null'
+
+# List the git SHA for the build that is in production.
+function build_tag() {
+  curl https://packmanager.nulogy.net/test/build_tag
+}
 
 
 # -----------------------------------------------------------------------------
