@@ -5,6 +5,9 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="alistair"
 
+# Possible experiment
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -44,8 +47,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem)
-plugins=(brew bundler git gitfast history-substring-search nulogy \
-  rake-fast sublime vagrant z zsh_reload)
+plugins=(brew bundler git gitfast history-substring-search nulogy sublime z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,6 +106,9 @@ alias uc='subl ~/useful_commands.md'
 # Source from a file that will not go into my dotfiles repo
 [ -f .zshrc_private ] && source .zshrc_private
 
+# Lurkers (see https://blog.testdouble.com/posts/2020-04-07-favorite-things/)
+alias ls='exa'
+
 
 # -----------------------------------------------------------------------------
 # General Development
@@ -154,6 +159,9 @@ alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Pa
 
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
+
+# Enable profiling tools in the browser
+export PM_BROWSER_LOGGING=true
 
 # Enable profiling tools in the browser
 export PM_ENABLE_PROFILING=1
@@ -226,6 +234,16 @@ function bump_component_gems() {
 
 # Use compact inspectors when running integrations specs.
 export PM_COMPACT_INSPECTORS=true
+
+# Grab the list intermittent specs from buildkite
+function intermittent_specs_data() {
+  pushd
+
+  cd $PACKMANAGER_DIR/master/development/scripts/ci_non_deterministic_tests
+  ruby main.rb
+
+  popd
+}
 
 
 # -----------------------------------------------------------------------------
@@ -376,3 +394,5 @@ export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 # Disabled for the moement...
 # eval "$(direnv hook zsh)"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
