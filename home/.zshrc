@@ -47,7 +47,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem)
-plugins=(brew bundler git gitfast history-substring-search nulogy sublime z zsh_reload)
+plugins=(brew bundler git gitfast history-substring-search nulogy z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -75,7 +75,13 @@ export HISTFILE=~/.zsh_history  # ensure history file visibility
 export HH_CONFIG=hicolor        # get more colors
 
 # Use Sublime as my text editor.
-export EDITOR="subl -w"
+# export EDITOR="subl -w"
+
+# Use RubyMine as my text editor.
+# export EDITOR="mine -w"
+
+# Use Visual Studio Code as my text editor.
+export EDITOR="code -w"
 
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -125,9 +131,6 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
-
-# Open GitKraken from the command line
-alias kraken="open -na 'GitKraken' --args -p $(pwd)"
 
 
 # -----------------------------------------------------------------------------
