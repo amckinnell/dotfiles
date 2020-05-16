@@ -34,6 +34,9 @@ DISABLE_AUTO_UPDATE="true"
 # Restore legacy forking behaviour. That is, pre High Sierra behaviour.
 # export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
+# Increase file descriptoers limit from the default of 256. 
+ulimit -n 4096
+
 # Postgres App command line tools.
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
@@ -46,7 +49,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem)
+BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem thor)
 plugins=(brew bundler git gitfast history-substring-search nulogy z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
@@ -131,6 +134,19 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
+
+# One-by-one commit for each file using the same message.
+function commit_each() {
+  if [ -z "$1" ]; then
+    echo
+    echo "  Usage:"
+    echo "    commit_message <message>"
+  else
+    for file in $(git diff master --name-status | cut -f2); do 
+      git commit -m $1 $file; 
+    done
+  fi
+}
 
 
 # -----------------------------------------------------------------------------
@@ -235,8 +251,8 @@ function bump_component_gems() {
   done
 }
 
-# Use compact inspectors when running integrations specs.
-export PM_COMPACT_INSPECTORS=true
+# Enable the database analysis gems.
+export PM_STATIC_DATABASE_ANALYSIS=true
 
 # Grab the list intermittent specs from buildkite
 function intermittent_specs_data() {
@@ -322,7 +338,7 @@ critic_branch() {
 
 # Lists all of the outdated gem (skips Rails 6.0.x)
 function outdated() {
-  bundle outdated | grep -v "6.0.2" | grep -v "arel" | grep -v "coffee-rails"
+  bundle outdated | grep -v "6.0.3" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.
