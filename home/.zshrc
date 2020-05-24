@@ -83,6 +83,9 @@ export HH_CONFIG=hicolor        # get more colors
 # Use RubyMine as my text editor.
 # export EDITOR="mine -w"
 
+# Clear oopsie .idea project
+alias clear_idea='rm -rf .idea'
+
 # Use Visual Studio Code as my text editor.
 export EDITOR="code -w"
 
