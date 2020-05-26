@@ -112,9 +112,6 @@ alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 # Shows the branches that have been merged.
 alias lm=locally_merged
 
-# Open my list of useful commands.
-alias uc='subl ~/useful_commands.md'
-
 # Source from a file that will not go into my dotfiles repo
 [ -f .zshrc_private ] && source .zshrc_private
 
@@ -143,10 +140,10 @@ function commit_each() {
   if [ -z "$1" ]; then
     echo
     echo "  Usage:"
-    echo "    commit_message <message>"
+    echo "    commit_each <message>"
   else
     for file in $(git diff master --name-status | cut -f2); do 
-      git commit -m $1 $file; 
+      git commit -m "$1" -- $file
     done
   fi
 }
@@ -182,7 +179,7 @@ alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Pa
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
-# Enable profiling tools in the browser
+# Enable logging in the browser
 export PM_BROWSER_LOGGING=true
 
 # Enable profiling tools in the browser
@@ -194,7 +191,7 @@ export PM_ENABLE_PROFILING=1
 # Disable the spring pre-loader
 export DISABLE_SPRING=1
 
-# Use browser for running acceptance specs and features
+# Use this browser for running acceptance specs and features
 export CAPYBARA_DRIVER=chrome
 # export CAPYBARA_DRIVER=selenium
 
@@ -257,7 +254,7 @@ function bump_component_gems() {
 # Enable the database analysis gems.
 export PM_STATIC_DATABASE_ANALYSIS=true
 
-# Grab the list intermittent specs from buildkite
+# Grab the list of intermittent specs from CI Pipeline
 function intermittent_specs_data() {
   pushd
 
@@ -266,6 +263,9 @@ function intermittent_specs_data() {
 
   popd
 }
+
+# Flush memcached
+alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
 
 
 # -----------------------------------------------------------------------------
