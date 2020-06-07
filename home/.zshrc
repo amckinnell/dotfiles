@@ -179,12 +179,6 @@ alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Pa
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
-# Enable logging in the browser
-export PM_BROWSER_LOGGING=true
-
-# Enable profiling tools in the browser
-export PM_ENABLE_PROFILING=1
-
 # Enable Rails Footnotes in the browser
 # export RAILS_FOOTNOTES_EDITOR=rubymine
 
@@ -251,21 +245,27 @@ function bump_component_gems() {
   done
 }
 
-# Enable the database analysis gems.
-export PM_STATIC_DATABASE_ANALYSIS=true
-
 # Grab the list of intermittent specs from CI Pipeline
 function intermittent_specs_data() {
-  pushd
-
-  cd $PACKMANAGER_DIR/master/development/scripts/ci_non_deterministic_tests
+  pushd $PACKMANAGER_DIR/master/development/scripts/ci_non_deterministic_tests
   ruby main.rb
-
   popd
 }
 
 # Flush memcached
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
+
+# Enable logging in the browser
+export PM_BROWSER_LOGGING=true
+
+# Enable profiling tools in the browser
+export PM_ENABLE_PROFILING=1
+
+# Reduce the console noise in development by reducing the polling interval
+export PM_POLLING_INTERVAL_IN_SECONDS=600
+
+# Enable the database analysis gems
+export PM_STATIC_DATABASE_ANALYSIS=true
 
 
 # -----------------------------------------------------------------------------
