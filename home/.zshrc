@@ -41,7 +41,7 @@ ulimit -n 4096
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 # We want to run the latest Oracle distribution.
-export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=`/usr/libexec/java_home`
 
 # # Add any java command line tools.
 # JAVA_TOOLS_HOME=~/dev/java
@@ -50,7 +50,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem thor)
-plugins=(brew bundler git gitfast history-substring-search nulogy z zsh_reload)
+plugins=(brew bundler git gitfast history-substring-search nulogy sublime z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -78,16 +78,16 @@ export HISTFILE=~/.zsh_history  # ensure history file visibility
 export HH_CONFIG=hicolor        # get more colors
 
 # Use Sublime as my text editor.
-# export EDITOR="subl -w"
+export EDITOR="subl -w"
 
 # Use RubyMine as my text editor.
 # export EDITOR="mine -w"
 
+# Use Visual Studio Code as my text editor.
+# export EDITOR="code -w"
+
 # Clear oopsie .idea project
 alias clear_idea='rm -rf .idea'
-
-# Use Visual Studio Code as my text editor.
-export EDITOR="code -w"
 
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -148,6 +148,9 @@ function commit_each() {
   fi
 }
 
+# Hide deprercation warnings.
+export RUBYOPT='-W:no-deprecated'
+
 
 # -----------------------------------------------------------------------------
 # Highlight Source from Clipboard for Keynote or Pages
@@ -163,7 +166,7 @@ alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 -
 # Pack Manager Development
 # -----------------------------------------------------------------------------
 
-# Add to path for rabbitmq-server.
+# Add to path for the rabbitmq-server
 export PATH=$PATH:/usr/local/sbin
 
 export PACKMANAGER_DIR=~/src/packmanager
@@ -172,6 +175,12 @@ PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 
 # Handy ways to get to the packmanager master and production directories
 PACKMANAGER_HOME=~/src/packmanager
+
+# Helps the Sales Demo Conversion project find PackManager
+export PACKMANAGER_ROOT=$PACKMANAGER_DIR/master
+
+# Handy way to get to the sales demo conversion directory
+alias sales_demo='cd ~/src/sales_demo_conversion'
 
 # Create a Packmanager user
 alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
@@ -272,7 +281,7 @@ export PM_STATIC_DATABASE_ANALYSIS=true
 # QCloud Development
 # -----------------------------------------------------------------------------
 
-export QCLOUD_DIR=~/src/qcloud
+export QCLOUD_DIR=~/src/QCloud
 
 # Handy way to get to the various QCloud directories
 alias qcloud='cd $QCLOUD_DIR'
