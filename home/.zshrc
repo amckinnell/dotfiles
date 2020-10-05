@@ -118,6 +118,9 @@ alias lm=locally_merged
 # Lurkers (see https://blog.testdouble.com/posts/2020-04-07-favorite-things/)
 alias ls='exa'
 
+# Configuration for ruby-build (a plugin for rbenv)
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
 
 # -----------------------------------------------------------------------------
 # General Development
@@ -149,7 +152,7 @@ function commit_each() {
 }
 
 # Hide deprercation warnings.
-export RUBYOPT='-W:no-deprecated'
+# export RUBYOPT='-W:no-deprecated'
 
 
 # -----------------------------------------------------------------------------
