@@ -151,8 +151,8 @@ function commit_each() {
   fi
 }
 
-# Hide deprercation warnings.
-# export RUBYOPT='-W:no-deprecated'
+# Hide Thor deprecation warnings.
+export THOR_SILENCE_DEPRECATION=1
 
 
 # -----------------------------------------------------------------------------
@@ -190,9 +190,6 @@ alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Pa
 
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
-
-# Enable Rails Footnotes in the browser
-# export RAILS_FOOTNOTES_EDITOR=rubymine
 
 # Disable the spring pre-loader
 export DISABLE_SPRING=1
@@ -278,6 +275,11 @@ export PM_POLLING_INTERVAL_IN_SECONDS=600
 
 # Enable the database analysis gems
 export PM_STATIC_DATABASE_ANALYSIS=true
+
+# Enable the named release toggle for all sites
+function enable_release_toggle() {
+  rails r modules/generic/release_toggles_app/scripts/release_toggles_global.rb enable "$1"
+}
 
 
 # -----------------------------------------------------------------------------
