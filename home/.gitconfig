@@ -16,6 +16,7 @@
 	commentchar = $
 	pager = less -R --tabs=2 -RFX
 	hooksPath = /Users/alistairm/.git-templates/hooks
+	attributesfile = /Users/alistairm/.gitattributes
 [remote "origin"]
 	push = HEAD
 [branch]

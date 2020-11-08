@@ -86,9 +86,6 @@ export EDITOR="subl -w"
 # Use Visual Studio Code as my text editor.
 # export EDITOR="code -w"
 
-# Clear oopsie .idea project
-alias clear_idea='rm -rf .idea'
-
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
@@ -98,28 +95,34 @@ export PATH=~/dev/scripts:$PATH
 # Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Shows the current wi-fi password (you have to authenticate)
-# Install command line tool using 'brew install wifi-password'
-alias wifi='wifi-password -q'
-
-# The BFG repo cleaner (see https://rtyley.github.io/bfg-repo-cleaner/)
-alias bfg='java -jar $JAVA_TOOLS_HOME/bfg/bfg-1.12.8.jar'
-
 # Opens gmail from the command line
 alias amg='open -a "Safari" https://mail.google.com/mail/u/0/#inbox'
 alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 
+# The BFG repo cleaner (see https://rtyley.github.io/bfg-repo-cleaner/)
+alias bfg='java -jar $JAVA_TOOLS_HOME/bfg/bfg-1.12.8.jar'
+
+# Clear oopsie .idea project
+alias clear_idea='rm -rf .idea'
+
 # Shows the branches that have been merged.
 alias lm=locally_merged
-
-# Source from a file that will not go into my dotfiles repo
-[ -f .zshrc_private ] && source .zshrc_private
 
 # Lurkers (see https://blog.testdouble.com/posts/2020-04-07-favorite-things/)
 alias ls='exa'
 
-# Configuration for ruby-build (a plugin for rbenv)
+# Regenerate the rubocop to do list.
+alias regen='thor nucop:cli:regen_backlog'
+
+# Shows the current wi-fi password (you have to authenticate)
+# Install command line tool using 'brew install wifi-password'
+alias wifi='wifi-password -q'
+
+# Configuration for ruby-build (a plugin for rbenv).
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# Source from a file that will not go into my dotfiles repo
+[ -f .zshrc_private ] && source .zshrc_private
 
 
 # -----------------------------------------------------------------------------
@@ -280,6 +283,9 @@ export PM_STATIC_DATABASE_ANALYSIS=true
 function enable_release_toggle() {
   rails r modules/generic/release_toggles_app/scripts/release_toggles_global.rb enable "$1"
 }
+
+# Run the Sales Demo verifier
+alias verifier='./modules/generic/test_data_catalog/scripts/end_to_end_verification/end_to_end_verifier.rb'
 
 
 # -----------------------------------------------------------------------------
