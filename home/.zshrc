@@ -148,7 +148,7 @@ function commit_each() {
     echo "  Usage:"
     echo "    commit_each <message>"
   else
-    for file in $(git diff master --name-status | cut -f2); do 
+    for file in $(git diff main --name-status | cut -f2); do 
       git commit -m "$1" -- $file
     done
   fi
@@ -179,11 +179,11 @@ export PACKMANAGER_DIR=~/src/packmanager
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
 
-# Handy ways to get to the packmanager master and production directories
+# Handy ways to get to the packmanager directories
 PACKMANAGER_HOME=~/src/packmanager
 
 # Helps the Sales Demo Conversion project find PackManager
-export PACKMANAGER_ROOT=$PACKMANAGER_DIR/master
+export PACKMANAGER_ROOT=$PACKMANAGER_DIR/main
 
 # Handy way to get to the sales demo conversion directory
 alias sales_demo='cd ~/src/sales_demo_conversion'
@@ -237,11 +237,11 @@ function rails_next_prompt() {
 }
 
 function rails_next_deprecations() {
-  $PACKMANAGER_HOME/master/development/rails_next/collect_rails_deprecation_warnings.rb "aa761ad6eed0e8c05519bbddb1036d6c711a5947" "$1"
+  $PACKMANAGER_HOME/main/development/rails_next/collect_rails_deprecation_warnings.rb "aa761ad6eed0e8c05519bbddb1036d6c711a5947" "$1"
 }
 
-alias rc='master && env_rails_current'
-alias rn='master && env_rails_next'
+alias rc='main && env_rails_current'
+alias rn='main && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
 
 # Open better_errors links directly in open RubyMine.
@@ -253,13 +253,13 @@ function bump_component_gems() {
     cd $file
     bundle update --conservative "$1"
     cp Gemfile.lock gemfile_next.lock
-    master
+    main
   done
 }
 
 # Grab the list of intermittent specs from CI Pipeline
 function intermittent_specs_data() {
-  pushd $PACKMANAGER_DIR/master/development/scripts/ci_non_deterministic_tests
+  pushd $PACKMANAGER_DIR/main/development/scripts/ci_non_deterministic_tests
   ruby main.rb
   popd
 }
@@ -299,14 +299,14 @@ alias qcloud='cd $QCLOUD_DIR'
 
 # Run Rubocop on a diff between the specified commit and the current working directory.
 #
-# If no commit is specified the default is to diff against master. You can also pass
+# If no commit is specified the default is to diff against main. You can also pass
 # any additional command line arguments along to rubocop.
 #
 # Examples:
 #
 #   rubodiff
 #   rubodiff --auto-correct
-#   rubodiff master --auto-correct
+#   rubodiff main --auto-correct
 #   rubodiff production
 #   rubodiff HEAD~6
 #   rubodiff 0f477ae
@@ -318,10 +318,10 @@ function rubodiff() {
   fi
 
   if [ ! $1 ]; then
-    COMMIT_SPEC=master
+    COMMIT_SPEC=main
     RUBOCOP_ARGS=
   elif [ $1 =~ ^- ]; then
-    COMMIT_SPEC=master
+    COMMIT_SPEC=main
     RUBOCOP_ARGS=$1
   else
     COMMIT_SPEC=$1
@@ -350,7 +350,7 @@ function count() {
 critic_branch() {
   if [[ "$1" == "" ]]
   then
-    branch=master
+    branch=main
   else
     branch=$1
   fi
