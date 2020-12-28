@@ -50,7 +50,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem thor)
-plugins=(brew bundler git gitfast history-substring-search nulogy sublime z zsh_reload)
+plugins=(brew bundler git gitfast history-substring-search nulogy rake-fast sublime z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,9 +110,6 @@ alias lm=locally_merged
 
 # Lurkers (see https://blog.testdouble.com/posts/2020-04-07-favorite-things/)
 alias ls='exa'
-
-# Regenerate the rubocop to do list.
-alias regen='thor nucop:cli:regen_backlog'
 
 # Shows the current wi-fi password (you have to authenticate)
 # Install command line tool using 'brew install wifi-password'
@@ -185,6 +182,9 @@ PACKMANAGER_HOME=~/src/packmanager
 # Helps the Sales Demo Conversion project find PackManager
 export PACKMANAGER_ROOT=$PACKMANAGER_DIR/main
 
+# Regenerate the rubocop to do list.
+alias regen='thor nucop:cli:regen_backlog'
+
 # Handy way to get to the sales demo conversion directory
 alias sales_demo='cd ~/src/sales_demo_conversion'
 
@@ -244,10 +244,13 @@ alias rc='main && env_rails_current'
 alias rn='main && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
 
+# Enable zeitwerk for RAILS NEXT.
+export RAILS_NEXT_ZEITWERK="zeitwerk"
+
 # Open better_errors links directly in open RubyMine.
 export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
-# Upgrade a set of gems in each of the component directories
+# Upgrade a set of gems in each of the component directories.
 function bump_component_gems() {
   for file in ./components/*; do
     cd $file
@@ -361,7 +364,7 @@ critic_branch() {
 
 # Lists all of the outdated gem (skips Rails 6.0.x)
 function outdated() {
-  bundle outdated | grep -v "6.0.3" | grep -v "arel" | grep -v "coffee-rails"
+  bundle outdated | grep -v "6.1.0" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.
