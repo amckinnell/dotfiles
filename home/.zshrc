@@ -49,7 +49,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-BUNDLED_COMMANDS=(nu rails rake rspec rubocop screengem thor)
+BUNDLED_COMMANDS=(nu rails rake rspec rubocop ruby screengem thor)
 plugins=(brew bundler git gitfast history-substring-search nulogy rake-fast sublime z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
@@ -166,7 +166,7 @@ alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 -
 
 
 # -----------------------------------------------------------------------------
-# Pack Manager Development
+# Ops Core Development
 # -----------------------------------------------------------------------------
 
 # Add to path for the rabbitmq-server
@@ -182,11 +182,17 @@ PACKMANAGER_HOME=~/src/packmanager
 # Helps the Sales Demo Conversion project find PackManager
 export PACKMANAGER_ROOT=$PACKMANAGER_DIR/main
 
+# Standard way to update gem without updating transitive dependencies.
+alias buc='bundle update --conservative'
+
 # Regenerate the rubocop to do list.
 alias regen='thor nucop:cli:regen_backlog'
 
 # Handy way to get to the sales demo conversion directory
-alias sales_demo='cd ~/src/sales_demo_conversion'
+alias sales_demo_conversion='cd ~/src/sales_demo_conversion'
+
+# Handy way to get to the sales demo directory
+alias sales_demo='cd ~/src/sales-demo'
 
 # Create a Packmanager user
 alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
@@ -212,6 +218,9 @@ alias use_firefox='export CAPYBARA_DRIVER=selenium'
 PACKMANAGER_RAILS_NEXT=$PACKMANAGER_DIR/rails_next
 
 alias rails_next='cd $PACKMANAGER_RAILS_NEXT'
+
+# Run localy with zeitwerk
+export RAILS_NEXT_ZEITWERK=classic
 
 # Helpers for the migration to Rails Next
 function env_rails_current() {
@@ -243,9 +252,6 @@ function rails_next_deprecations() {
 alias rc='main && env_rails_current'
 alias rn='main && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
-
-# Enable zeitwerk for RAILS NEXT.
-export RAILS_NEXT_ZEITWERK="zeitwerk"
 
 # Open better_errors links directly in open RubyMine.
 export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
@@ -290,6 +296,8 @@ function enable_release_toggle() {
 # Run the Sales Demo verifier
 alias verifier='./modules/generic/test_data_catalog/scripts/end_to_end_verification/end_to_end_verifier.rb'
 
+# My push to buildkite with a local run of Rubocop.
+alias build_branch='files_in_branch | xargs nucop diff && nucop diff_enforced && gpf && buildkite'
 
 # -----------------------------------------------------------------------------
 # QCloud Development
@@ -364,7 +372,7 @@ critic_branch() {
 
 # Lists all of the outdated gem (skips Rails 6.0.x)
 function outdated() {
-  bundle outdated | grep -v "6.1.0" | grep -v "arel" | grep -v "coffee-rails"
+  bundle outdated | grep -v "6.1.2" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.

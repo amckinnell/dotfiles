@@ -49,3 +49,5 @@
 	ff = only
 [merge "no-assets"]
 	driver = true
+[init]
+	defaultBranch = main
