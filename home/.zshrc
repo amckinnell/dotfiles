@@ -49,7 +49,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-BUNDLED_COMMANDS=(nu rails rake rspec rubocop ruby screengem thor)
+BUNDLED_COMMANDS=(nu query_each_schema rails rake rspec rubocop ruby screengem thor)
 plugins=(brew bundler git gitfast history-substring-search nulogy rake-fast sublime z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
@@ -120,6 +120,9 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 # Source from a file that will not go into my dotfiles repo
 [ -f .zshrc_private ] && source .zshrc_private
+
+# Open GitKraken from the command line
+alias kraken='open -na "GitKraken" --args -p $(pwd)'
 
 
 # -----------------------------------------------------------------------------
@@ -219,7 +222,10 @@ PACKMANAGER_RAILS_NEXT=$PACKMANAGER_DIR/rails_next
 
 alias rails_next='cd $PACKMANAGER_RAILS_NEXT'
 
-# Run localy with zeitwerk
+# Run locally with RAILS NEXT?
+export RAILS_NEXT=false
+
+# Run locally with zeitwerk?
 export RAILS_NEXT_ZEITWERK=classic
 
 # Helpers for the migration to Rails Next
@@ -299,6 +305,11 @@ alias verifier='./modules/generic/test_data_catalog/scripts/end_to_end_verificat
 # My push to buildkite with a local run of Rubocop.
 alias build_branch='files_in_branch | xargs nucop diff && nucop diff_enforced && gpf && buildkite'
 
+# A count of the remaining occurrences of current_account or current_site
+function current_count() {
+  rg --word-regexp --count-matches --type ruby 'current_(account|site)' | awk -F ':' '{s+=$2} END {print s}'
+}
+
 # -----------------------------------------------------------------------------
 # QCloud Development
 # -----------------------------------------------------------------------------
@@ -307,6 +318,9 @@ export QCLOUD_DIR=~/src/QCloud
 
 # Handy way to get to the various QCloud directories
 alias qcloud='cd $QCLOUD_DIR'
+
+# Handy way to get to the various DQI directories
+alias dqi='cd $QCLOUD_DIR'
 
 # Run Rubocop on a diff between the specified commit and the current working directory.
 #
@@ -372,7 +386,7 @@ critic_branch() {
 
 # Lists all of the outdated gem (skips Rails 6.0.x)
 function outdated() {
-  bundle outdated | grep -v "6.1.2" | grep -v "arel" | grep -v "coffee-rails"
+  bundle outdated | grep -v "6.1.3" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.
@@ -433,11 +447,14 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Add the GNU command line tools to the front of the PATH
 # -----------------------------------------------------------------------------
 
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+# This has been causing some issues runnin shared scripts. The commands are
+# always available with a 'g' prefix.
+
+# export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+# export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
+# export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+# export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 
 
 # -----------------------------------------------------------------------------
