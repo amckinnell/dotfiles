@@ -157,6 +157,9 @@ function commit_each() {
 # Hide Thor deprecation warnings.
 export THOR_SILENCE_DEPRECATION=1
 
+# Speed up brew process boot time..
+export HOMEBREW_BOOTSNAP=1
+
 
 # -----------------------------------------------------------------------------
 # Highlight Source from Clipboard for Keynote or Pages
@@ -171,6 +174,9 @@ alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 -
 # -----------------------------------------------------------------------------
 # Ops Core Development
 # -----------------------------------------------------------------------------
+
+# Simplify interactions with AWS CLI
+export AWS_PAGER=""
 
 # Add to path for the rabbitmq-server
 export PATH=$PATH:/usr/local/sbin
@@ -224,9 +230,6 @@ alias rails_next='cd $PACKMANAGER_RAILS_NEXT'
 
 # Run locally with RAILS NEXT?
 export RAILS_NEXT=false
-
-# Run locally with zeitwerk?
-export RAILS_NEXT_ZEITWERK=classic
 
 # Helpers for the migration to Rails Next
 function env_rails_current() {
@@ -310,6 +313,10 @@ function current_count() {
   rg --word-regexp --count-matches --type ruby 'current_(account|site)' | awk -F ':' '{s+=$2} END {print s}'
 }
 
+# Open the OSE2 team romm
+alias team_room='open https://nulogy.zoom.us/j/97005535516'
+
+
 # -----------------------------------------------------------------------------
 # QCloud Development
 # -----------------------------------------------------------------------------
@@ -386,7 +393,7 @@ critic_branch() {
 
 # Lists all of the outdated gem (skips Rails 6.0.x)
 function outdated() {
-  bundle outdated | grep -v "6.1.3" | grep -v "arel" | grep -v "coffee-rails"
+  bundle outdated | grep -v "6.1.4" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.
@@ -399,6 +406,9 @@ function build_tag() {
 
 # An improved version of pmkill that handles the case where no processes are listening.
 alias pmkill='rm -f tmp/pids/unicorn3000.pid; kill_processes_listening_on 3000,5555 &>/dev/null'
+
+# Open our HR system
+alias lattice='open https://nulogy.latticehq.com'
 
 
 # -----------------------------------------------------------------------------
@@ -455,6 +465,13 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
 # export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 # export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+
+
+# -----------------------------------------------------------------------------
+# Odds and Sods
+# -----------------------------------------------------------------------------
+
+alias taxes='open /Users/alistairm/Dropbox/Taxes_with_Jason/taxes.numbers'
 
 
 # -----------------------------------------------------------------------------
