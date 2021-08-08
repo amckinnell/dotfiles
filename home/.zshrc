@@ -209,6 +209,8 @@ alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Pa
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
+alias bamboohr='open https://nulogycorp.bamboohr.com/home/'
+
 # Disable the spring pre-loader
 export DISABLE_SPRING=1
 
