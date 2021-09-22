@@ -124,6 +124,12 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 # Open GitKraken from the command line
 alias kraken='open -na "GitKraken" --args -p $(pwd)'
 
+# Install the Homebrew Command Not Found tool
+HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+if [ -f "$HB_CNF_HANDLER" ]; then
+  source "$HB_CNF_HANDLER";
+fi
+
 
 # -----------------------------------------------------------------------------
 # General Development
@@ -233,6 +239,9 @@ alias rails_next='cd $PACKMANAGER_RAILS_NEXT'
 # Run locally with RAILS NEXT?
 export RAILS_NEXT=false
 
+# Use the ActiveRecord session store
+export PM_USE_ACTIVERECORD_STORE=true
+
 # Helpers for the migration to Rails Next
 function env_rails_current() {
   unset RAILS_NEXT
@@ -290,8 +299,8 @@ alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
 # Enable logging in the browser
 export PM_BROWSER_LOGGING=true
 
-# Enable profiling tools in the browser
-export PM_ENABLE_PROFILING=1
+# Enable profiling tools in the browser (use 1 for enabled)
+export PM_ENABLE_PROFILING=0
 
 # Reduce the console noise in development by reducing the polling interval
 export PM_POLLING_INTERVAL_IN_SECONDS=600
@@ -315,7 +324,8 @@ function current_count() {
   rg --word-regexp --count-matches --type ruby 'current_(account|site)' | awk -F ':' '{s+=$2} END {print s}'
 }
 
-# Open the OSE2 team romm
+# Open the OSE2 team Trello board and team Zoom room.
+alias team_board='open https://trello.com/b/MXHGL3Kq/ose2-remote-board'
 alias team_room='open https://nulogy.zoom.us/j/97005535516'
 
 
