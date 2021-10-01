@@ -197,9 +197,6 @@ PACKMANAGER_HOME=~/src/packmanager
 # Helps the Sales Demo Conversion project find PackManager
 export PACKMANAGER_ROOT=$PACKMANAGER_DIR/main
 
-# Standard way to update gem without updating transitive dependencies.
-alias buc='bundle update --conservative'
-
 # Regenerate the rubocop to do list.
 alias regen='thor nucop:cli:regen_backlog'
 
@@ -325,9 +322,14 @@ function current_count() {
 }
 
 # Open the OSE2 team Trello board and team Zoom room.
-alias team_board='open https://trello.com/b/MXHGL3Kq/ose2-remote-board'
-alias team_room='open https://nulogy.zoom.us/j/97005535516'
+alias ose2_mission_control='open https://miro.com/app/board/o9J_lvrGbSI=/'
+alias ose2_room='open https://nulogy.zoom.us/j/97005535516'
+alias ose2_timer='open https://mobti.me/ose2'
 
+# Run the Automated Production Entry suite of specs
+alias ape_features='spring rails ape:features'
+alias ape_specs='spring rails ape:specs'
+alias ape_uml='open /Users/alistairm/dev/umlgraph_tool/out/AutomatedProductionEntry.png'
 
 # -----------------------------------------------------------------------------
 # QCloud Development
@@ -401,11 +403,6 @@ critic_branch() {
 
   git diff --name-only --diff-filter=d $branch | \
     grep -v '_spec.rb$' | xargs -r rubycritic
-}
-
-# Lists all of the outdated gem (skips Rails 6.0.x)
-function outdated() {
-  bundle outdated | grep -v "6.1.4" | grep -v "arel" | grep -v "coffee-rails"
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.
