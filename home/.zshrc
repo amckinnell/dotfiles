@@ -50,7 +50,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(nu query_each_schema rails rake rspec rubocop ruby screengem thor)
-plugins=(brew bundler git gitfast history-substring-search nulogy rake-fast sublime z zsh_reload)
+plugins=(brew bundler git gitfast history-substring-search nulogy rake-fast sublime z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -175,6 +175,13 @@ export HIGHLIGHT_DIR='~/dev/highlight'
 
 alias highlight_for_keynote='pbpaste | highlight --out-format rtf --font-size 24 --font Menlo --plug-in "$HIGHLIGHT_DIR/rspec.lua" --config-file "$HIGHLIGHT_DIR/twilight.theme" --style twilight --src-lang ruby | pbcopy'
 alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 --font Menlo --src-lang ruby --line-numbers | pbcopy'
+
+
+# -----------------------------------------------------------------------------
+# Epic React Workshop
+# -----------------------------------------------------------------------------
+
+alias er_web="open https://epicreact.dev/learn/"
 
 
 # -----------------------------------------------------------------------------
@@ -321,15 +328,18 @@ function current_count() {
   rg --word-regexp --count-matches --type ruby 'current_(account|site)' | awk -F ':' '{s+=$2} END {print s}'
 }
 
-# Open the OSE2 team Trello board and team Zoom room.
+# Open the OSE2 team cloud resources
 alias ose2_mission_control='open https://miro.com/app/board/o9J_lvrGbSI=/'
 alias ose2_room='open https://nulogy.zoom.us/j/97005535516'
 alias ose2_timer='open https://mobti.me/ose2'
 
-# Run the Automated Production Entry suite of specs
+# Run the Automated Production Entry featurs and specs
 alias ape_features='spring rails ape:features'
 alias ape_specs='spring rails ape:specs'
+
+# Run the Automated Production Entry UML class diagram
 alias ape_uml='open /Users/alistairm/dev/umlgraph_tool/out/AutomatedProductionEntry.png'
+
 
 # -----------------------------------------------------------------------------
 # QCloud Development
