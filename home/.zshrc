@@ -273,29 +273,23 @@ function rails_next_deprecations() {
   $PACKMANAGER_HOME/main/development/rails_next/collect_rails_deprecation_warnings.rb "aa761ad6eed0e8c05519bbddb1036d6c711a5947" "$1"
 }
 
+function mine() {
+  if [[ "$RAILS_NEXT" = true ]]; then
+    export RUBYMINE_PROPERTIES=$HOME/src/rubymine_rails_next/idea.properties
+    open -na /Applications/RubyMine.app $@
+  else
+    unset RUBYMINE_PROPERTIES
+    /usr/local/bin/mine $@
+  fi
+}
+
+
 alias rc='main && env_rails_current'
 alias rn='main && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
 
 # Open better_errors links directly in open RubyMine.
 export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
-
-# Upgrade a set of gems in each of the component directories.
-function bump_component_gems() {
-  for file in ./components/*; do
-    cd $file
-    bundle update --conservative "$1"
-    cp Gemfile.lock gemfile_next.lock
-    main
-  done
-}
-
-# Grab the list of intermittent specs from CI Pipeline
-function intermittent_specs_data() {
-  pushd $PACKMANAGER_DIR/main/development/scripts/ci_non_deterministic_tests
-  ruby main.rb
-  popd
-}
 
 # Flush memcached
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
@@ -329,15 +323,22 @@ function current_count() {
 }
 
 # Open the OSE2 team cloud resources
-alias ose2_mission_control='open https://miro.com/app/board/o9J_lvrGbSI=/'
-alias ose2_room='open https://nulogy.zoom.us/j/97005535516'
-alias ose2_timer='open https://mobti.me/ose2'
+# alias ose2_figma='open https://www.figma.com/files/849777861029598570/project/27695145/OSE2'
+# alias ose2_mission_control='open https://miro.com/app/board/o9J_lvrGbSI=/'
+# alias ose2_mobbing='nutrella ose2_mobbing'
+# alias ose2_room='open https://nulogy.zoom.us/j/97005535516'
+# alias ose2_timer='open https://mobti.me/ose2'
+
+# Open the SF1 team cloud resources
+alias sf1_board='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
+alias sf1_standup='open https://nulogy.zoom.us/j/7513224419\?pwd=MVkrOVN4alpZSWdrUmZxOTA5K2hCZz09'
+alias sf1_timer='open https://mobti.me/ose2'
 
 # Run the Automated Production Entry featurs and specs
 alias ape_features='spring rails ape:features'
 alias ape_specs='spring rails ape:specs'
 
-# Run the Automated Production Entry UML class diagram
+# Open the Automated Production Entry UML class diagram
 alias ape_uml='open /Users/alistairm/dev/umlgraph_tool/out/AutomatedProductionEntry.png'
 
 
