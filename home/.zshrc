@@ -331,7 +331,8 @@ function current_count() {
 
 # Open the SF1 team cloud resources
 alias sf1_board='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
-alias sf1_standup='open https://nulogy.zoom.us/j/7513224419\?pwd=MVkrOVN4alpZSWdrUmZxOTA5K2hCZz09'
+alias sf1_mission_control='open https://miro.com/app/board/o9J_lfmAm6U=/'
+alias sf1_standup_room='open https://nulogy.zoom.us/j/7513224419\?pwd=MVkrOVN4alpZSWdrUmZxOTA5K2hCZz09'
 alias sf1_timer='open https://mobti.me/ose2'
 
 # Run the Automated Production Entry featurs and specs
