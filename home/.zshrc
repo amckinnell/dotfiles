@@ -207,12 +207,6 @@ export PACKMANAGER_ROOT=$PACKMANAGER_DIR/main
 # Regenerate the rubocop to do list.
 alias regen='thor nucop:cli:regen_backlog'
 
-# Handy way to get to the sales demo conversion directory
-alias sales_demo_conversion='cd ~/src/sales_demo_conversion'
-
-# Handy way to get to the sales demo directory
-alias sales_demo='cd ~/src/sales-demo'
-
 # Create a Packmanager user
 alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
 
@@ -326,13 +320,14 @@ function current_count() {
 # alias ose2_figma='open https://www.figma.com/files/849777861029598570/project/27695145/OSE2'
 # alias ose2_mission_control='open https://miro.com/app/board/o9J_lvrGbSI=/'
 # alias ose2_mobbing='nutrella ose2_mobbing'
-# alias ose2_room='open https://nulogy.zoom.us/j/97005535516'
+alias ose2_room='open https://nulogy.zoom.us/j/97005535516'
 # alias ose2_timer='open https://mobti.me/ose2'
 
 # Open the SF1 team cloud resources
 alias sf1_board='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
 alias sf1_mission_control='open https://miro.com/app/board/o9J_lfmAm6U=/'
-alias sf1_standup_room='open https://nulogy.zoom.us/j/7513224419\?pwd=MVkrOVN4alpZSWdrUmZxOTA5K2hCZz09'
+alias sf1_mobbing_room='open https://nulogy.zoom.us/j/7286849403'
+alias sf1_team_room='open https://nulogy.zoom.us/j/7513224419\?pwd=MVkrOVN4alpZSWdrUmZxOTA5K2hCZz09'
 alias sf1_timer='open https://mobti.me/ose2'
 
 # Run the Automated Production Entry featurs and specs
@@ -341,6 +336,20 @@ alias ape_specs='spring rails ape:specs'
 
 # Open the Automated Production Entry UML class diagram
 alias ape_uml='open /Users/alistairm/dev/umlgraph_tool/out/AutomatedProductionEntry.png'
+
+
+# -----------------------------------------------------------------------------
+# Sales Demo Development
+# -----------------------------------------------------------------------------
+
+alias sales_demo_pipeline='open https://buildkite.com/nulogy-corp/opscore-create-demo/builds\?branch=main'
+
+# Handy way to get to the sales demo conversion directory
+alias sales_demo_conversion='cd ~/src/sales_demo_conversion'
+
+# Handy way to get to the sales demo directory
+alias sales_demo='cd ~/src/sales-demo'
+
 
 
 # -----------------------------------------------------------------------------
@@ -493,6 +502,7 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # -----------------------------------------------------------------------------
 
 alias taxes='open /Users/alistairm/Dropbox/Taxes_with_Jason/taxes.numbers'
+alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en\#/search\?searchFor=8219549581209355'
 
 
 # -----------------------------------------------------------------------------
