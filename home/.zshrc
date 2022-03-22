@@ -324,11 +324,12 @@ alias ose2_room='open https://nulogy.zoom.us/j/97005535516'
 # alias ose2_timer='open https://mobti.me/ose2'
 
 # Open the SF1 team cloud resources
-alias sf1_board='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
+alias sf1_board='nutrella sf1_board'
+alias sf1_kanban='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
 alias sf1_mission_control='open https://miro.com/app/board/o9J_lfmAm6U=/'
 alias sf1_mobbing_room='open https://nulogy.zoom.us/j/7286849403'
 alias sf1_team_room='open https://nulogy.zoom.us/j/7513224419\?pwd=MVkrOVN4alpZSWdrUmZxOTA5K2hCZz09'
-alias sf1_timer='open https://mobti.me/ose2'
+alias sf1_timer='open https://mobti.me/sf1'
 
 # Run the Automated Production Entry featurs and specs
 alias ape_features='spring rails ape:features'
@@ -502,7 +503,7 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # -----------------------------------------------------------------------------
 
 alias taxes='open /Users/alistairm/Dropbox/Taxes_with_Jason/taxes.numbers'
-alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en\#/search\?searchFor=8219549581209355'
+alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/search\?searchFor=8219549129494366'
 
 
 # -----------------------------------------------------------------------------
