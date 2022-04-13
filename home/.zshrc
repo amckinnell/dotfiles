@@ -185,7 +185,7 @@ alias er_web="open https://epicreact.dev/learn/"
 
 
 # -----------------------------------------------------------------------------
-# Ops Core Development
+# Shop Floor Development
 # -----------------------------------------------------------------------------
 
 # Simplify interactions with AWS CLI
@@ -338,6 +338,9 @@ alias ape_specs='spring rails ape:specs'
 # Open the Automated Production Entry UML class diagram
 alias ape_uml='open /Users/alistairm/dev/umlgraph_tool/out/AutomatedProductionEntry.png'
 
+# User Management
+alias um_alistairm='rake "nulogy:user_management:create_admin[alistairm@nulogy.com]"'
+
 
 # -----------------------------------------------------------------------------
 # Sales Demo Development
@@ -351,6 +354,17 @@ alias sales_demo_conversion='cd ~/src/sales_demo_conversion'
 # Handy way to get to the sales demo directory
 alias sales_demo='cd ~/src/sales-demo'
 
+
+
+# -----------------------------------------------------------------------------
+# Mass Inventory Adjustments Script
+# -----------------------------------------------------------------------------
+
+function reset_candy_pack() {
+  spring rails db:reset
+  spring rails nulogy:tdc:candy_pack:schedule:fs_variety_mix
+  spring rails "nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]"
+}
 
 
 # -----------------------------------------------------------------------------
@@ -441,6 +455,9 @@ alias pmkill='rm -f tmp/pids/unicorn3000.pid; kill_processes_listening_on 3000,5
 # Open our HR system
 alias lattice='open https://nulogy.latticehq.com'
 
+# Authorization for AWS
+alias auth='docker run --rm -it --entrypoint='' -v ~/.aws/:/root/.aws -v ~/.kube/:/root/.kube public.ecr.aws/nulogy/nulogy-deployer:latest auth.sh'
+
 
 # -----------------------------------------------------------------------------
 # Node Version Manager
@@ -488,7 +505,7 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Add the GNU command line tools to the front of the PATH
 # -----------------------------------------------------------------------------
 
-# This has been causing some issues runnin shared scripts. The commands are
+# This has been causing some issues running shared scripts. The commands are
 # always available with a 'g' prefix.
 
 # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -502,7 +519,6 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Odds and Sods
 # -----------------------------------------------------------------------------
 
-alias taxes='open /Users/alistairm/Dropbox/Taxes_with_Jason/taxes.numbers'
 alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/search\?searchFor=8219549129494366'
 
 
@@ -510,7 +526,7 @@ alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/s
 # Supports custom environments using direnv
 # -----------------------------------------------------------------------------
 
-# Disabled for the moement...
+# Disabled for the moment...
 # eval "$(direnv hook zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
