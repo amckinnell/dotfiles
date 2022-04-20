@@ -283,7 +283,7 @@ alias rn='main && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
 
 # Open better_errors links directly in open RubyMine.
-export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
+# export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
 # Flush memcached
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
@@ -340,6 +340,9 @@ alias ape_uml='open /Users/alistairm/dev/umlgraph_tool/out/AutomatedProductionEn
 
 # User Management
 alias um_alistairm='rake "nulogy:user_management:create_admin[alistairm@nulogy.com]"'
+
+# Index page for all Nulogy Okta apps
+alias okta_apps='open https://nulogy.okta.com/app/UserHome'
 
 
 # -----------------------------------------------------------------------------
@@ -441,16 +444,13 @@ critic_branch() {
     grep -v '_spec.rb$' | xargs -r rubycritic
 }
 
-# An improved version of pmkill that handles the case where no processes are listening.
-alias pmkill='rm -f tmp/pids/unicorn3000.pid; kill_processes_listening_on 3000,5555 &>/dev/null'
-
 # List the git SHA for the build that is in production.
 function build_tag() {
   curl https://packmanager.nulogy.net/test/build_tag
 }
 
 # An improved version of pmkill that handles the case where no processes are listening.
-alias pmkill='rm -f tmp/pids/unicorn3000.pid; kill_processes_listening_on 3000,5555 &>/dev/null'
+alias pmkill='rm -f tmp/pids/unicorn3000.pid; rm -f tmp/.sock3000; kill_processes_listening_on 3000,5555 &>/dev/null'
 
 # Open our HR system
 alias lattice='open https://nulogy.latticehq.com'

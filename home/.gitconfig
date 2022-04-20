@@ -53,3 +53,5 @@
 	defaultBranch = main
 [maintenance]
 	repo = /Users/alistairm/src/packmanager/main
+[merge]
+	conflictStyle = diff3
