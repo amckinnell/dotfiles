@@ -185,7 +185,7 @@ alias er_web="open https://epicreact.dev/learn/"
 
 
 # -----------------------------------------------------------------------------
-# Shop Floor Development
+# PackManagaer (aks Shop Floor) Development
 # -----------------------------------------------------------------------------
 
 # Simplify interactions with AWS CLI
@@ -237,9 +237,6 @@ alias rails_next='cd $PACKMANAGER_RAILS_NEXT'
 # Run locally with RAILS NEXT?
 export RAILS_NEXT=false
 
-# Use the ActiveRecord session store
-export PM_USE_ACTIVERECORD_STORE=true
-
 # Helpers for the migration to Rails Next
 function env_rails_current() {
   unset RAILS_NEXT
@@ -283,7 +280,7 @@ alias rn='main && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
 
 # Open better_errors links directly in open RubyMine.
-# export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
+export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
 # Flush memcached
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
@@ -343,6 +340,10 @@ alias um_alistairm='rake "nulogy:user_management:create_admin[alistairm@nulogy.c
 
 # Index page for all Nulogy Okta apps
 alias okta_apps='open https://nulogy.okta.com/app/UserHome'
+
+# Debugging tweaks
+export CAPYBARA_MAX_WAIT_TIME=600
+export PM_REQUEST_TIMEOUT_IN_MINUTES=10
 
 
 # -----------------------------------------------------------------------------
