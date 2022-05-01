@@ -368,6 +368,7 @@ function reset_candy_pack() {
   spring rails db:reset
   spring rails nulogy:tdc:candy_pack:schedule:fs_variety_mix
   spring rails "nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]"
+  spring rails runner "User.find_by(login: 'alistairm@nulogy.com').update!(expired: false)"
 }
 
 
