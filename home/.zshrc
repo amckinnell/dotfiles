@@ -345,6 +345,8 @@ alias okta_apps='open https://nulogy.okta.com/app/UserHome'
 export CAPYBARA_MAX_WAIT_TIME=600
 export PM_REQUEST_TIMEOUT_IN_MINUTES=10
 
+alias kill_ruby='killall -KILL -q -u alistairm ruby'
+
 
 # -----------------------------------------------------------------------------
 # Sales Demo Development
