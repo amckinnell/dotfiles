@@ -49,8 +49,8 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-BUNDLED_COMMANDS=(nu query_each_schema rails rake rspec rubocop ruby screengem thor)
-plugins=(brew bundler git gitfast history-substring-search nulogy rake-fast sublime z)
+BUNDLED_COMMANDS=(nu query_each_schema rails ruby screengem)
+plugins=(brew bundler dash git gitfast history-substring-search nulogy rake-fast sublime sublime-merge z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -185,7 +185,7 @@ alias er_web="open https://epicreact.dev/learn/"
 
 
 # -----------------------------------------------------------------------------
-# PackManagaer (aks Shop Floor) Development
+# PackManager (aka Shop Floor) Development
 # -----------------------------------------------------------------------------
 
 # Simplify interactions with AWS CLI
@@ -203,9 +203,6 @@ PACKMANAGER_HOME=~/src/packmanager
 
 # Helps the Sales Demo Conversion project find PackManager
 export PACKMANAGER_ROOT=$PACKMANAGER_DIR/main
-
-# Regenerate the rubocop to do list.
-alias regen='thor nucop:cli:regen_backlog'
 
 # Create a Packmanager user
 alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]'
@@ -291,7 +288,7 @@ export PM_BROWSER_LOGGING=true
 # Enable profiling tools in the browser (use 1 for enabled)
 export PM_ENABLE_PROFILING=0
 
-# Reduce the console noise in development by reducing the polling interval
+# Reduce the console noise in development by increasing the polling interval
 export PM_POLLING_INTERVAL_IN_SECONDS=600
 
 # Enable the database analysis gems
