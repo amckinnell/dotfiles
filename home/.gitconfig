@@ -10,6 +10,7 @@
 	email = alistairm@nulogy.com
 [push]
 	default = current
+	autoSetupRemote = true
 [core]
 	excludesfile = /Users/alistairm/.gitignore
   autocrlf = input
