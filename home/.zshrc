@@ -226,6 +226,8 @@ alias use_chrome='export CAPYBARA_DRIVER=chrome'
 alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
 alias use_firefox='export CAPYBARA_DRIVER=selenium'
 
+alias outdated='./development/scripts/outdated_gems/outdated_gems.rb'
+
 # Rails Next directories
 PACKMANAGER_RAILS_NEXT=$PACKMANAGER_DIR/rails_next
 
@@ -344,6 +346,9 @@ export PM_REQUEST_TIMEOUT_IN_MINUTES=10
 
 # Kills all the running ruby tasks that I created.
 alias kill_rubies='killall -KILL -q -u alistairm ruby'
+
+# My favourite way to use Sentry
+alias sentry='open https://sentry.io/organizations/nulogy/issues/\?environment=prod-eu\&environment=prod-na\&environment=prod-training\&statsPeriod=24h'
 
 
 # -----------------------------------------------------------------------------
