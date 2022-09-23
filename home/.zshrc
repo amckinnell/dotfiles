@@ -34,7 +34,7 @@ DISABLE_AUTO_UPDATE="true"
 # Restore legacy forking behaviour. That is, pre High Sierra behaviour.
 # export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-# Increase file descriptoers limit from the default of 256. 
+# Increase file descripters limit from the default of 256. 
 ulimit -n 4096
 
 # Postgres App command line tools.
@@ -50,7 +50,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(nu query_each_schema rails ruby screengem)
-plugins=(brew bundler dash git gitfast history-substring-search nulogy rake-fast sublime sublime-merge z)
+plugins=(brew bundler dash git history-substring-search nulogy rake-fast sublime sublime-merge z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -182,6 +182,14 @@ alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 -
 # -----------------------------------------------------------------------------
 
 alias er_web="open https://epicreact.dev/learn/"
+
+
+# -----------------------------------------------------------------------------
+# Alistair's Onboarding
+# -----------------------------------------------------------------------------
+
+alias onboarding_buddy="open 'https://trello.com/b/eYeZVJYU/onboarding-buddy-rodney-l'"
+alias onboarding_rodney="open 'https://trello.com/b/ZIPSvUxb/onboardee-rodney-l'"
 
 
 # -----------------------------------------------------------------------------
@@ -324,7 +332,7 @@ alias sf1_board='nutrella sf1_board'
 alias sf1_kanban='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
 alias sf1_mission_control='open https://miro.com/app/board/o9J_lfmAm6U=/'
 alias sf1_mobbing_room='open https://nulogy.zoom.us/j/7286849403'
-alias sf1_team_room='open https://nulogy.zoom.us/j/7513224419\?pwd=MVkrOVN4alpZSWdrUmZxOTA5K2hCZz09'
+alias sf1_team_room="open 'https://nulogy.zoom.us/j/91076568627?pwd=dzFxZ1V5ZHBwYUdacXgyczVoY3hIZz09'"
 alias sf1_timer='open https://mobti.me/sf1'
 
 # Run the Automated Production Entry featurs and specs
