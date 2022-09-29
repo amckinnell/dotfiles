@@ -121,8 +121,8 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 # Source from a file that will not go into my dotfiles repo
 [ -f .zshrc_private ] && source .zshrc_private
 
-# Open GitKraken from the command line
-alias kraken='open -na "GitKraken" --args -p $(pwd)'
+# Go tp the project root directory.
+alias cdr='cd $(git rev-parse --show-toplevel)'
 
 # Install the Homebrew Command Not Found tool
 HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
@@ -200,7 +200,7 @@ alias onboarding_rodney="open 'https://trello.com/b/ZIPSvUxb/onboardee-rodney-l'
 export AWS_PAGER=""
 
 # Add to path for the rabbitmq-server
-export PATH=$PATH:/usr/local/sbin
+# export PATH=$PATH:/usr/local/sbin
 
 export PACKMANAGER_DIR=~/src/packmanager
 
@@ -332,6 +332,7 @@ alias sf1_board='nutrella sf1_board'
 alias sf1_kanban='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
 alias sf1_mission_control='open https://miro.com/app/board/o9J_lfmAm6U=/'
 alias sf1_mobbing_room='open https://nulogy.zoom.us/j/7286849403'
+alias sf1_mobtime='open https://mobti.me/sf1'
 alias sf1_team_room="open 'https://nulogy.zoom.us/j/91076568627?pwd=dzFxZ1V5ZHBwYUdacXgyczVoY3hIZz09'"
 alias sf1_timer='open https://mobti.me/sf1'
 
@@ -378,9 +379,7 @@ alias sales_demo='cd ~/src/sales-demo'
 # -----------------------------------------------------------------------------
 
 function reset_candy_pack() {
-  spring rails db:reset
-  spring rails "nulogy:tdc:candy_pack:schedule:fs_variety_mix"
-  spring rails "nulogy:user_management:create_admin[alistairm@nulogy.com,Password1]"
+  spring rails db:reset nulogy:tdc:candy_pack:schedule:fs_variety_mix
   spring rails "nulogy:tdc:move_nulogy_user_to_catalog[alistairm@nulogy.com,Candy Pack]"
 }
 
