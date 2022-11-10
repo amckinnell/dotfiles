@@ -373,6 +373,16 @@ alias sales_demo_conversion='cd ~/src/sales_demo_conversion'
 alias sales_demo='cd ~/src/sales-demo'
 
 
+# -----------------------------------------------------------------------------
+# Production Scheduling Development
+# -----------------------------------------------------------------------------
+
+# Needed to seed your user in the local database:
+export PRODUCTION_SCHEDULING_EMAIL=alistairm@nulogy.com
+
+# Ensure you have a unique consumer for the message bus:
+export MESSAGE_BUS_CONSUMER_GROUP_ID=alistairm-consumer-group
+
 
 # -----------------------------------------------------------------------------
 # Manage local development database
@@ -462,9 +472,6 @@ critic_branch() {
 function build_tag() {
   curl https://packmanager.nulogy.net/test/build_tag
 }
-
-# An improved version of pmkill that handles the case where no processes are listening.
-alias pmkill='rm -f tmp/pids/unicorn3000.pid; rm -f tmp/.sock3000; kill_processes_listening_on 3000,5555 &>/dev/null'
 
 # Open our HR system
 alias lattice='open https://nulogy.latticehq.com'

@@ -56,3 +56,7 @@
 	repo = /Users/alistairm/src/packmanager/main
 [merge]
 	conflictStyle = diff3
+[scalar]
+	repo = /Users/alistairm/src/packmanager/main
+[rebase]
+	updateRefs = true
