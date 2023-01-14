@@ -50,7 +50,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(nu query_each_schema rails ruby screengem)
-plugins=(brew bundler dash git history-substring-search nulogy rake-fast sublime sublime-merge z)
+plugins=(brew bundler dash git history-substring-search kubectl nulogy rake-fast sublime sublime-merge z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -230,6 +230,9 @@ export CAPYBARA_DRIVER=chrome
 # Caputure screenshots when running acceptance specs and features
 export CAPYBARA_SCREENSHOT=1
 
+# Do not clear the test logs after each run
+export PRESERVE_TEST_LOG=1
+
 alias use_chrome='export CAPYBARA_DRIVER=chrome'
 alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
 alias use_firefox='export CAPYBARA_DRIVER=selenium'
@@ -287,7 +290,7 @@ alias rn='main && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
 
 # Open better_errors links directly in open RubyMine.
-export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
+# export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
 # Flush memcached
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
@@ -303,6 +306,9 @@ export PM_POLLING_INTERVAL_IN_SECONDS=600
 
 # Enable the database analysis gems
 export PM_STATIC_DATABASE_ANALYSIS=true
+
+# Enable bypass of SSO during development (acts as a boolean if present)
+export PM_BYPASS_SSO_USER_EMAIL='alistairm@nulogy.com'
 
 # Enable the named release toggle for all sites
 function enable_release_toggle() {
@@ -320,28 +326,19 @@ function current_count() {
   rg --word-regexp --count-matches --type ruby 'current_(account|site)' | awk -F ':' '{s+=$2} END {print s}'
 }
 
-# Open the OSE2 team cloud resources
-# alias ose2_figma='open https://www.figma.com/files/849777861029598570/project/27695145/OSE2'
-# alias ose2_mission_control='open https://miro.com/app/board/o9J_lvrGbSI=/'
-# alias ose2_mobbing='nutrella ose2_mobbing'
-alias ose2_room='open https://nulogy.zoom.us/j/97005535516'
-# alias ose2_timer='open https://mobti.me/ose2'
-
 # Open the SF1 team cloud resources
 alias sf1_board='nutrella sf1_board'
 alias sf1_kanban='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
 alias sf1_mission_control='open https://miro.com/app/board/o9J_lfmAm6U=/'
-alias sf1_mobbing_room='open https://nulogy.zoom.us/j/7286849403'
 alias sf1_mobtime='open https://mobti.me/sf1'
+alias sf1_streams='open https://docs.google.com/spreadsheets/d/1CIC8-3Ot6f3cL8c_hLruZgJfjfdSaw3YiUf6onpKiOE/'
 alias sf1_team_room="open 'https://nulogy.zoom.us/j/91076568627?pwd=dzFxZ1V5ZHBwYUdacXgyczVoY3hIZz09'"
 alias sf1_timer='open https://mobti.me/sf1'
+alias sf1_translations='open https://trello.com/b/0gksZm7F/shop-floor-translation-process'
 
 # Run the Automated Production Entry featurs and specs
 alias ape_features='spring rails ape:features'
 alias ape_specs='spring rails ape:specs'
-
-# Open the Automated Production Entry UML class diagram
-alias ape_uml='open /Users/alistairm/dev/umlgraph_tool/out/AutomatedProductionEntry.png'
 
 # User Management
 alias um_alistairm='rake "nulogy:user_management:create_admin[alistairm@nulogy.com]"'
@@ -470,7 +467,7 @@ critic_branch() {
 
 # List the git SHA for the build that is in production.
 function build_tag() {
-  curl https://packmanager.nulogy.net/test/build_tag
+  curl https://app.nulogy.net/test/build_tag
 }
 
 # Open our HR system
@@ -540,7 +537,7 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Odds and Sods
 # -----------------------------------------------------------------------------
 
-alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/search\?searchFor=8219549129494366'
+# alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/search\?searchFor=8219549129494366'
 
 
 # -----------------------------------------------------------------------------
@@ -550,5 +547,9 @@ alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/s
 # Disabled for the moment...
 # eval "$(direnv hook zsh)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# -----------------------------------------------------------------------------
+# Remove any entries duplicates from the path
+# -----------------------------------------------------------------------------
+
+export PATH=$(echo "$PATH" | awk -v RS=: -v ORS=: '!(a[$0]++)' | sed 's/:$//')
