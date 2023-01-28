@@ -286,7 +286,7 @@ function mine() {
 
 
 alias rc='main && env_rails_current'
-alias rn='main && env_rails_next'
+alias rn='rails_next && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
 
 # Open better_errors links directly in open RubyMine.
@@ -327,16 +327,22 @@ function current_count() {
 }
 
 # Open the SF1 team cloud resources
-alias sf1_board='nutrella sf1_board'
-alias sf1_kanban='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
-alias sf1_mission_control='open https://miro.com/app/board/o9J_lfmAm6U=/'
-alias sf1_mobtime='open https://mobti.me/sf1'
-alias sf1_streams='open https://docs.google.com/spreadsheets/d/1CIC8-3Ot6f3cL8c_hLruZgJfjfdSaw3YiUf6onpKiOE/'
-alias sf1_team_room="open 'https://nulogy.zoom.us/j/91076568627?pwd=dzFxZ1V5ZHBwYUdacXgyczVoY3hIZz09'"
-alias sf1_timer='open https://mobti.me/sf1'
-alias sf1_translations='open https://trello.com/b/0gksZm7F/shop-floor-translation-process'
+# alias sf1_board='nutrella sf1_board'
+# alias sf1_kanban='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
+# alias sf1_mission_control="open 'https://miro.com/app/board/o9J_lfmAm6U=/'"
+# alias sf1_mobtime='open https://mobti.me/sf1'
+# alias sf1_streams='open https://docs.google.com/spreadsheets/d/1CIC8-3Ot6f3cL8c_hLruZgJfjfdSaw3YiUf6onpKiOE/'
+# alias sf1_team_room="open 'https://nulogy.zoom.us/j/91076568627?pwd=dzFxZ1V5ZHBwYUdacXgyczVoY3hIZz09'"
+# alias sf1_timer='open https://mobti.me/sf1'
+# alias sf1_translations='open https://trello.com/b/0gksZm7F/shop-floor-translation-process'
 
-# Run the Automated Production Entry featurs and specs
+# Open the SF3 team cloud resources
+alias sf3_board='nutrella sf3_board'
+alias sf3_kanban="open 'https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/205'"
+alias sf3_mission_control="open 'https://miro.com/app/board/uXjVP35MVes=/?share_link_id=385912331498'"
+alias sf3_team_room="open 'https://nulogy.zoom.us/j/5817548930'"
+
+# Run the Automated Production Entry features and specs
 alias ape_features='spring rails ape:features'
 alias ape_specs='spring rails ape:specs'
 
