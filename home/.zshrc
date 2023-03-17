@@ -49,7 +49,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-BUNDLED_COMMANDS=(nu query_each_schema rails ruby screengem)
+BUNDLED_COMMANDS=(appraisal nu query_each_schema rails)
 plugins=(brew bundler dash git history-substring-search kubectl nulogy rake-fast sublime sublime-merge z)
 
 source $ZSH/oh-my-zsh.sh
@@ -308,7 +308,7 @@ export PM_POLLING_INTERVAL_IN_SECONDS=600
 export PM_STATIC_DATABASE_ANALYSIS=true
 
 # Enable bypass of SSO during development (acts as a boolean if present)
-export PM_BYPASS_SSO_USER_EMAIL='alistairm@nulogy.com'
+# export PM_BYPASS_SSO_USER_EMAIL='alistairm@nulogy.com'
 
 # Enable the named release toggle for all sites
 function enable_release_toggle() {
@@ -340,7 +340,7 @@ function current_count() {
 alias sf3_board='nutrella sf3_board'
 alias sf3_kanban="open 'https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/205'"
 alias sf3_mission_control="open 'https://miro.com/app/board/uXjVP35MVes=/?share_link_id=385912331498'"
-alias sf3_team_room="open 'https://nulogy.zoom.us/j/5817548930'"
+alias sf3_team_room="open 'https://nulogy.zoom.us/j/5817548930?pwd=R2ZXRWNMdGRyZ2RzekVyQjNjcGlJdz09'"
 
 # Run the Automated Production Entry features and specs
 alias ape_features='spring rails ape:features'

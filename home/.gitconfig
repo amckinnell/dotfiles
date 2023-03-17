@@ -11,6 +11,7 @@
 [push]
 	default = current
 	autoSetupRemote = true
+	autoSetupRemote = true
 [core]
 	excludesfile = /Users/alistairm/.gitignore
   autocrlf = input
