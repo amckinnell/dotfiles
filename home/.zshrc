@@ -81,7 +81,7 @@ export HH_CONFIG=hicolor        # get more colors
 export EDITOR="subl -w"
 
 # Use RubyMine as my text editor.
-# export EDITOR="mine -w"
+# export EDITOR="rubymine -w"
 
 # Use Visual Studio Code as my text editor.
 # export EDITOR="code -w"
@@ -277,13 +277,12 @@ function rails_next_deprecations() {
 function mine() {
   if [[ "$RAILS_NEXT" = true ]]; then
     export RUBYMINE_PROPERTIES=$HOME/src/rubymine_rails_next/idea.properties
-    open -na /Applications/RubyMine.app $@
   else
     unset RUBYMINE_PROPERTIES
-    /usr/local/bin/mine $@
   fi
-}
 
+  open -na /Applications/RubyMine.app $@
+}
 
 alias rc='main && env_rails_current'
 alias rn='rails_next && env_rails_next'
@@ -339,8 +338,10 @@ function current_count() {
 # Open the SF3 team cloud resources
 alias sf3_board='nutrella sf3_board'
 alias sf3_kanban="open 'https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/205'"
-alias sf3_mission_control="open 'https://miro.com/app/board/uXjVP35MVes=/?share_link_id=385912331498'"
-alias sf3_team_room="open 'https://nulogy.zoom.us/j/5817548930?pwd=R2ZXRWNMdGRyZ2RzekVyQjNjcGlJdz09'"
+alias sf3_mission_control="open 'https://miro.com/app/board/uXjVP35MVes=/'"
+alias sf3_mobtime="open 'https://mobti.me/sf3'"
+alias sf3_room="open 'https://nulogy.zoom.us/j/5817548930?pwd=R2ZXRWNMdGRyZ2RzekVyQjNjcGlJdz09'"
+alias sf3_whiteboard="open 'https://miro.com/app/board/uXjVP0S18tA=/'"
 
 # Run the Automated Production Entry features and specs
 alias ape_features='spring rails ape:features'
@@ -394,6 +395,7 @@ export MESSAGE_BUS_CONSUMER_GROUP_ID=alistairm-consumer-group
 function reset_candy_pack() {
   spring rails db:reset nulogy:tdc:candy_pack:schedule:fs_variety_mix
   spring rails "nulogy:tdc:move_nulogy_user_to_catalog[alistairm@nulogy.com,Candy Pack]"
+  RAILS_ENV=test spring rails db:seed:replant
 }
 
 
