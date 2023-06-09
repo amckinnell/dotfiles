@@ -50,7 +50,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(appraisal nu query_each_schema rails)
-plugins=(brew bundler dash git history-substring-search kubectl nulogy rake-fast sublime sublime-merge z)
+plugins=(asdf brew bundler dash direnv git history-substring-search kubectl nulogy rake-fast sublime sublime-merge z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -270,8 +270,11 @@ function rails_next_prompt() {
   fi
 }
 
+# Enable deprecations for local development.
+export PM_ENABLE_DEPRECATIONS=true
+
 function rails_next_deprecations() {
-  $PACKMANAGER_HOME/main/development/rails_next/collect_rails_deprecation_warnings.rb "aa761ad6eed0e8c05519bbddb1036d6c711a5947" "$1"
+  $PACKMANAGER_HOME/main/development/rails_upgrade/collect_rails_deprecation_warnings.rb "aa761ad6eed0e8c05519bbddb1036d6c711a5947" "$1"
 }
 
 function mine() {
@@ -288,8 +291,13 @@ alias rc='main && env_rails_current'
 alias rn='rails_next && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
 
+# Count occurrences of the string ConfigFileLoader
+function config_file_loader_count() {
+  rg --count-matches ConfigFileLoader | cut -d ':' -f 2 | awk '{sum += $1} END {print sum}'
+}
+
 # Open better_errors links directly in open RubyMine.
-# export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
+export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
 # Flush memcached
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
@@ -363,6 +371,9 @@ alias kill_rubies='killall -KILL -q -u alistairm ruby'
 # My favourite way to use Sentry
 alias sentry='open https://sentry.io/organizations/nulogy/issues/\?environment=prod-eu\&environment=prod-na\&environment=prod-training\&statsPeriod=24h'
 
+# Alias to the New Relic CLI (avoids a clash the newrelic binary from the newrelic_rpm gem)
+alias nr=/usr/local/bin/newrelic
+
 
 # -----------------------------------------------------------------------------
 # Sales Demo Development
@@ -386,6 +397,14 @@ export PRODUCTION_SCHEDULING_EMAIL=alistairm@nulogy.com
 
 # Ensure you have a unique consumer for the message bus:
 export MESSAGE_BUS_CONSUMER_GROUP_ID=alistairm-consumer-group
+
+
+# -----------------------------------------------------------------------------
+# Supplier Collaboration Development
+# -----------------------------------------------------------------------------
+
+export SSO_CLIENT_ID="dSOg9SRjJbyTcgegHKyKJKh6oXyZoSeQ"
+export SSO_CLIENT_SECRET="2lyXujfXl9mqEBJu6DV2hHTbF-5yCQhHxqPotUXdDlZaw94J3al44sAY8I7BGmi7"
 
 
 # -----------------------------------------------------------------------------
@@ -546,15 +565,8 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # -----------------------------------------------------------------------------
 
 # alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/search\?searchFor=8219549129494366'
-
-
-# -----------------------------------------------------------------------------
-# Supports custom environments using direnv
-# -----------------------------------------------------------------------------
-
-# Disabled for the moment...
-# eval "$(direnv hook zsh)"
-
+# alias tracking='open https://tools.usps.com/go/TrackConfirmAction\?tLabels=CJ496029137US#'
+alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/details/CJ496029137US'
 
 # -----------------------------------------------------------------------------
 # Remove any entries duplicates from the path
