@@ -38,10 +38,10 @@ DISABLE_AUTO_UPDATE="true"
 ulimit -n 4096
 
 # Postgres App command line tools.
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 # We want to run the latest Oracle distribution.
-export JAVA_HOME=`/usr/libexec/java_home`
+# export JAVA_HOME=`/usr/libexec/java_home`
 
 # # Add any java command line tools.
 # JAVA_TOOLS_HOME=~/dev/java
@@ -100,7 +100,7 @@ alias amg='open -a "Safari" https://mail.google.com/mail/u/0/#inbox'
 alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 
 # The BFG repo cleaner (see https://rtyley.github.io/bfg-repo-cleaner/)
-alias bfg='java -jar $JAVA_TOOLS_HOME/bfg/bfg-1.12.8.jar'
+# alias bfg='java -jar $JAVA_TOOLS_HOME/bfg/bfg-1.12.8.jar'
 
 # Clear oopsie .idea project
 alias clear_idea='rm -rf .idea'
@@ -184,16 +184,16 @@ alias highlight_for_pages='pbpaste | highlight --out-format rtf --font-size 10 -
 alias er_web="open https://epicreact.dev/learn/"
 
 
-# -----------------------------------------------------------------------------
-# Alistair's Onboarding
-# -----------------------------------------------------------------------------
+# --------------------------------------
+# Python environment
+# --------------------------------------
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
-alias onboarding_buddy="open 'https://trello.com/b/eYeZVJYU/onboarding-buddy-rodney-l'"
-alias onboarding_rodney="open 'https://trello.com/b/ZIPSvUxb/onboardee-rodney-l'"
-
 
 # -----------------------------------------------------------------------------
-# PackManager (aka Shop Floor) Development
+# PackManager Development
 # -----------------------------------------------------------------------------
 
 # Simplify interactions with AWS CLI
@@ -287,6 +287,11 @@ function mine() {
   open -na /Applications/RubyMine.app $@
 }
 
+function mine_branch() {
+  /Applications/RubyMine.app/Contents/MacOS/rubymine `git diff --name-only --diff-filter=d main` &>/dev/null
+}
+
+
 alias rc='main && env_rails_current'
 alias rn='rails_next && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
@@ -296,11 +301,11 @@ function config_file_loader_count() {
   rg --count-matches ConfigFileLoader | cut -d ':' -f 2 | awk '{sum += $1} END {print sum}'
 }
 
-# Open better_errors links directly in open RubyMine.
-export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
-
 # Flush memcached
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
+
+# Open better_errors links directly in open RubyMine.
+export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
 # Enable logging in the browser
 export PM_BROWSER_LOGGING=true
@@ -314,8 +319,12 @@ export PM_POLLING_INTERVAL_IN_SECONDS=600
 # Enable the database analysis gems
 export PM_STATIC_DATABASE_ANALYSIS=true
 
+# Debugging tweaks
+export CAPYBARA_MAX_WAIT_TIME=600
+export PM_REQUEST_TIMEOUT_IN_MINUTES=10
+
 # Enable bypass of SSO during development (acts as a boolean if present)
-# export PM_BYPASS_SSO_USER_EMAIL='alistairm@nulogy.com'
+export PM_BYPASS_SSO_USER_EMAIL='alistairm@nulogy.com'
 
 # Enable the named release toggle for all sites
 function enable_release_toggle() {
@@ -352,18 +361,14 @@ alias sf3_room="open 'https://nulogy.zoom.us/j/5817548930?pwd=R2ZXRWNMdGRyZ2Rzek
 alias sf3_whiteboard="open 'https://miro.com/app/board/uXjVP0S18tA=/'"
 
 # Run the Automated Production Entry features and specs
-alias ape_features='spring rails ape:features'
-alias ape_specs='spring rails ape:specs'
+# alias ape_features='spring rails ape:features'
+# alias ape_specs='spring rails ape:specs'
 
 # User Management
 alias um_alistairm='rake "nulogy:user_management:create_admin[alistairm@nulogy.com]"'
 
 # Index page for all Nulogy Okta apps
 alias okta_apps='open https://nulogy.okta.com/app/UserHome'
-
-# Debugging tweaks
-export CAPYBARA_MAX_WAIT_TIME=600
-export PM_REQUEST_TIMEOUT_IN_MINUTES=10
 
 # Kills all the running ruby tasks that I created.
 alias kill_rubies='killall -KILL -q -u alistairm ruby'
@@ -543,7 +548,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # ZSH Autosuggestions (instead of using the oh-my-zsh plugin)
 # -----------------------------------------------------------------------------
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 # -----------------------------------------------------------------------------
@@ -566,10 +571,11 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/search\?searchFor=8219549129494366'
 # alias tracking='open https://tools.usps.com/go/TrackConfirmAction\?tLabels=CJ496029137US#'
-alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/details/CJ496029137US'
+# alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/details/CJ496029137US'
 
 # -----------------------------------------------------------------------------
-# Remove any entries duplicates from the path
+# Remove any duplicate entries from the path
 # -----------------------------------------------------------------------------
 
 export PATH=$(echo "$PATH" | awk -v RS=: -v ORS=: '!(a[$0]++)' | sed 's/:$//')
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
