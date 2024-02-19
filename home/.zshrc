@@ -40,10 +40,13 @@ ulimit -n 4096
 # Postgres App command line tools.
 # export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
+# We want to run the OpenJDK for java.
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
 # We want to run the latest Oracle distribution.
 # export JAVA_HOME=`/usr/libexec/java_home`
 
-# # Add any java command line tools.
+# Add any java command line tools.
 # JAVA_TOOLS_HOME=~/dev/java
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-maven-3.3.3/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
@@ -147,24 +150,14 @@ ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
-# One-by-one commit for each file using the same message.
-function commit_each() {
-  if [ -z "$1" ]; then
-    echo
-    echo "  Usage:"
-    echo "    commit_each <message>"
-  else
-    for file in $(git diff main --name-status | cut -f2); do 
-      git commit -m "$1" -- $file
-    done
-  fi
-}
-
 # Hide Thor deprecation warnings.
 export THOR_SILENCE_DEPRECATION=1
 
 # Speed up brew process boot time..
 export HOMEBREW_BOOTSNAP=1
+
+# Enables rubymine to open RubyMine IDE from the command line.
+export PATH=/Applications/RubyMine.app/Contents/MacOS:$PATH
 
 
 # -----------------------------------------------------------------------------
@@ -202,6 +195,9 @@ export AWS_PAGER=""
 # Add to path for the rabbitmq-server
 # export PATH=$PATH:/usr/local/sbin
 
+# Add the libpq binaries to the path
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
 export PACKMANAGER_DIR=~/src/packmanager
 
 PACKMANAGER_ALISTAIR=$PACKMANAGER_DIR/alistair
@@ -217,8 +213,6 @@ alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Pa
 
 # Start packmanager with all processes running
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
-
-alias bamboohr='open https://nulogycorp.bamboohr.com/home/'
 
 # Disable the spring pre-loader
 export DISABLE_SPRING=1
@@ -291,7 +285,6 @@ function mine_branch() {
   /Applications/RubyMine.app/Contents/MacOS/rubymine `git diff --name-only --diff-filter=d main` &>/dev/null
 }
 
-
 alias rc='main && env_rails_current'
 alias rn='rails_next && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
@@ -323,9 +316,6 @@ export PM_STATIC_DATABASE_ANALYSIS=true
 export CAPYBARA_MAX_WAIT_TIME=600
 export PM_REQUEST_TIMEOUT_IN_MINUTES=10
 
-# Enable bypass of SSO during development (acts as a boolean if present)
-export PM_BYPASS_SSO_USER_EMAIL='alistairm@nulogy.com'
-
 # Enable the named release toggle for all sites
 function enable_release_toggle() {
   rails r modules/generic/release_toggles_app/scripts/release_toggles_global.rb enable "$1"
@@ -342,22 +332,13 @@ function current_count() {
   rg --word-regexp --count-matches --type ruby 'current_(account|site)' | awk -F ':' '{s+=$2} END {print s}'
 }
 
-# Open the SF1 team cloud resources
-# alias sf1_board='nutrella sf1_board'
-# alias sf1_kanban='open https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/171'
-# alias sf1_mission_control="open 'https://miro.com/app/board/o9J_lfmAm6U=/'"
-# alias sf1_mobtime='open https://mobti.me/sf1'
-# alias sf1_streams='open https://docs.google.com/spreadsheets/d/1CIC8-3Ot6f3cL8c_hLruZgJfjfdSaw3YiUf6onpKiOE/'
-# alias sf1_team_room="open 'https://nulogy.zoom.us/j/91076568627?pwd=dzFxZ1V5ZHBwYUdacXgyczVoY3hIZz09'"
-# alias sf1_timer='open https://mobti.me/sf1'
-# alias sf1_translations='open https://trello.com/b/0gksZm7F/shop-floor-translation-process'
-
 # Open the SF3 team cloud resources
 alias sf3_board='nutrella sf3_board'
 alias sf3_kanban="open 'https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/205'"
-alias sf3_mission_control="open 'https://miro.com/app/board/uXjVP35MVes=/'"
+alias sf3_mission_control="open 'https://lucid.app/lucidspark/d379ca21-991d-4f6b-9276-f287afff2bd6/edit?page=FdOixYiDcHIf0&invitationId=inv_c3d6be92-9c2f-45b7-830e-a2ed73dee085#'"
 alias sf3_mobtime="open 'https://mobti.me/sf3'"
 alias sf3_room="open 'https://nulogy.zoom.us/j/5817548930?pwd=R2ZXRWNMdGRyZ2RzekVyQjNjcGlJdz09'"
+alias sf3_translations="open 'https://trello.com/b/0gksZm7F/shop-floor-translation-process'"
 alias sf3_whiteboard="open 'https://miro.com/app/board/uXjVP0S18tA=/'"
 
 # Run the Automated Production Entry features and specs
@@ -378,6 +359,10 @@ alias sentry='open https://sentry.io/organizations/nulogy/issues/\?environment=p
 
 # Alias to the New Relic CLI (avoids a clash the newrelic binary from the newrelic_rpm gem)
 alias nr=/usr/local/bin/newrelic
+
+funciton data_platform_empty_field_detection() {
+  DATA_PLATFORM_EMPTY_FIELD_DETECTION=true spring rspec ./modules/generic/data_platform/spec/**/*_spec.rb
+}
 
 
 # -----------------------------------------------------------------------------
@@ -417,8 +402,10 @@ export SSO_CLIENT_SECRET="2lyXujfXl9mqEBJu6DV2hHTbF-5yCQhHxqPotUXdDlZaw94J3al44s
 # -----------------------------------------------------------------------------
 
 function reset_candy_pack() {
-  spring rails db:reset nulogy:tdc:candy_pack:schedule:fs_variety_mix
-  spring rails "nulogy:tdc:move_nulogy_user_to_catalog[alistairm@nulogy.com,Candy Pack]"
+  spring rails db:reset \
+    nulogy:tdc:candy_pack:schedule:fs_variety_mix \
+    "nulogy:user_management:create_admin[alistairm@nulogy.com,Candy Pack]" \
+    "nulogy:tdc:move_nulogy_user_to_catalog[alistairm@nulogy.com,Candy Pack]"
   RAILS_ENV=test spring rails db:seed:replant
 }
 
@@ -479,13 +466,26 @@ export TWENTY_FOUR_HOUR_CLOCK=true
 # Candidates for oh-my-zsh-plugins
 # -----------------------------------------------------------------------------
 
+# One-by-one commit for each file using the same message.
+function commit_each() {
+  if [ -z "$1" ]; then
+    echo
+    echo "  Usage:"
+    echo "    commit_each <message>"
+  else
+    for file in $(git diff main --name-status | cut -f2); do 
+      git commit -m "$1" -- $file
+    done
+  fi
+}
+
 # Counts the occurrences of the specified string (recursively from current dir).
 function count() {
   ag --count $1 | cut -f 2 -d: | awk '{ s += $1 } END { print s }'
 }
 
 # Runs rubycritic on production code changed in the current feature branch.
-critic_branch() {
+function critic_branch() {
   if [[ "$1" == "" ]]
   then
     branch=main
@@ -497,16 +497,32 @@ critic_branch() {
     grep -v '_spec.rb$' | xargs -r rubycritic
 }
 
+# Runs rubycritic on the PackManaager codebase
+function critic_packmanager() {
+  find ./modules -type f -name '*.rb' ! -name '*_spec.rb*' ! -name '*.lock' ! -name 'Gemfile' ! -name 'routes.rb' | xargs rubycritic  --churn-after 2023-12-01
+}
+
+# Runs rubycritic on PackManager application records.
+function critic_application_record() {
+  rg --files-with-matches ' < ApplicationRecord' | xargs rubycritic --churn-after 2000-01-01
+}
+
 # List the git SHA for the build that is in production.
 function build_tag() {
   curl https://app.nulogy.net/test/build_tag
 }
 
-# Open our HR system
+# Open our Lattice HR system
 alias lattice='open https://nulogy.latticehq.com'
+
+# Open our Bamboo HR system
+alias bamboohr='open https://nulogycorp.bamboohr.com/home/'
 
 # Authorization for AWS
 alias auth='docker run --rm -it --entrypoint='' -v ~/.aws/:/root/.aws -v ~/.kube/:/root/.kube public.ecr.aws/nulogy/nulogy-deployer:latest auth.sh'
+
+# Best alias for pushing a branch
+alias ngp="spring rspec modules/generic/nulogy_other_teams/spec/integration/nulogy_other_teams_spec.rb && nucop diff_enforced && (gpf || gpsup)"
 
 
 # -----------------------------------------------------------------------------
@@ -572,6 +588,9 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/search\?searchFor=8219549129494366'
 # alias tracking='open https://tools.usps.com/go/TrackConfirmAction\?tLabels=CJ496029137US#'
 # alias tracking='open https://www.canadapost-postescanada.ca/track-reperage/en#/details/CJ496029137US'
+
+alias estate_log='open /Volumes/Alistair\ Local/Gwen\ Mckinnell\ Estate/log.md'
+
 
 # -----------------------------------------------------------------------------
 # Remove any duplicate entries from the path

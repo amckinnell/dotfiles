@@ -61,3 +61,8 @@
 	repo = /Users/alistairm/src/packmanager/main
 [rebase]
 	updateRefs = true
+[git-mob-config]
+	github-fetch = false
+[rerere]
+	enabled = true
+	autoUpdate = true
