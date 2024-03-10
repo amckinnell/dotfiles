@@ -1,8 +1,4 @@
 [alias]
-  ignore = update-index --assume-unchanged
-  unignore = update-index --no-assume-unchanged
-  ignored = !git ls-files -v | grep "^[[:lower:]]"
-	integrate = !sh -c 'git push $1 $2:ready-to-merge/into-master/${2}' -
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative
 [user]
 	name = Alistair McKinnell
@@ -10,7 +6,6 @@
 	email = alistairm@nulogy.com
 [push]
 	default = current
-	autoSetupRemote = true
 	autoSetupRemote = true
 [core]
 	excludesfile = /Users/alistairm/.gitignore
@@ -26,6 +21,7 @@
 [diff]
   compactionheuristic = true
 	renameLimit = 10000
+	algorithm = histogram
 [color]
 	branch = auto
 	diff = auto
@@ -34,12 +30,6 @@
   prune = true
 [credential]
 	helper = osxkeychain
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [commit]
 	template = /Users/alistairm/.stCommitMsg
 [filter "lfs"]

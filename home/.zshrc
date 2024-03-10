@@ -334,6 +334,7 @@ function current_count() {
 
 # Open the SF3 team cloud resources
 alias sf3_board='nutrella sf3_board'
+alias sf3_health_check="open 'https://lucid.app/lucidspark/5783b82f-e663-494b-a377-45326062c660/edit?viewport_loc=-6315%2C-1266%2C10684%2C5198%2CUSVfsZ0KvO5c5&invitationId=inv_0a86b46d-00ae-4c79-ab80-4cecee42a619'"
 alias sf3_kanban="open 'https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/205'"
 alias sf3_mission_control="open 'https://lucid.app/lucidspark/d379ca21-991d-4f6b-9276-f287afff2bd6/edit?page=FdOixYiDcHIf0&invitationId=inv_c3d6be92-9c2f-45b7-830e-a2ed73dee085#'"
 alias sf3_mobtime="open 'https://mobti.me/sf3'"
@@ -351,18 +352,20 @@ alias um_alistairm='rake "nulogy:user_management:create_admin[alistairm@nulogy.c
 # Index page for all Nulogy Okta apps
 alias okta_apps='open https://nulogy.okta.com/app/UserHome'
 
+# Kills the running gulp tasks that I created.
+alias kill_gulp='killall -KILL -q -u $USER gulp'
+
+# Kills all the running node tasks that I created.
+alias kill_nodes='killall -KILL -q -u $USER node'
+
 # Kills all the running ruby tasks that I created.
-alias kill_rubies='killall -KILL -q -u alistairm ruby'
+alias kill_rubies='killall -KILL -q -u $USER ruby'
 
 # My favourite way to use Sentry
 alias sentry='open https://sentry.io/organizations/nulogy/issues/\?environment=prod-eu\&environment=prod-na\&environment=prod-training\&statsPeriod=24h'
 
 # Alias to the New Relic CLI (avoids a clash the newrelic binary from the newrelic_rpm gem)
 alias nr=/usr/local/bin/newrelic
-
-funciton data_platform_empty_field_detection() {
-  DATA_PLATFORM_EMPTY_FIELD_DETECTION=true spring rspec ./modules/generic/data_platform/spec/**/*_spec.rb
-}
 
 
 # -----------------------------------------------------------------------------
@@ -572,7 +575,7 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # -----------------------------------------------------------------------------
 
 # This has been causing some issues running shared scripts. The commands are
-# always available with a 'g' prefix.
+# always available with a 'g' prefix. Adjust as needed.
 
 # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 # export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
