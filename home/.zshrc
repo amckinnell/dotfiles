@@ -52,8 +52,8 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-BUNDLED_COMMANDS=(appraisal nu query_each_schema rails)
-plugins=(asdf brew bundler dash direnv git history-substring-search kubectl nulogy rake-fast sublime sublime-merge z)
+BUNDLED_COMMANDS=(appraisal overmind query_each_schema rails)
+plugins=(asdf brew bundler dash direnv gh git history-substring-search kubectl nulogy rake-fast sublime sublime-merge tldr z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,14 +112,14 @@ alias clear_idea='rm -rf .idea'
 alias lm=locally_merged
 
 # Lurkers (see https://blog.testdouble.com/posts/2020-04-07-favorite-things/)
-alias ls='exa'
+alias ls='eza'
 
 # Shows the current wi-fi password (you have to authenticate)
 # Install command line tool using 'brew install wifi-password'
 alias wifi='wifi-password -q'
 
 # Configuration for ruby-build (a plugin for rbenv).
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
 
 # Source from a file that will not go into my dotfiles repo
 [ -f .zshrc_private ] && source .zshrc_private
@@ -132,6 +132,10 @@ HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-
 if [ -f "$HB_CNF_HANDLER" ]; then
   source "$HB_CNF_HANDLER";
 fi
+
+# Various files to record log of my personal and work activities
+alias al='subl ~/alistair_log.md'
+alias awl='subl ~/alistair_work_log.md'
 
 
 # -----------------------------------------------------------------------------
@@ -158,6 +162,12 @@ export HOMEBREW_BOOTSNAP=1
 
 # Enables rubymine to open RubyMine IDE from the command line.
 export PATH=/Applications/RubyMine.app/Contents/MacOS:$PATH
+
+# Even less typing to open the files from the current branch in RubyMine.
+alias mb='mine_branch'
+
+# Override the gpf alias from the oh-my-zsh git plugin.
+alias gpf='git push --force-with-lease'
 
 
 # -----------------------------------------------------------------------------
@@ -265,7 +275,12 @@ function rails_next_prompt() {
 }
 
 # Enable deprecations for local development.
-export PM_ENABLE_DEPRECATIONS=true
+export PM_DEV_ENABLE_DEPRECATIONS=true
+
+# Enable static database analysis.
+export PM_DEV_ENABLE_STATIC_DATABASE_ANALYSIS=true
+
+export PM_DEV_ENABLE_BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
 function rails_next_deprecations() {
   $PACKMANAGER_HOME/main/development/rails_upgrade/collect_rails_deprecation_warnings.rb "aa761ad6eed0e8c05519bbddb1036d6c711a5947" "$1"
@@ -289,32 +304,30 @@ alias rc='main && env_rails_current'
 alias rn='rails_next && env_rails_next'
 alias rn_deprecations='rails_next_deprecations'
 
-# Count occurrences of the string ConfigFileLoader
-function config_file_loader_count() {
-  rg --count-matches ConfigFileLoader | cut -d ':' -f 2 | awk '{sum += $1} END {print sum}'
-}
-
 # Flush memcached
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
 
 # Open better_errors links directly in open RubyMine.
-export BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
+export PM_DEV_BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
 # Enable logging in the browser
-export PM_BROWSER_LOGGING=true
+export PM_DEV_BROWSER_LOGGING=true
 
 # Enable profiling tools in the browser (use 1 for enabled)
-export PM_ENABLE_PROFILING=0
+export PM_DEV_ENABLE_PROFILING=0
 
 # Reduce the console noise in development by increasing the polling interval
-export PM_POLLING_INTERVAL_IN_SECONDS=600
+export PM_DEV_POLLING_INTERVAL_IN_SECONDS=600
 
 # Enable the database analysis gems
-export PM_STATIC_DATABASE_ANALYSIS=true
+export PM_DEV_STATIC_DATABASE_ANALYSIS=true
 
 # Debugging tweaks
 export CAPYBARA_MAX_WAIT_TIME=600
-export PM_REQUEST_TIMEOUT_IN_MINUTES=10
+export PM_DEV_REQUEST_TIMEOUT_IN_MINUTES=10
+
+# Enable bootsnap at startup
+export PM_DEV_ENABLE_BOOTSNAP=true
 
 # Enable the named release toggle for all sites
 function enable_release_toggle() {
@@ -334,13 +347,14 @@ function current_count() {
 
 # Open the SF3 team cloud resources
 alias sf3_board='nutrella sf3_board'
+alias sf3_engineering_initiatives="open 'https://docs.google.com/spreadsheets/d/179sAI9BfByHiKv2sIlDvQLwZIKlqpYn4zOUD2kFwfQU/edit#gid=40839495'"
 alias sf3_health_check="open 'https://lucid.app/lucidspark/5783b82f-e663-494b-a377-45326062c660/edit?viewport_loc=-6315%2C-1266%2C10684%2C5198%2CUSVfsZ0KvO5c5&invitationId=inv_0a86b46d-00ae-4c79-ab80-4cecee42a619'"
-alias sf3_kanban="open 'https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/205'"
+alias sf3_kanban="open 'https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/215?quickFilter=601'"
 alias sf3_mission_control="open 'https://lucid.app/lucidspark/d379ca21-991d-4f6b-9276-f287afff2bd6/edit?page=FdOixYiDcHIf0&invitationId=inv_c3d6be92-9c2f-45b7-830e-a2ed73dee085#'"
 alias sf3_mobtime="open 'https://mobti.me/sf3'"
 alias sf3_room="open 'https://nulogy.zoom.us/j/5817548930?pwd=R2ZXRWNMdGRyZ2RzekVyQjNjcGlJdz09'"
 alias sf3_translations="open 'https://trello.com/b/0gksZm7F/shop-floor-translation-process'"
-alias sf3_whiteboard="open 'https://miro.com/app/board/uXjVP0S18tA=/'"
+alias sf3_trello='nutrella sf3_board'
 
 # Run the Automated Production Entry features and specs
 # alias ape_features='spring rails ape:features'
@@ -366,6 +380,29 @@ alias sentry='open https://sentry.io/organizations/nulogy/issues/\?environment=p
 
 # Alias to the New Relic CLI (avoids a clash the newrelic binary from the newrelic_rpm gem)
 alias nr=/usr/local/bin/newrelic
+
+
+# -----------------------------------------------------------------------------
+# Query Each Schema
+# -----------------------------------------------------------------------------
+
+query_inline() {
+  pushd ./development/scripts/query_each_schema
+  query_each_schema using_inline_query --environment "$($1)" --query "$2"
+  popd
+}
+
+query_with_file() {
+  setopt local_traps 
+
+  pushd ./development/scripts/query_each_schema
+  query_each_schema using_query_file --environment "$($1)" --format-csv --from-file "$2"
+  popd
+}
+
+db_na() {  echo na-production }
+db_eu() {  echo eu-production }
+db_training() { echo packmanager-training }
 
 
 # -----------------------------------------------------------------------------
