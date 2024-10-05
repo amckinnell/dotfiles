@@ -27,7 +27,7 @@
 	diff = auto
 	ui = true
 [fetch]
-  prune = true
+	prune = true
 [credential]
 	helper = osxkeychain
 [commit]

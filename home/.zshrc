@@ -308,7 +308,7 @@ alias rn_deprecations='rails_next_deprecations'
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
 
 # Open better_errors links directly in open RubyMine.
-export PM_DEV_BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
+# export PM_DEV_BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
 
 # Enable logging in the browser
 export PM_DEV_BROWSER_LOGGING=true
@@ -346,6 +346,8 @@ function current_count() {
 }
 
 # Open the SF3 team cloud resources
+alias sf3_aws_console="open 'https://us-east-1.console.aws.amazon.com/console/home\?region\=us-east-1\#'"
+alias sf3_aws_rds="open 'https://us-east-1.console.aws.amazon.com/rds/home\?region\=us-east-1\#'"
 alias sf3_board='nutrella sf3_board'
 alias sf3_engineering_initiatives="open 'https://docs.google.com/spreadsheets/d/179sAI9BfByHiKv2sIlDvQLwZIKlqpYn4zOUD2kFwfQU/edit#gid=40839495'"
 alias sf3_health_check="open 'https://lucid.app/lucidspark/5783b82f-e663-494b-a377-45326062c660/edit?viewport_loc=-6315%2C-1266%2C10684%2C5198%2CUSVfsZ0KvO5c5&invitationId=inv_0a86b46d-00ae-4c79-ab80-4cecee42a619'"
