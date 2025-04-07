@@ -29,7 +29,7 @@ branch-width: 120
 
 # Hide columns where the property name matches a regex:
 # (e.g., Hide long todos; hide issue tracker metadata)
-except-property: mergeoptions
+except-property: vscode-merge-*
 
 ### GitHub integration ###
 

@@ -5,28 +5,37 @@
   useconfigonly = true
 	email = alistairm@nulogy.com
 [push]
-	default = current
 	autoSetupRemote = true
+	default = current
 [core]
-	excludesfile = /Users/alistairm/.gitignore
+	attributesfile = /Users/alistairm/.gitattributes
   autocrlf = input
 	commentchar = $
-	pager = less -R --tabs=2 -RFX
+	excludesfile = /Users/alistairm/.gitignore
+	fsmonitor = true
 	hooksPath = /Users/alistairm/.git-templates/hooks
-	attributesfile = /Users/alistairm/.gitattributes
+	pager = less -R --tabs=2 -RFX
+	untrackedCache = true
 [remote "origin"]
 	push = HEAD
 [branch]
 	autosetupmerge = true
+	sort = -committerdate
 [diff]
-  compactionheuristic = true
-	renameLimit = 10000
 	algorithm = histogram
+	colorMoved = plain
+  compactionheuristic = true
+  mnemonicPrefix = true
+	renameLimit = 10000
+	renames = true
 [color]
 	branch = auto
 	diff = auto
 	ui = true
+[column]
+ 	ui = auto
 [fetch]
+	all = true
 	prune = true
 [credential]
 	helper = osxkeychain
@@ -37,6 +46,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[help]
+  autocorrect = prompt
 [pull]
 	ff = only
 [merge "no-assets"]
@@ -50,9 +61,13 @@
 [scalar]
 	repo = /Users/alistairm/src/packmanager/main
 [rebase]
+	autoSquash = true
+	autoStash = true
 	updateRefs = true
 [git-mob-config]
 	github-fetch = false
 [rerere]
 	enabled = true
 	autoUpdate = true
+[safe]
+	directory = /usr/src/app

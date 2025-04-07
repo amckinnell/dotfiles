@@ -52,7 +52,7 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # export PATH=$PATH:$JAVA_TOOLS_HOME/apache-ant-1.9.6/bin
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
-BUNDLED_COMMANDS=(appraisal overmind query_each_schema rails)
+BUNDLED_COMMANDS=(appraisal nucop overmind rails)
 plugins=(asdf brew bundler dash direnv gh git history-substring-search kubectl nulogy rake-fast sublime sublime-merge tldr z)
 
 source $ZSH/oh-my-zsh.sh
@@ -108,8 +108,11 @@ alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
 # Clear oopsie .idea project
 alias clear_idea='rm -rf .idea'
 
-# Shows the branches that have been merged.
+# Shows the branches that have been merged
 alias lm=locally_merged
+
+# Display the path one directory on each line
+alias path='tr ":" "\n" <<< $PATH'
 
 # Lurkers (see https://blog.testdouble.com/posts/2020-04-07-favorite-things/)
 alias ls='eza'
@@ -118,13 +121,13 @@ alias ls='eza'
 # Install command line tool using 'brew install wifi-password'
 alias wifi='wifi-password -q'
 
-# Configuration for ruby-build (a plugin for rbenv).
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
+# Configuration for ruby-build (a plugin for rbenv)
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl) --with-jemalloc-dir=$(brew --prefix jemalloc)"
 
 # Source from a file that will not go into my dotfiles repo
 [ -f .zshrc_private ] && source .zshrc_private
 
-# Go tp the project root directory.
+# Go to the project root directory.
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
 # Install the Homebrew Command Not Found tool
@@ -225,7 +228,7 @@ alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Pa
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
 # Disable the spring pre-loader
-export DISABLE_SPRING=1
+# export DISABLE_SPRING=1
 
 # Use this browser for running acceptance specs and features
 export CAPYBARA_DRIVER=chrome
@@ -354,9 +357,15 @@ alias sf3_health_check="open 'https://lucid.app/lucidspark/5783b82f-e663-494b-a3
 alias sf3_kanban="open 'https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/215?quickFilter=601'"
 alias sf3_mission_control="open 'https://lucid.app/lucidspark/d379ca21-991d-4f6b-9276-f287afff2bd6/edit?page=FdOixYiDcHIf0&invitationId=inv_c3d6be92-9c2f-45b7-830e-a2ed73dee085#'"
 alias sf3_mobtime="open 'https://mobti.me/sf3'"
-alias sf3_room="open 'https://nulogy.zoom.us/j/5817548930?pwd=R2ZXRWNMdGRyZ2RzekVyQjNjcGlJdz09'"
+alias sf3_replenishment="open 'https://docs.google.com/document/d/1F6QDYJyVzfvnpsx7bTitGksYhLtmlkfuVs05mgJV6SM/'"
+alias sf3_room="open 'https://nulogy.zoom.us/j/99700778567?pwd=DraTPTaaaDEzO0aHMrd7YwRRw5TXiN.1'"
 alias sf3_translations="open 'https://trello.com/b/0gksZm7F/shop-floor-translation-process'"
 alias sf3_trello='nutrella sf3_board'
+
+# Open the Crescent DTC Pilot team cloud resources
+alias dtc_board="nutrella 'Crescent DTC Pilot'"
+alias dtc_room="open https://nulogy.zoom.us/my/emilyshepherd"
+alias dtc_trello="nutrella 'Crescent DTC Pilot'"
 
 # Run the Automated Production Entry features and specs
 # alias ape_features='spring rails ape:features'
@@ -381,7 +390,7 @@ alias kill_rubies='killall -KILL -q -u $USER ruby'
 alias sentry='open https://sentry.io/organizations/nulogy/issues/\?environment=prod-eu\&environment=prod-na\&environment=prod-training\&statsPeriod=24h'
 
 # Alias to the New Relic CLI (avoids a clash the newrelic binary from the newrelic_rpm gem)
-alias nr=/usr/local/bin/newrelic
+alias nr=/opt/homebrew/bin/newrelic
 
 
 # -----------------------------------------------------------------------------
@@ -566,6 +575,10 @@ alias auth='docker run --rm -it --entrypoint='' -v ~/.aws/:/root/.aws -v ~/.kube
 # Best alias for pushing a branch
 alias ngp="spring rspec modules/generic/nulogy_other_teams/spec/integration/nulogy_other_teams_spec.rb && nucop diff_enforced && (gpf || gpsup)"
 
+function codegen() {
+  rails private_graphql_api:generate_schema tng_graphql_api:generate_schema other_teams:update
+} 
+
 
 # -----------------------------------------------------------------------------
 # Node Version Manager
@@ -640,3 +653,7 @@ alias estate_log='open /Volumes/Alistair\ Local/Gwen\ Mckinnell\ Estate/log.md'
 
 export PATH=$(echo "$PATH" | awk -v RS=: -v ORS=: '!(a[$0]++)' | sed 's/:$//')
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
