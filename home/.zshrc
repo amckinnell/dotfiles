@@ -95,9 +95,6 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 # Add my scripts to the front of the PATH
 export PATH=~/dev/scripts:$PATH
 
-# Initialize rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # Opens gmail from the command line
 alias amg='open -a "Safari" https://mail.google.com/mail/u/0/#inbox'
 alias amn='open -a "Google Chrome" https://mail.google.com/mail/u/0/#inbox'
@@ -120,9 +117,6 @@ alias ls='eza'
 # Shows the current wi-fi password (you have to authenticate)
 # Install command line tool using 'brew install wifi-password'
 alias wifi='wifi-password -q'
-
-# Configuration for ruby-build (a plugin for rbenv)
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl) --with-jemalloc-dir=$(brew --prefix jemalloc)"
 
 # Source from a file that will not go into my dotfiles repo
 [ -f .zshrc_private ] && source .zshrc_private
@@ -265,7 +259,7 @@ function env_rails_next() {
 }
 
 function ruby_prompt() {
-  rbenv version | cut -d' ' -f 1
+  ruby --version | cut -d' ' -f 2
 }
 
 function rails_next_prompt() {
