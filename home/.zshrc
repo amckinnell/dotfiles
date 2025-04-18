@@ -150,10 +150,6 @@ alias dev='cd ~/dev'
 # Makes my Nulogy SSH key available.
 ssh-add ~/.ssh/nulogy_rsa 2>/dev/null;
 
-# Makes it easier to switch between different versions of Xcode.
-# alias xc8='sudo xcode-select -s /Applications/Xcode.8.app'
-# alias xc9='sudo xcode-select -s /Applications/Xcode.9.app'
-
 # Choose openssl over native OS X libraries.
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
@@ -193,6 +189,7 @@ alias er_web="open https://epicreact.dev/learn/"
 # --------------------------------------
 # Python environment
 # --------------------------------------
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -238,7 +235,7 @@ export CAPYBARA_DRIVER=chrome
 export CAPYBARA_SCREENSHOT=1
 
 # Do not clear the test logs after each run
-export PRESERVE_TEST_LOG=1
+export PM_DEV_PRESERVE_TEST_LOG=1
 
 alias use_chrome='export CAPYBARA_DRIVER=chrome'
 alias use_chrome_headless='export CAPYBARA_DRIVER=chrome_headless'
@@ -473,6 +470,14 @@ alias qcloud='cd $QCLOUD_DIR'
 # Handy way to get to the various DQI directories
 alias dqi='cd $QCLOUD_DIR'
 
+# See Language & Region System Preference on OS X
+export TWENTY_FOUR_HOUR_CLOCK=true
+
+
+# -----------------------------------------------------------------------------
+# Candidates for oh-my-zsh-plugins
+# -----------------------------------------------------------------------------
+
 # Run Rubocop on a diff between the specified commit and the current working directory.
 #
 # If no commit is specified the default is to diff against main. You can also pass
@@ -508,14 +513,6 @@ function rubodiff() {
     grep "\.rb$" | \
     xargs --no-run-if-empty rubocop --config .rubocop.backlog.yml $RUBOCOP_ARGS
 }
-
-# See Language & Region System Preference on OS X
-export TWENTY_FOUR_HOUR_CLOCK=true
-
-
-# -----------------------------------------------------------------------------
-# Candidates for oh-my-zsh-plugins
-# -----------------------------------------------------------------------------
 
 # One-by-one commit for each file using the same message.
 function commit_each() {
@@ -563,9 +560,6 @@ function build_tag() {
   curl https://app.nulogy.net/test/build_tag
 }
 
-# Open our Lattice HR system
-alias lattice='open https://nulogy.latticehq.com'
-
 # Open our Bamboo HR system
 alias bamboohr='open https://nulogycorp.bamboohr.com/home/'
 
@@ -578,34 +572,6 @@ alias ngp="spring rspec modules/generic/nulogy_other_teams/spec/integration/nulo
 function codegen() {
   rails private_graphql_api:generate_schema tng_graphql_api:generate_schema other_teams:update
 } 
-
-
-# -----------------------------------------------------------------------------
-# Node Version Manager
-# -----------------------------------------------------------------------------
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
-
-# Calling nvm use automatically in a directory with a .nvmrc file
-autoload -U add-zsh-hook
-load-nvmrc() {
- local node_version="$(nvm version)"
- local nvmrc_path="$(nvm_find_nvmrc)"
- if [ -n "$nvmrc_path" ]; then
-   local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-   if [ "$nvmrc_node_version" = "N/A" ]; then
-     nvm install
-   elif [ "$nvmrc_node_version" != "$node_version" ]; then
-     nvm use
-   fi
- elif [ "$node_version" != "$(nvm version default)" ]; then
-   echo "Reverting to nvm default version"
-   nvm use default
- fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
 
 # -----------------------------------------------------------------------------
@@ -652,8 +618,10 @@ alias estate_log='open /Volumes/Alistair\ Local/Gwen\ Mckinnell\ Estate/log.md'
 # -----------------------------------------------------------------------------
 
 export PATH=$(echo "$PATH" | awk -v RS=: -v ORS=: '!(a[$0]++)' | sed 's/:$//')
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# -----------------------------------------------------------------------------
+# Activate mise-en-place (https://mise.jdx.dev/)
+# -----------------------------------------------------------------------------
+
+eval "$(mise activate zsh)"
