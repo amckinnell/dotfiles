@@ -53,7 +53,7 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # export PATH=$PATH:$JAVA_TOOLS_HOME/gradle-2.9/bin
 
 BUNDLED_COMMANDS=(appraisal nucop overmind rails)
-plugins=(asdf brew bundler dash direnv gh git history-substring-search kubectl nulogy rake-fast sublime sublime-merge tldr z)
+plugins=(brew bundler dash git history-substring-search kubectl nulogy sublime tldr z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -219,7 +219,7 @@ alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Pa
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
 # Disable the spring pre-loader
-# export DISABLE_SPRING=1
+export DISABLE_SPRING=1
 
 # Use this browser for running acceptance specs and features
 export CAPYBARA_DRIVER=chrome
@@ -244,19 +244,6 @@ alias rails_next='cd $PACKMANAGER_RAILS_NEXT'
 
 # Run locally with RAILS NEXT?
 export RAILS_NEXT=false
-
-# Helpers for the migration to Rails Next
-function env_rails_current() {
-  unset RAILS_NEXT
-  unset BUNDLE_GEMFILE
-  echo -e '\033]50;SetProfile=Default\a'
-}
-
-function env_rails_next() {
-  export RAILS_NEXT=true
-  export BUNDLE_GEMFILE=Gemfile.next
-  echo -e '\033]50;SetProfile=RailsNext\a'
-}
 
 function ruby_prompt() {
   ruby --version | cut -d' ' -f 2
