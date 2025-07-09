@@ -153,9 +153,6 @@ export THOR_SILENCE_DEPRECATION=1
 # Speed up brew process boot time..
 export HOMEBREW_BOOTSNAP=1
 
-# Enables rubymine to open RubyMine IDE from the command line.
-export PATH=/Applications/RubyMine.app/Contents/MacOS:$PATH
-
 # Even less typing to open the files from the current branch in RubyMine.
 alias mb='mine_branch'
 
@@ -288,9 +285,6 @@ alias rn_deprecations='rails_next_deprecations'
 # Flush memcached
 alias flush_mem_cache_server="echo 'flush_all' | nc 127.0.0.1 11211"
 
-# Open better_errors links directly in open RubyMine.
-# export PM_DEV_BETTER_ERRORS_EDITOR="x-mine://open?file=%{file}&line=%{line}"
-
 # Enable logging in the browser
 export PM_DEV_BROWSER_LOGGING=true
 
@@ -335,8 +329,10 @@ alias sf3_health_check="open 'https://lucid.app/lucidspark/5783b82f-e663-494b-a3
 alias sf3_kanban="open 'https://nulogy-go.atlassian.net/jira/software/c/projects/PM/boards/215?quickFilter=601'"
 alias sf3_mission_control="open 'https://lucid.app/lucidspark/d379ca21-991d-4f6b-9276-f287afff2bd6/edit?page=FdOixYiDcHIf0&invitationId=inv_c3d6be92-9c2f-45b7-830e-a2ed73dee085#'"
 alias sf3_mobtime="open 'https://mobti.me/sf3'"
+alias sf3_rds="open 'https://us-east-1.console.aws.amazon.com/rds/home\?region\=us-east-1\#'"
 alias sf3_replenishment="open 'https://docs.google.com/document/d/1F6QDYJyVzfvnpsx7bTitGksYhLtmlkfuVs05mgJV6SM/'"
 alias sf3_room="open 'https://nulogy.zoom.us/j/99700778567?pwd=DraTPTaaaDEzO0aHMrd7YwRRw5TXiN.1'"
+alias sf3_transient_specs="open 'https://docs.google.com/spreadsheets/d/1FNYGEKXfcGeHKqf62J6Lp9cLTSBXwXH9fZdjZ2gtx38/'"
 alias sf3_translations="open 'https://trello.com/b/0gksZm7F/shop-floor-translation-process'"
 alias sf3_trello='nutrella sf3_board'
 
@@ -552,7 +548,7 @@ alias ngp="spring rspec modules/generic/nulogy_other_teams/spec/integration/nulo
 
 function codegen() {
   rails private_graphql_api:generate_schema tng_graphql_api:generate_schema other_teams:update
-} 
+}
 
 
 # -----------------------------------------------------------------------------

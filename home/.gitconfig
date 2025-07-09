@@ -61,7 +61,7 @@
 [scalar]
 	repo = /Users/alistairm/src/packmanager/main
 [rebase]
-	autoSquash = true
+	autosquash = true
 	autoStash = true
 	updateRefs = true
 [git-mob-config]
