@@ -16,6 +16,7 @@
 	hooksPath = /Users/alistairm/.git-templates/hooks
 	pager = less -R --tabs=2 -RFX
 	untrackedCache = true
+	whitespace = trailing-space
 [remote "origin"]
 	push = HEAD
 [branch]
@@ -56,6 +57,8 @@
 	defaultBranch = main
 [maintenance]
 	repo = /Users/alistairm/src/packmanager/main
+	auto = true
+	strategy = incremental
 [merge]
 	conflictStyle = zdiff3
 [scalar]

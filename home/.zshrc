@@ -25,6 +25,15 @@ DISABLE_AUTO_UPDATE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
+DISABLE_COMPFIX="true"
+
+# Smarter completion initialization
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 
 
 # -----------------------------------------------------------------------------
@@ -216,7 +225,7 @@ alias pm_user='rails nulogy:user_management:create_admin[alistairm@nulogy.com,Pa
 alias fsa='fs -f "$PACKMANAGER_ALISTAIR/Procfile.all" -d .'
 
 # Disable the spring pre-loader
-export DISABLE_SPRING=1
+# export DISABLE_SPRING=1
 
 # Use this browser for running acceptance specs and features
 export CAPYBARA_DRIVER=chrome
